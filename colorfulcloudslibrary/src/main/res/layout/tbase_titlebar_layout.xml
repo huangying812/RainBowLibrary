@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+   style="@style/tbase_titleLayoutStyle"
+    >
+    <LinearLayout
+        android:id="@+id/tbase_titleLayout_left"
+        android:layout_width="50dip"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginLeft="6dip"
+        android:layout_marginBottom="3dip"
+        android:layout_marginTop="3dip"
+        />
+    <LinearLayout
+        android:id="@+id/tbase_titleLayout_center"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginLeft="13dip"
+        android:layout_marginRight="13dip"
+        android:layout_marginBottom="3dip"
+        android:layout_marginTop="3dip"
+        />
+    <LinearLayout
+        android:id="@+id/tbase_titleLayout_right"
+        android:layout_width="50dip"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical|right"
+        android:layout_marginRight="3dip"
+        android:layout_marginBottom="3dip"
+        android:layout_marginTop="3dip"
+
+        />
+</LinearLayout>
