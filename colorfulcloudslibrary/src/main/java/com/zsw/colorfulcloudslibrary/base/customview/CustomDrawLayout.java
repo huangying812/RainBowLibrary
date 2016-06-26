@@ -5,7 +5,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
 
 /**
- * Created by Administrator on 2016/6/26.
+ * Created by zhusw on 2016/6/26.
  */
 public class CustomDrawLayout extends DrawerLayout {
 
