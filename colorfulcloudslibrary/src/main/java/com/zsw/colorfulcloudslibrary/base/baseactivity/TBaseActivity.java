@@ -5,6 +5,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -85,7 +86,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
     private void initSystemSet(){
         /**
          * 为了不限制 子Activity的样式选择
-         * 在这里去掉当前Activity的ActionBar
+         * 在这里动态去掉当前Activity的ActionBar 子类可以在配置文件重新定义
          */
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         //是否添加过 statusBar 默认为 false
@@ -144,7 +145,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
     /**
      * @param color 状态栏颜色值
      */
-    protected final void reSetStatusColor(int color){
+    protected final void reSetStatusColor(@ColorInt int color){
         if(isAddStatus) rootLayout.getChildAt(0).setBackgroundColor(color);
     }
 
@@ -173,7 +174,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
      * 如果没有添加 statusBar则新建并添加到rootLayout
      * 并将isAddStatus = true
      * */
-    protected final  void addSetStatus(int color){
+    protected final  void addSetStatus(@ColorInt int color){
         if(!isAddStatus){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 addStatusToRootLayout(this,color);
@@ -186,7 +187,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
      * * @param activity 需要设置的activity
      * * @param color 状态栏颜色值
      * @return 状态栏矩形条 */
-    private  View createStatusView(Activity activity, int color) {
+    private  View createStatusView(Activity activity, @ColorInt int color) {
         // 获得状态栏高度
         int resourceId = activity.getResources().getIdentifier("status_bar_height", "dimen", "android");
         int statusBarHeight = activity.getResources().getDimensionPixelSize(resourceId);
@@ -201,7 +202,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
     }
 
     /** * 设置状态栏颜色 * * @param activity 需要设置的activity * @param color 状态栏颜色值 */
-    private  void addStatusToRootLayout(Activity activity, int color) {
+    private  void addStatusToRootLayout(Activity activity,@ColorInt int color) {
             // 生成一个状态栏大小的矩形
             View statusView = createStatusView(activity, color);
             statusView.setFitsSystemWindows(true);

@@ -2,6 +2,7 @@ package com.zsw.colorfulcloudslibrary.base.basetitle;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -119,7 +120,7 @@ public class TbaseTitleBar extends LinearLayout implements View.OnClickListener 
      * 设置颜色值为背景
      * @param color
      */
-    public void setTitleBarBackgroundColor(int color){
+    public void setTitleBarBackgroundColor(@ColorInt int color){
         titleRootLayout.setBackgroundColor(color);
     }
     /**
