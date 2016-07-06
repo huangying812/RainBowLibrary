@@ -80,7 +80,7 @@
        //实际项目BaseFragment
         public class AbFragment extends TBaseFragment {
             /**
-             * 避免上层 直接持有子类的activity 在getResoures 查找资源失败
+             * 覆盖上层TbaseActivity 避免 在getResoures 查找资源失败
              */
             private AbFragmentGroupAct abGroupActivity;
         
