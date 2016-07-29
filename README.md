@@ -1,5 +1,5 @@
 # colorfulcloudslibrary
- ## android UI 快速开发Base框架
+ ## 用过几个UI框架 感觉体积和限制太大，于是就萌发了自己来写，感谢部分朋友在使用中给我提出的意见
   代码示例
   
 ```java
