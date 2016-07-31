@@ -4,7 +4,6 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
-import android.widget.FrameLayout;
 
 import com.zsw.colorfulcloudslibrary.base.basefragment.TBaseFragment;
 
@@ -12,12 +11,12 @@ import com.zsw.colorfulcloudslibrary.base.basefragment.TBaseFragment;
  * 切换Fragment的Activity
  * author z.sw 2016-06-16 13:43:31
  */
-public abstract class TBaseFragmentGroupActivity extends TBaseActivity{
+public abstract class TBaseFragmentGroupActivity extends TBaseActivity {
     private TBaseFragment showFragment;
+
     @Override
     public void onLayoutLoading() {
         super.setContentLayout(setLayoutView());
-
         onLayoutloaded();
     }
 
@@ -40,7 +39,7 @@ public abstract class TBaseFragmentGroupActivity extends TBaseActivity{
     }
 
     public TBaseFragment findFragmentByTag(Class<?extends TBaseFragment> clazz){
-        FragmentManager  fm = getSupportFragmentManager();
+        FragmentManager fm = getSupportFragmentManager();
         return (TBaseFragment) fm.findFragmentByTag(clazz.getName());
     }
 
@@ -49,9 +48,9 @@ public abstract class TBaseFragmentGroupActivity extends TBaseActivity{
      * @param clazz position fragment
      * @return current show fragment
      */
-    private TBaseFragment switchFragment(int frameId,Class<?extends TBaseFragment> clazz){
-         FragmentManager  fm = getSupportFragmentManager();
-        FragmentTransaction  ft = fm.beginTransaction();
+    private TBaseFragment switchFragment(int frameId, Class<?extends TBaseFragment> clazz){
+         FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
         TBaseFragment currentFragment = (TBaseFragment) fm.findFragmentByTag(clazz.getName());
             if(null  == currentFragment){
                 try {
@@ -79,12 +78,15 @@ public abstract class TBaseFragmentGroupActivity extends TBaseActivity{
 
     @Override
     public void startLoadAnim(Drawable drawable) {
+
         super.startLoadAnim(drawable);
     }
 
     @Override
     public void stopLoadAnim() {
+
         super.stopLoadAnim();
+
     }
 
 

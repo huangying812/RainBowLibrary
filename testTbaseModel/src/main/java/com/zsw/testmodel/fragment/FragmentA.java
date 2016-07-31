@@ -5,10 +5,10 @@ import android.support.annotation.ColorInt;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.widget.TextView;
 
 import com.zsw.testmodel.R;
+import com.zsw.testmodel.base.AbFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,13 +30,17 @@ public class FragmentA extends AbFragment {
         view.setBackgroundColor(getBgColor());
         content.setText(getText());
 
+        if(showProgress()){
+            startLoadAnimInAct(getResources().getDrawable(R.drawable.tbase_animlist_loading));
+        }
     }
 
 
-    public
-    @ColorInt
-    int getBgColor() {
-        return getTBaseFGActivity().getResources().getColor(R.color.testmodelblue);
+    public boolean showProgress(){
+        return false;
+    }
+    public @ColorInt int getBgColor() {
+        return getTBaseActivity().getResources().getColor(R.color.testmodelblue);
     }
 
     public String getText() {

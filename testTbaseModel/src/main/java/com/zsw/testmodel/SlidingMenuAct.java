@@ -5,10 +5,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 
+import com.zsw.testmodel.base.AbActivity;
+
 /**
  * Created by Administrator on 2016/6/26.
  */
-public class SlidingMenuAct extends MyBaseActivity {
+public class SlidingMenuAct extends AbActivity {
 
     @Override
     public void initLayout() {

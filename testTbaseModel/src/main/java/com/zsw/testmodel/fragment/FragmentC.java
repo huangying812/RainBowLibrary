@@ -1,5 +1,8 @@
 package com.zsw.testmodel.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
 import com.zsw.testmodel.R;
 
 /**
@@ -9,10 +12,16 @@ public class FragmentC extends FragmentA {
 
     @Override
     public int getBgColor() {
-        return getTBaseFGActivity().getResources().getColor(R.color.testmodelf);
+        return getTBaseActivity().getResources().getColor(R.color.testmodelf);
     }
     @Override
     public String getText() {
         return "Rest -FragmentC";
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getTBaseActivity().startLoadAnim();
     }
 }

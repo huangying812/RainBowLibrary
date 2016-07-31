@@ -1,4 +1,4 @@
-package com.zsw.testmodel;
+package com.zsw.testmodel.base;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +12,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Administrator on 2016/6/20.
  */
-public abstract class  MyBaseActivity extends TBaseActivity implements View.OnClickListener,RippleView.OnRippleCompleteListener {
+public abstract class AbActivity extends TBaseActivity implements View.OnClickListener,RippleView.OnRippleCompleteListener {
 
     @Override
     public void onClick(View v) {
@@ -46,6 +46,7 @@ public abstract class  MyBaseActivity extends TBaseActivity implements View.OnCl
     public abstract  void initLayout();
 
 
+    //--提供一些 子类加载资源的方法
     public void setStatusColor(int resid){
         super.reSetStatusColor(getResources().getColor(resid));
     }

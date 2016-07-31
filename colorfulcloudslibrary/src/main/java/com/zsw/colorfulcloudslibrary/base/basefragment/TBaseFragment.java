@@ -2,6 +2,7 @@ package com.zsw.colorfulcloudslibrary.base.basefragment;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.RotateDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,18 +10,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.RelativeLayout;
 
-import com.zsw.colorfulcloudslibrary.base.baseactivity.TBaseFragmentGroupActivity;
-import com.zsw.colorfulcloudslibrary.base.baseexception.NotFindFGActivityException;
+import com.victor.loading.rotate.RotateLoading;
+import com.zsw.colorfulcloudslibrary.R;
+import com.zsw.colorfulcloudslibrary.base.baseactivity.TBaseActivity;
+import com.zsw.colorfulcloudslibrary.base.baseexception.NotFindActivityException;
 
 /**
  * from support v4 packages
  * Created by z.sw on 2016/7/4.
  */
 public abstract class TBaseFragment extends Fragment {
-    private TBaseFragmentGroupActivity fgActivity;
+    private TBaseActivity fgActivity;
 
     /**
      * 根布局
@@ -33,6 +36,7 @@ public abstract class TBaseFragment extends Fragment {
      * @param activity
      */
     private ViewGroup contentView;
+
 
     @Nullable
     @Override
@@ -58,6 +62,7 @@ public abstract class TBaseFragment extends Fragment {
     public abstract  void onInitLayout(LayoutInflater inflater, ViewGroup container,
                                        Bundle savedInstanceState);
 
+
     /**
      * 设置子类布局
      * @param view
@@ -73,41 +78,41 @@ public abstract class TBaseFragment extends Fragment {
     }
 
 
-    //防止重复引用同一个Activity  Fragment重叠
+    /**
+     *   //防止重复引用同一个Activity  Fragment重叠
+      * @param activity -检查是否继承自TbaseActivity 并抛出NotFindActivityException
+     */
     @Override
     public void onAttach(Activity activity) {
-        if(activity instanceof  TBaseFragmentGroupActivity){
-            fgActivity = (TBaseFragmentGroupActivity) activity;
+        if(activity instanceof TBaseActivity){
+            fgActivity = (TBaseActivity) activity;
         }else{
             try {
-                throw new NotFindFGActivityException();
-            } catch (NotFindFGActivityException e) {
+                throw new NotFindActivityException();
+            } catch (NotFindActivityException e) {
                 e.printStackTrace();
             }
-        }
+    }
         super.onAttach(activity);
     }
 
-    public TBaseFragmentGroupActivity getTBaseFGActivity() throws NotFindFGActivityException {
+    public TBaseActivity getTBaseActivity() throws NotFindActivityException {
         Activity activity = getActivity();
-        if(activity instanceof  TBaseFragmentGroupActivity){
-            return (TBaseFragmentGroupActivity) activity;
+        if(activity instanceof TBaseActivity){
+            return (TBaseActivity) activity;
         }else{
-            throw new NotFindFGActivityException();
+            throw new NotFindActivityException();
         }
 
     }
 
-    public void startLoadAnim(Drawable drawable){
+    public void startLoadAnimInAct(){
+        fgActivity.startLoadAnim();
+    }
+    public void startLoadAnimInAct(Drawable drawable){
         fgActivity.startLoadAnim(drawable);
     }
-
-    public void stopLoadAnim(){
+    public void stopLoadAnimInAct(){
         fgActivity.stopLoadAnim();
     }
-
-
-
-
-
 }

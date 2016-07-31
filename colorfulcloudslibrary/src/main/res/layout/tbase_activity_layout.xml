@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/tbase_activity_rootlayout"
     android:layout_height="match_parent">
@@ -15,6 +16,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="visible"
+        android:fitsSystemWindows="true"
         android:id="@+id/tbase_activity_childContentLayout"
         >
 
@@ -29,18 +31,21 @@
         android:id="@+id/tbase_activity_loadingLayout"
         android:visibility="gone"
         >
-        <ImageView
+        <com.victor.loading.rotate.RotateLoading
             android:id="@+id/tbasr_activity_loadingImage"
-            android:layout_width="wrap_content"
-            android:maxHeight="100dip"
-            android:maxWidth="1000dip"
-            android:layout_height="wrap_content" />
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:loading_width="3dp"
+            app:loading_color="@color/tbaseColorProgress"
+            android:layout_centerInParent="true"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tbase_loading"
             android:layout_marginTop="10dip"
             android:textStyle="bold"
+            android:textColor="@color/tbaseColorProgress"
             android:textSize="@dimen/tbase_textSize"
             />
 

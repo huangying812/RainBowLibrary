@@ -1,6 +1,7 @@
 package com.zsw.testmodel;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -9,6 +10,8 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.zsw.colorfulcloudslibrary.base.baseactivity.TBaseFragmentGroupActivity;
 import com.zsw.colorfulcloudslibrary.base.basefragment.TBaseFragment;
+import com.zsw.colorfulcloudslibrary.base.basetitle.TbaseTitleBar;
+import com.zsw.testmodel.R;
 import com.zsw.testmodel.fragment.FragmentA;
 import com.zsw.testmodel.fragment.FragmentB;
 import com.zsw.testmodel.fragment.FragmentC;
@@ -20,11 +23,12 @@ import java.util.HashMap;
  * Created by Administrator on 2016/7/4.
  */
 public class AbFragmentGroupAct extends TBaseFragmentGroupActivity {
-
+    //返回 将用来显示fragment的 frameLayout id !! id
     @Override
     public int fragmentContainerId() {
         return R.id.bn_buttomNaviagte_framelayout;
     }
+    //返回 layout xml id
     @Override
     public View setLayoutView() {
         return LayoutInflater.from(this).inflate(R.layout.act_buttomnavigate,null);
@@ -93,5 +97,11 @@ public class AbFragmentGroupAct extends TBaseFragmentGroupActivity {
         reSetStatusColor(getResources().getColor(R.color.testmodelblue));
         getTitleBar().setTitleBarBackgroundColor(getResources().getColor(R.color.testmodelblue));
         getTitleBar().setCenterNormalTextView("bottomNavigate").setTextColor(Color.WHITE);
+        getTitleBar().setRightNormalButton(new TbaseTitleBar.OnTbaseTitleRightViewClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopLoadAnim();
+            }
+        }).setText("停");
     }
 }

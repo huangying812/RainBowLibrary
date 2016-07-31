@@ -1,5 +1,8 @@
 package com.zsw.testmodel.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
 import com.zsw.testmodel.R;
 
 /**
@@ -10,12 +13,16 @@ public class FragmentB extends FragmentA {
 
     @Override
     public int getBgColor() {
-        return getTBaseFGActivity().getResources().getColor(R.color.testModelcpink);
+        return getTBaseActivity().getResources().getColor(R.color.testModelcpink);
     }
     @Override
     public String getText() {
         return "Do - FragmentB";
     }
 
+    @Override
+    public boolean showProgress() {
+        return true;
+    }
 
 }

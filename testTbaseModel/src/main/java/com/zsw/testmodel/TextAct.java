@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 
 import com.andexert.library.RippleView;
+import com.zsw.testmodel.base.AbActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -11,7 +12,7 @@ import butterknife.ButterKnife;
 /**
  * Created by zhhusw on 2016/6/19.
  */
-public class TextAct extends MyBaseActivity {
+public class TextAct extends AbActivity {
 
 
     @Bind(R.id.gosliding)RippleView gosliding;

@@ -9,7 +9,7 @@ public class FragmentD extends  FragmentA {
 
     @Override
     public int getBgColor() {
-        return getTBaseFGActivity().getResources().getColor(R.color.testModelgreen);
+        return getTBaseActivity().getResources().getColor(R.color.testModelgreen);
     }
 
     @Override

@@ -4,5 +4,6 @@
     <color name="tbaseColorcolorPrimaryDark">#000000</color>
     <color name="tbaseColorcolorAccent">#FF4081</color>
     <color name="tbaseColortransparent">#0000</color><!-- 透明 -->
-    <color name="tbaseColorcolorNormal_status">#ffffff</color><!-- -->
+    <color name="tbaseColorcolorNormal_status">#64635E</color><!-- -->
+    <color name="tbaseColorProgress">#64635E</color><!-- -->
 </resources>
