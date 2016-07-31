@@ -1,1 +1,1 @@
-include ':app', ':colorfulcloudslibrary', ':testTbaseModel', ':slidingmenu'
+include ':app', ':colorfulcloudslibrary', ':testTbaseModel'
