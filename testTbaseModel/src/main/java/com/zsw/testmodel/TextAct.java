@@ -20,9 +20,11 @@ public class TextAct extends AbActivity {
 
     @Override
     public void initLayout() {
-        setStatusColor(R.color.testmodelblue);
-        getTitleBar().setTitleBarBackgroundColor(getResources().getColor(R.color.testmodelblue));
-        getTitleBar().setCenterNormalTextView("引用colorfulCloundsLibrary").setTextColor(Color.WHITE);
+//        setStatusColor(R.color.testmodelblue);
+        removeBaseTitleBar();
+        removeStatusBar();
+//        getTitleBar().setTitleBarBackgroundColor(getResources().getColor(R.color.colorAccent));
+//        getTitleBar().setCenterNormalTextView("引用colorfulCloundsLibrary").setTextColor(Color.WHITE);
         loadContentView(R.layout.act_main);
         ButterKnife.bind(this);
         setOnRippleComplete(gosliding,goButtomNavigate);

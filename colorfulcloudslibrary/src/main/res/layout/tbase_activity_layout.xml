@@ -16,11 +16,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="visible"
-        android:fitsSystemWindows="true"
         android:id="@+id/tbase_activity_childContentLayout"
         >
-
-
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

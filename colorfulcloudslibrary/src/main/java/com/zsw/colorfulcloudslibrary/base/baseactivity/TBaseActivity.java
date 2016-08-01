@@ -203,7 +203,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
         isAddStatus = false;
         //设置状态栏透明
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
     }
 
     /**
