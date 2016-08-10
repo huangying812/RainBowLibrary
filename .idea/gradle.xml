@@ -9,16 +9,16 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/colorfulcloudslibrary" />
-            <option value="$PROJECT_DIR$/testTbaseModel" />
+            <option value="$PROJECT_DIR$/rainbowlibrary" />
+            <option value="$PROJECT_DIR$/simpleDemo" />
           </set>
         </option>
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/colorfulcloudslibrary" />
-            <option value="$PROJECT_DIR$/testTbaseModel" />
+            <option value="$PROJECT_DIR$/rainbowlibrary" />
+            <option value="$PROJECT_DIR$/simpleDemo" />
           </set>
         </option>
       </GradleProjectSettings>

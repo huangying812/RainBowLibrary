@@ -4,8 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/colorfulcloudslibrary/colorfulcloudslibrary.iml" filepath="$PROJECT_DIR$/colorfulcloudslibrary/colorfulcloudslibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/testTbaseModel/testTbaseModel.iml" filepath="$PROJECT_DIR$/testTbaseModel/testTbaseModel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rainbowlibrary/rainbowlibrary.iml" filepath="$PROJECT_DIR$/rainbowlibrary/rainbowlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/simpleDemo/simpleDemo.iml" filepath="$PROJECT_DIR$/simpleDemo/simpleDemo.iml" />
     </modules>
   </component>
 </project>
