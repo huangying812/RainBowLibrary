@@ -1,6 +1,7 @@
 # rainbowlibrary Doc
 ## TbaseActivity 继承自AppCompatActivity,风骚的MD风格你懂的。
- >下面放技能+5毛特效 -部分代码示例-  详情参考simpleDemo即可<
+>下面放技能+5毛特效 -部分代码示例-  详情参考simpleDemo即可
+<
 1. 提供TbaseTitleBar-类似ActionBar比ActionBar方便自定义
 2. TBaseFragmentGroupActivity 可快速搭建起一个带导航的主页 提供Fragment管理（切换和缓存）
 3. 快速主题切换和语言切换
