@@ -103,20 +103,8 @@ public class Verifier {
 		return iDCard.matches(IDCardRegex);
 	}
 
-	/**
-	 * 身高
-	 */
-	public static boolean isStature(String stature) {
-		String statureRegex = "([1-3]\\d{2})|([1-9]\\d)";
-		if (isNull(stature)) {
-			return false;
-		}
-		return stature.matches(statureRegex);
-	}
-	public static boolean isDateYear(String date){
-		String format = "([1-2]\\d{3})";
-		return date.matches(format);
-	}
+
+
 	   /**
      * 校验邮箱
      * @param obj
@@ -132,9 +120,8 @@ public class Verifier {
 		String emailRegex = "\\w{1,20}@[a-zA-Z0-9]{2,7}(\\.[a-zA-Z0-9]{2,3}){1,2}";
 		return email.matches(emailRegex);
 	}
-	/**
-	 * Long == null or= 0
-	 */
+
+
 	public static Long isNUll(Long l){
 		if(null == l){
 			return 0L;

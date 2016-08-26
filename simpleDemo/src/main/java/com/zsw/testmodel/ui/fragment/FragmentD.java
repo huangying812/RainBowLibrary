@@ -1,4 +1,4 @@
-package com.zsw.testmodel.fragment;
+package com.zsw.testmodel.ui.fragment;
 
 import com.zsw.testmodel.R;
 

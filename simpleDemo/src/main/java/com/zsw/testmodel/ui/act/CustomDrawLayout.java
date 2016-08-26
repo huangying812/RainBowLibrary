@@ -1,4 +1,4 @@
-package com.zsw.testmodel;
+package com.zsw.testmodel.ui.act;
 
 import android.content.Context;
 import android.support.v4.widget.DrawerLayout;

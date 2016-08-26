@@ -1,7 +1,4 @@
-package com.zsw.testmodel.fragment;
-
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+package com.zsw.testmodel.ui.fragment;
 
 import com.zsw.testmodel.R;
 

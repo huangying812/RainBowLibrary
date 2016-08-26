@@ -1,4 +1,4 @@
-package com.zsw.rainbowlibrary.uibase.basetitle;
+package com.zsw.rainbowlibrary.customview.basetitle;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -97,18 +97,6 @@ public class TbaseTitleBar extends LinearLayout implements View.OnClickListener 
     }
 
 
-//    public LinearLayout getTBaseTitleLayoutLeft() {
-//        return tBaseTitleLayoutLeft;
-//    }
-//
-//    public LinearLayout getTBaseTitleLayoutCenter() {
-//        return tBaseTitleLayoutCenter;
-//    }
-//
-//    public LinearLayout getTBaseTitleLayoutRight() {
-//        return tBaseTitleLayoutRight;
-//    }
-
 
     /**
      * 设置图片或xml资源为背景
@@ -126,10 +114,6 @@ public class TbaseTitleBar extends LinearLayout implements View.OnClickListener 
         titleRootLayout.setBackgroundColor(color);
     }
     /**
-     * add view to rootLayout
-     * warning !!!! before rootLayout will be perform removeAllViews.
-     * So rootLayout only edit the last  View
-     *
      * @param view
      * @param rootLayout titleLayout titlelayoutLeft  | titleLayoutright | titleLayoutcenter
      *                   example:tbaseTitleBar.addView(view,tbaseTitleBar.getTBaseTitleLayoutRight())
@@ -138,14 +122,13 @@ public class TbaseTitleBar extends LinearLayout implements View.OnClickListener 
         if (rootLayout.getChildCount() > 0) {
             rootLayout.removeAllViews();
         }
-        rootLayout.addView(view, rootLayout.getChildCount());
+        rootLayout.addView(view, rootLayout.getChildCount(),getLinearLayoutLParams());
     }
 
 
     // tBaseTitleLayoutLeft-------------------------------
 
     /**
-     * add view to  TbaseTitleBar LeftLayout
      * @param view
      * @return
      */
@@ -168,7 +151,6 @@ public class TbaseTitleBar extends LinearLayout implements View.OnClickListener 
     }
 
     /**
-     * add Normal Button to TbaseTitleBar LeftLayout
      *
      * @param leftListener
      * @return
@@ -256,7 +238,6 @@ public class TbaseTitleBar extends LinearLayout implements View.OnClickListener 
 
     // tBaseTitleLayoutRight----------------------------------
     /**
-     * add view to  TbaseTitleBar RightLayout
      * @param view
      * @return
      */
@@ -279,7 +260,6 @@ public class TbaseTitleBar extends LinearLayout implements View.OnClickListener 
     }
 
     /**
-     * add Normal Button to TbaseTitleBar LeftLayout
      * @param rightListener
      * @return
      */
@@ -345,5 +325,8 @@ public class TbaseTitleBar extends LinearLayout implements View.OnClickListener 
 
     }
 
+    public LinearLayout.LayoutParams getLinearLayoutLParams(){
+        return new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+    }
 
 }

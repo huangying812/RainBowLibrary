@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -20,7 +21,7 @@ import android.widget.LinearLayout;
 
 import com.victor.loading.rotate.RotateLoading;
 import com.zsw.rainbowlibrary.R;
-import com.zsw.rainbowlibrary.uibase.basetitle.TbaseTitleBar;
+import com.zsw.rainbowlibrary.customview.basetitle.TbaseTitleBar;
 import com.zsw.rainbowlibrary.utils.LOG;
 import com.zsw.rainbowlibrary.utils.LanguageTAG;
 import com.zsw.rainbowlibrary.utils.SharedPUtils;
@@ -48,11 +49,10 @@ public abstract class TBaseActivity extends AppCompatActivity {
 
     private LinearLayout loadingLayout;
 
-//    private ImageView loadAnimationImageView;
     private RotateLoading rotateLoading;
 
     /**
-     * 加载时动画
+     * 自定义的 加载动画
      */
     private AnimationDrawable animationDrawable;
 
@@ -140,7 +140,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
     /**
      *如果要单页面执行语言切换 请在不要设置当前Act的启动模式 为 single task 否则不起效果
      * -详情看act的4种启动模式
-     * @param resources res资源管理器 getResources
+     * @param resources res资源管理器
      * @param tag LanguageTAG 中的语言TAG
      */
     public void switchLanguage(Resources resources , String tag){
@@ -208,7 +208,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
         rotateLoading.setLoadingColor(getStatusBarColor());
     }
 
-    public final TbaseTitleBar getTitleBar(){
+    public  TbaseTitleBar getTitleBar(){
         if( null != titleBar) return titleBar;
         else  return  null;
     }
@@ -221,7 +221,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 在当前Activity删除以后 将不再提供重新设置
+     * 在当前Activity删除以后 将不能再重新添加
      */
     public final void removeBaseTitleBar(){
             if( null != titleBar){
@@ -309,8 +309,9 @@ public abstract class TBaseActivity extends AppCompatActivity {
      * @param view
      */
     public final void  setContentLayout(View view){
-
-        childContentLayout.addView(view,childContentLayout.getChildCount());
+            if(childContentLayout.getChildCount()>0) childContentLayout.removeAllViews();
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        childContentLayout.addView(view,childContentLayout.getChildCount(),params);
     }
 
 
@@ -318,10 +319,10 @@ public abstract class TBaseActivity extends AppCompatActivity {
 
 
     /**
-     * 这里准备提供一个 设置自定义动画的方法
+     *  设置自定义的动画
      * @param drawable
      */
-    private  void showLoadAnimation( Drawable drawable){
+    private  void showLoadAnimation(@NonNull  Drawable drawable){
         rotateLoading.setBackground(drawable);
         animationDrawable = (AnimationDrawable) rotateLoading.getBackground();
         animationDrawable.start();
@@ -331,8 +332,11 @@ public abstract class TBaseActivity extends AppCompatActivity {
     }
 
 
-
-    public void startLoadAnim(Drawable drawable){
+    /**
+     * 播放自定义的加载动画
+     * @param drawable
+     */
+    public void startLoadAnim(@NonNull  Drawable drawable){
 
         showLoadAnimation(drawable);
     }
@@ -346,14 +350,25 @@ public abstract class TBaseActivity extends AppCompatActivity {
         childContentLayout.setVisibility(View.GONE);
         loadingLayout.setVisibility(View.VISIBLE);
     }
+
+    /**
+     * 播放默认加载动画
+     */
     public void startLoadAnim(){
 
         showLoadAnimation();
     }
-    public void stopLoadAnim(){
 
+    /**
+     * 取消所有加载动画
+     */
+    public void stopLoadAnim(){
         dismissLoadAnimation();
     }
+
+    /**
+     * 停止动画，
+     */
     private final void dismissLoadAnimation(){
         if(null != animationDrawable && animationDrawable.isRunning()){
             animationDrawable.stop();

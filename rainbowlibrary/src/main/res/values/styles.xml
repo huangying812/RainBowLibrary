@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppThemeBase" parent="Theme.AppCompat.Light">
+    <style name="tbase_ThemeBase" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <!--拉扯系统动画颜色-->
         <item name="colorPrimary">@color/tbaseColortransparent</item>

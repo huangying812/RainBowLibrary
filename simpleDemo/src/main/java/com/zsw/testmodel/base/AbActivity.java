@@ -6,15 +6,13 @@ import android.view.View;
 import com.andexert.library.RippleView;
 import com.zsw.rainbowlibrary.uibase.baseactivity.TBaseActivity;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by Administrator on 2016/6/20.
  */
-public abstract class AbActivity extends TBaseActivity implements View.OnClickListener,RippleView.OnRippleCompleteListener {
+public abstract class AbActivity extends TBaseActivity implements RippleView.OnRippleCompleteListener {
 
-    @Override
-    public void onClick(View v) {
-
-    }
 
     public void setOnRippleComplete(RippleView...rippleView){
         for(RippleView rippleV:rippleView){
@@ -38,12 +36,12 @@ public abstract class AbActivity extends TBaseActivity implements View.OnClickLi
     public void onLayoutLoading() {
 
         initLayout();
+
     }
 
     public abstract  void initLayout();
 
 
-    //--提供一些 子类加载资源的方法
     public void setStatusColor(int resid){
         super.reSetStatusColor(getResources().getColor(resid));
     }

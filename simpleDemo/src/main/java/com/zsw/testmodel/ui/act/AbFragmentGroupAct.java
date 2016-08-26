@@ -1,4 +1,4 @@
-package com.zsw.testmodel;
+package com.zsw.testmodel.ui.act;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -8,11 +8,12 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.zsw.rainbowlibrary.uibase.baseactivity.TBaseFragmentGroupActivity;
 import com.zsw.rainbowlibrary.uibase.basefragment.TBaseFragment;
-import com.zsw.rainbowlibrary.uibase.basetitle.TbaseTitleBar;
-import com.zsw.testmodel.fragment.FragmentA;
-import com.zsw.testmodel.fragment.FragmentB;
-import com.zsw.testmodel.fragment.FragmentC;
-import com.zsw.testmodel.fragment.FragmentD;
+import com.zsw.rainbowlibrary.customview.basetitle.TbaseTitleBar;
+import com.zsw.testmodel.R;
+import com.zsw.testmodel.ui.fragment.FragmentA;
+import com.zsw.testmodel.ui.fragment.FragmentB;
+import com.zsw.testmodel.ui.fragment.FragmentC;
+import com.zsw.testmodel.ui.fragment.FragmentD;
 
 import java.util.HashMap;
 

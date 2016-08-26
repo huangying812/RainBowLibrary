@@ -7,6 +7,7 @@ package com.zsw.rainbowlibrary.utils;
  * Description- 多语言配置标记
  */
 public class LanguageTAG {
+
     /**
      * 中文
      */
@@ -23,5 +24,7 @@ public class LanguageTAG {
      * 法语
      */
     public static final String FRENCH = "fr";
+
+
 
 }
