@@ -13,7 +13,7 @@
 5. 向下兼容的透明状态栏-可删除后设置沉浸式
 6. 侧滑菜单
 
->## http
+>## http--还木有
 >
 
 >#### TbaseActivity
@@ -30,9 +30,24 @@
                     }
                 }
             }
-
-
+            
+        /**
+            * 播放自定义的加载动画
+            * @param drawable
+            */
+           public void startLoadAnim(@NonNull  Drawable drawable){
+       
+               showLoadAnimation(drawable);
+           }     
+           
+              /**
+                * 取消所有加载动画
+                */
+               public void stopLoadAnim(){
+                   dismissLoadAnimation();
+               }
 ```
+
 >#### TbaseTitleBar 使用
 >
 
