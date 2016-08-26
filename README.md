@@ -30,8 +30,10 @@
                     }
                 }
             }
-            
-        /**
+``` 
+
+```java
+            /**
             * 播放自定义的加载动画
             * @param drawable
             */
@@ -46,10 +48,12 @@
                public void stopLoadAnim(){
                    dismissLoadAnimation();
                }
+
 ```
 
 >#### TbaseTitleBar 使用
 >
+
 
 ```java
  @Override
