@@ -1,26 +1,31 @@
 # rainbowlibrary 
-> TbaseActivity 继承自AppCompatActivity,提供快速搭建新项目的底层实现，正在完善。。。我还不是老司机，努力中。。。
-> 后面陆续会加入常用的UI控件及网络请求.
+> TbaseActivity，满足快速搭建项目的UI库 继承自AppCompatActivity,提供快速搭建新项目的底层实现，正在完善。。。我还不是老司机，努力中。。。
+ 后面陆续会加入常用的UI控件及网络请求.
 >
 >###### -部分代码示例-  详情参考simpleDemo即可
->
+
 >## 基础模块 
->
+
 1. 提供TbaseTitleBar-类似ActionBar更方便自定义
 2. TBaseFragmentGroupActivity 可快速搭建起一个带导航的主页 提供Fragment管理（切换和缓存）
 3. 快速主题切换和语言切换
-4. 全局可使用的loading动画 也支持自定义drawable
+4. 全局可使用的loading动画 （loadingView 和 contentView切换 显示）也支持自定义drawable
 5. 向下兼容的透明状态栏-可删除后设置沉浸式
 6. 侧滑菜单
 
->## http--还木有
+>## http--准备中
 >
+>###### 本着简单易读的原则出发，开始弄~~
+>
+
+
+
 
 >#### TbaseActivity
 >
 >    只是为了包装基础模块，给出拓展方法和部分实现。
      已经做了context保存
-     关闭所有activity的方法
+     提供关闭所有activity的方法
 ```java
     public void finishAllAct(){
             if(null != actList && actList.size()>0){

@@ -122,6 +122,8 @@ public class TbaseTitleBar extends LinearLayout implements View.OnClickListener 
         if (rootLayout.getChildCount() > 0) {
             rootLayout.removeAllViews();
         }
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+        view.setLayoutParams(params);
         rootLayout.addView(view, rootLayout.getChildCount(),getLinearLayoutLParams());
     }
 

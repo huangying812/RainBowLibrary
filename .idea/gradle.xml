@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/rainbowhttputils" />
             <option value="$PROJECT_DIR$/rainbowlibrary" />
             <option value="$PROJECT_DIR$/simpleDemo" />
           </set>
@@ -17,6 +18,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/rainbowhttputils" />
             <option value="$PROJECT_DIR$/rainbowlibrary" />
             <option value="$PROJECT_DIR$/simpleDemo" />
           </set>
