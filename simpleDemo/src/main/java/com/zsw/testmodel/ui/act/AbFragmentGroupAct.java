@@ -26,7 +26,7 @@ public class AbFragmentGroupAct extends TBaseFragmentGroupActivity {
     public int fragmentContainerId() {
         return R.id.bn_buttomNaviagte_framelayout;
     }
-    //返回 layout xml id
+
     @Override
     public View setLayoutView() {
         return LayoutInflater.from(this).inflate(R.layout.act_buttomnavigate,null);
@@ -100,6 +100,6 @@ public class AbFragmentGroupAct extends TBaseFragmentGroupActivity {
             public void onClick(View v) {
                 stopLoadAnim();
             }
-        }).setText("停");
+        }).setBackgroundResource(R.mipmap.icon_back);
     }
 }

@@ -5,14 +5,18 @@ import android.view.View;
 
 import com.andexert.library.RippleView;
 import com.zsw.rainbowlibrary.uibase.baseactivity.TBaseActivity;
-
-import butterknife.ButterKnife;
+import com.zsw.testmodel.common.APIManager;
+import com.zsw.testmodel.common.APIService;
 
 /**
  * Created by Administrator on 2016/6/20.
  */
 public abstract class AbActivity extends TBaseActivity implements RippleView.OnRippleCompleteListener {
 
+
+    public APIService getAPIService(){
+       return  APIManager.INSTANCE.getApiService();
+    }
 
     public void setOnRippleComplete(RippleView...rippleView){
         for(RippleView rippleV:rippleView){

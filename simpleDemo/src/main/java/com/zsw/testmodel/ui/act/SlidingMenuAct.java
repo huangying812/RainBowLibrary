@@ -4,20 +4,21 @@ import android.graphics.Color;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
 
+import com.zsw.rainbowlibrary.uibase.baseactivity.TBaseFragmentGroupActivity;
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
 
 /**
  * Created by Administrator on 2016/6/26.
  */
-public class SlidingMenuAct extends AbActivity {
+public class SlidingMenuAct extends TBaseFragmentGroupActivity {
 
     @Override
-    public void initLayout() {
-        setStatusColor(R.color.testModelcpink);
+    public void onLayoutloaded() {
         removeBaseTitleBar();
-        loadContentView(R.layout.activity_slidinglayout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("骚气侧漏");
 //        toolbar.setLogo(getResources().getDrawable(R.mipmap.ic_account_balance_white_24dp));
@@ -31,8 +32,13 @@ public class SlidingMenuAct extends AbActivity {
         toggle.syncState();
     }
 
+    @Override
+    public int fragmentContainerId() {
+        return R.id.asl_frameLayout;
+    }
 
-
-
-
+    @Override
+    public View setLayoutView() {
+        return LayoutInflater.from(this).inflate(R.layout.activity_slidinglayout,null);
+    }
 }

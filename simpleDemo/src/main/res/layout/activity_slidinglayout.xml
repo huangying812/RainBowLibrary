@@ -7,7 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="?attr/colorPrimary"
     android:fitsSystemWindows="true"
     >
 
@@ -15,35 +14,40 @@
         android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
         toolbar:navigationIcon="@mipmap/ic_pie_chart_outlined_white_24dp"
         android:elevation="10dip"
-        android:background="@color/colorAccent"
+        android:background="@color/mohei_tp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     <com.zsw.rainbowlibrary.customview.CustomDrawLayout
         android:id="@+id/drawer_layout"
     android:layout_width="match_parent" android:layout_height="match_parent"
     tools:openDrawer="start">
-    <include layout="@layout/nav_header_main"></include>
+    <!--<include layout="@layout/nav_header_main"></include>-->
     <!--<android.support.design.widget.NavigationView-->
         <!--android:id="@+id/nav_view"-->
         <!--android:layout_width="wrap_content" android:layout_height="match_parent"-->
         <!--android:layout_gravity="start"-->
         <!--app:menu="@menu/activity_main_drawer" />-->
+        <FrameLayout
+            android:id="@+id/asl_frameLayout"
+            android:layout_width="match_parent"
+            android:background="@mipmap/menu_top"
+            android:layout_height="match_parent"></FrameLayout>
         <LinearLayout
             android:id="@+id/mymenu"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_gravity="start"
-            android:background="@color/testModelcpink"
+            android:background="@color/testmodelblue"
             android:layout_height="match_parent">
-            <ImageView android:id="@+id/imageView" android:layout_width="wrap_content"
+
+            <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/nav_header_vertical_spacing" android:src="@android:drawable/sym_def_app_icon" />
+                android:paddingTop="@dimen/nav_header_vertical_spacing"
+                android:text="菜 单"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:paddingTop="@dimen/nav_header_vertical_spacing" android:text="Android Studio"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-            <TextView android:id="@+id/textView" android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:text="android.studio@android.com" />
         </LinearLayout>
 
 </com.zsw.rainbowlibrary.customview.CustomDrawLayout>

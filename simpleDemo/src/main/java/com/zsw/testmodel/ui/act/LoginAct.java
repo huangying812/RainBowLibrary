@@ -1,25 +1,24 @@
 package com.zsw.testmodel.ui.act;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
-import com.yinfork.linedlayout.LinedRelativeLayout;
+import com.zsw.rainbowlibrary.utils.LOG;
+import com.zsw.rh.manage.RetrofitManager;
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.zsw.testmodel.common.APIManager;
+import com.zsw.testmodel.common.APIService;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * author  z.sw
@@ -65,8 +64,37 @@ public class LoginAct extends AbActivity {
 
                 break;
             case R.id.sign_up:
-
+                sendHttp();
                 break;
         }
     }
+
+    public void sendHttp(){
+        getAPIService().getUser("Harkben").enqueue(new Callback<UserBean>() {
+            @Override
+            public void onResponse(Call<UserBean> call, Response<UserBean> response) {
+                LOG.printD("retrofit","-onResponse code=="+ response.code());
+                LOG.printD("retrofit","-onResponse errorBody=="+ response.errorBody());
+                LOG.printD("retrofit","-onResponse body=="+ response.body());
+                LOG.printD("retrofit","-onResponse isSuccess=="+ response.isSuccessful());
+                LOG.printD("retrofit","-onResponse UserBean Email=="+ response.body().getEmail());
+            }
+
+            @Override
+            public void onFailure(Call<UserBean> call, Throwable t) {
+                t.printStackTrace();
+                LOG.printD("retrofit","-onFailure 请求失败="+t.getMessage());
+
+
+            }
+        });
+
+
+    }
+
+
+
+
+
+
 }
