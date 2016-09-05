@@ -1,6 +1,8 @@
 package com.zsw.rainbowlibrary.uibase.baseactivity;
 
 import android.graphics.drawable.Drawable;
+import android.support.annotation.CallSuper;
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -77,17 +79,5 @@ public abstract class TBaseFragmentGroupActivity extends TBaseActivity {
         showFragment = currentFragment;
         return currentFragment;
     }
-
-    @Override
-    public void startLoadAnim(Drawable drawable) {
-        super.startLoadAnim(drawable);
-    }
-
-    @Override
-    public void stopLoadAnim() {
-        super.stopLoadAnim();
-    }
-
-
 
 }

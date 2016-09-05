@@ -7,11 +7,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.zsw.rainbowlibrary.utils.LOG;
-import com.zsw.rh.manage.RetrofitManager;
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
-import com.zsw.testmodel.common.APIManager;
-import com.zsw.testmodel.common.APIService;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

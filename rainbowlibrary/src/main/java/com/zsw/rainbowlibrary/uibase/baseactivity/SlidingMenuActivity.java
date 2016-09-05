@@ -1,5 +1,6 @@
 package com.zsw.rainbowlibrary.uibase.baseactivity;
 
+import android.graphics.drawable.Drawable;
 import android.support.v4.view.GravityCompat;
 import android.text.Layout;
 import android.view.Gravity;
@@ -71,7 +72,7 @@ public abstract class SlidingMenuActivity  extends  TBaseFragmentGroupActivity{
      * 提供一个TbaseTitleBar,和TbaseActivity中一致
      * @return
      */
-    public TbaseTitleBar getSlidingTitleBar(){
+    private TbaseTitleBar getSlidingTitleBar(){
         return titleBar;
     }
 
@@ -101,5 +102,6 @@ public abstract class SlidingMenuActivity  extends  TBaseFragmentGroupActivity{
     public TbaseTitleBar getTitleBar() {
         return getSlidingTitleBar();
     }
+
 
 }

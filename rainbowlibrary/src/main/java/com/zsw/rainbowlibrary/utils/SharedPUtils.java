@@ -3,6 +3,8 @@ package com.zsw.rainbowlibrary.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.ColorInt;
+import android.support.annotation.StyleRes;
+
 /**
  * author  z.sw
  * time  2016/8/2.
@@ -23,7 +25,7 @@ public class SharedPUtils {
 	 * @param statusColor
 	 * @return
 	 */
-	public static void saveNormalTheme(Context con,int themeId,@ColorInt int statusColor){
+	public static void saveNormalTheme(Context con, @StyleRes int themeId, @ColorInt int statusColor){
 		SharedPUtils.saveInt(con, SharedPUtils.THEME_ID, themeId);
 		SharedPUtils.saveInt(con, SharedPUtils.THEME_COLOR, statusColor);
 	}

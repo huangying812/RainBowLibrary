@@ -8,8 +8,12 @@ import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.annotation.ColorInt;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
+import android.support.annotation.StyleRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -152,7 +156,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
      * 启用重绘 更换主题
      * @param styleId
      */
-    public void switchTheme(int styleId,@ColorInt int color){
+    public void switchTheme(@StyleRes int styleId, @ColorInt int color){
         SharedPUtils.saveInt(this,SharedPUtils.THEME_ID,styleId);
         SharedPUtils.saveInt(this,SharedPUtils.THEME_COLOR,color);
         reStartWindow();
@@ -241,7 +245,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
     /**
      * @param ff 状态栏颜透明度
      */
-    protected void reSetStatusAlpha(float ff){
+    protected void reSetStatusAlpha(@FloatRange(from = 0.0,to = 1.0) float ff){
         if(isAddStatus) rootLayout.getChildAt(0).setAlpha(ff);
     }
 
@@ -322,7 +326,8 @@ public abstract class TBaseActivity extends AppCompatActivity {
      *  设置自定义的动画
      * @param drawable
      */
-    private  void showLoadAnimation(@NonNull  Drawable drawable){
+    @CallSuper
+    private  void showLoadAnimation(Drawable drawable){
         rotateLoading.setBackground(drawable);
         animationDrawable = (AnimationDrawable) rotateLoading.getBackground();
         animationDrawable.start();
@@ -336,7 +341,8 @@ public abstract class TBaseActivity extends AppCompatActivity {
      * 播放自定义的加载动画
      * @param drawable
      */
-    public void startLoadAnim(@NonNull  Drawable drawable){
+    @CallSuper
+    public void startLoadAnim(Drawable drawable){
 
         showLoadAnimation(drawable);
     }
@@ -354,6 +360,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
     /**
      * 播放默认加载动画
      */
+    @CallSuper
     public void startLoadAnim(){
 
         showLoadAnimation();
@@ -362,6 +369,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
     /**
      * 取消所有加载动画
      */
+    @CallSuper
     public void stopLoadAnim(){
         dismissLoadAnimation();
     }

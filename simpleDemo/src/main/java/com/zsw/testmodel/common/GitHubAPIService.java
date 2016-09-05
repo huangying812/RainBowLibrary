@@ -12,9 +12,9 @@ import retrofit2.http.Path;
  * email  zhusw@visionet.com.cn
  * Description-
  */
-public interface APIService {
+public  interface GitHubAPIService {
 
-    @GET("users/{user}")
+    @GET("https://api.github.com/users/{user}")
     Call<UserBean> getUser(@Path("user") String user);
 
 }

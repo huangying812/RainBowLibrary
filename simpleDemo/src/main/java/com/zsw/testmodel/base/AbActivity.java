@@ -6,7 +6,7 @@ import android.view.View;
 import com.andexert.library.RippleView;
 import com.zsw.rainbowlibrary.uibase.baseactivity.TBaseActivity;
 import com.zsw.testmodel.common.APIManager;
-import com.zsw.testmodel.common.APIService;
+import com.zsw.testmodel.common.GitHubAPIService;
 
 /**
  * Created by Administrator on 2016/6/20.
@@ -14,7 +14,7 @@ import com.zsw.testmodel.common.APIService;
 public abstract class AbActivity extends TBaseActivity implements RippleView.OnRippleCompleteListener {
 
 
-    public APIService getAPIService(){
+    public GitHubAPIService getAPIService(){
        return  APIManager.INSTANCE.getApiService();
     }
 
