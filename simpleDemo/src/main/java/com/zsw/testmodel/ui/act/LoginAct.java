@@ -13,6 +13,7 @@ import com.zsw.testmodel.base.AbActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -56,14 +57,36 @@ public class LoginAct extends AbActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sign_in:
-                Intent intent = new Intent(LoginAct.this,MainAct.class);
-                LoginAct.this.startActivity(intent);
-
+//                Intent intent = new Intent(LoginAct.this,MainAct.class);
+//                LoginAct.this.startActivity(intent);
+                login();
                 break;
             case R.id.sign_up:
                 sendHttp();
                 break;
         }
+    }
+
+    public void login(){
+        String userName = loginName.getText().toString().trim();
+        getAPIService().getAll(userName).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                LOG.printD("retrofit","-onResponse code=="+ response.code());
+                LOG.printD("retrofit","-onResponse errorBody=="+ response.errorBody());
+                LOG.printD("retrofit","-onResponse body=="+ response.body());
+                LOG.printD("retrofit","-onResponse isSuccess=="+ response.isSuccessful());
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                t.printStackTrace();
+                LOG.printD("retrofit","-onFailure 请求失败="+t.getMessage());
+            }
+        });
+
+
     }
 
     public void sendHttp(){

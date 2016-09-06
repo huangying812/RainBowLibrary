@@ -1,6 +1,12 @@
 package com.zsw.rainbowlibrary.httputils.manager;
 
+import android.content.Context;
 import android.util.Log;
+
+import com.franmontiel.persistentcookiejar.ClearableCookieJar;
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 
 import java.util.concurrent.TimeUnit;
 
@@ -62,7 +68,7 @@ public   class OkHttpClientManager {
         return INSTANCE;
     }
 
-    public final void buildOkHttpClient(){
+    public final void buildOkHttpClient(Context context){
         if(null == okHttpClient){
             synchronized (OkHttpClientManager.class){
                 if(null == okHttpClient){
@@ -70,6 +76,9 @@ public   class OkHttpClientManager {
                     builder.connectTimeout(this.TIMEOUT_CONNECTION, TimeUnit.SECONDS);
                     builder.readTimeout(this.TIMEOUT_READ,TimeUnit.SECONDS);
                     builder.writeTimeout(this.TIMEOUT_WRITE,TimeUnit.SECONDS);
+                    ClearableCookieJar cookieJar =
+                            new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(context));
+                    builder.cookieJar(cookieJar);
                     if(isDebug){
                         HttpLoggingInterceptor   httpLoggingInterceptor = new HttpLoggingInterceptor();
                         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

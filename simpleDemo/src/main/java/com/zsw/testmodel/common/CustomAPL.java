@@ -22,7 +22,7 @@ public class CustomAPL extends Application {
                 .setTimeout_write(20)
                 .setTimeout_read(20)
                 .setDebug(true)
-                .buildOkHttpClient();
+                .buildOkHttpClient(this);
 
     }
 }
