@@ -12,7 +12,7 @@ public class FragmentC extends FragmentA {
 
     @Override
     public int getBgColor() {
-        return getTBaseActivity().getResources().getColor(R.color.testmodelf);
+        return getTBaseActivity().getResources().getColor(R.color.tp_2);
     }
     @Override
     public String getText() {

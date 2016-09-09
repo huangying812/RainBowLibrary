@@ -23,9 +23,9 @@
         <activity android:name=".ui.act.MainAct" >
         </activity>
         <activity android:name=".ui.act.SlidingMenuAct" />
-        <activity android:name=".ui.act.AbFragmentGroupAct" />
+        <activity android:name=".ui.act.BottomNavigationAct" />
         <activity android:name=".ui.act.SlidingMenuAct2" />
-
+        <activity android:name=".ui.act.UseRxJavaAct" />
     </application>
 
 </manifest>

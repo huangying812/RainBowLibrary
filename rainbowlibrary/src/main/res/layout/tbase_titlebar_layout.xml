@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@android:color/holo_blue_dark"
     style="@style/tbase_titleLayoutStyle_H">
     <LinearLayout
         android:id="@+id/tbase_titleLayout_left"

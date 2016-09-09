@@ -4,7 +4,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.andexert.library.RippleView;
+import com.zsw.rainbowlibrary.customview.basetitle.TbaseTitleBar;
 import com.zsw.rainbowlibrary.uibase.baseactivity.TBaseActivity;
+import com.zsw.testmodel.R;
 import com.zsw.testmodel.common.APIManager;
 import com.zsw.testmodel.common.GitHubAPIService;
 
@@ -38,7 +40,14 @@ public abstract class AbActivity extends TBaseActivity implements RippleView.OnR
 
     @Override
     public void onLayoutLoading() {
-
+        getTitleBar().setTitleBarBackgroundColor(getResources().getColor(R.color.testmodelblue));
+        setStatusColor(R.color.testmodelblue);
+        getTitleBar().setLeftNormalButton(new TbaseTitleBar.OnTbaseTitleLeftViewClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        }).setBackgroundResource(R.mipmap.back_f);
         initLayout();
 
     }

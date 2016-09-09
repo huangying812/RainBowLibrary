@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public  class RetrofitManager {
 
     private   Retrofit retrofit;
-    private static RetrofitManager retorfitManager;
+    private volatile static RetrofitManager retorfitManager;
 
     /**
      * 构造私有掉，保证retorfitManager唯一，retrofit也就唯一

@@ -19,16 +19,14 @@ public class MainAct extends AbActivity {
     @Bind(R.id.gosliding)RippleView gosliding;
     @Bind(R.id.goButtomNavigate) RippleView goButtomNavigate;
     @Bind(R.id.goSlidingMenuAct) RippleView goSlidingMenuAct;
-
+    @Bind(R.id.goObserver) RippleView goObserver;
 
     @Override
     public void initLayout() {
-        setStatusColor(R.color.testmodelblue);
-        getTitleBar().setTitleBarBackgroundColor(getResources().getColor(R.color.testmodelblue));
         getTitleBar().setCenterNormalTextView("Jungle Man").setTextColor(Color.WHITE);
         loadContentView(R.layout.act_main);
         ButterKnife.bind(this);
-        setOnRippleComplete(gosliding,goButtomNavigate,goSlidingMenuAct);
+        setOnRippleComplete(gosliding,goButtomNavigate,goSlidingMenuAct,goObserver);
     }
 
 
@@ -40,13 +38,19 @@ public class MainAct extends AbActivity {
                 startActivity(intent);
                 break;
             case R.id.goButtomNavigate:
-                Intent intent2 = new Intent(MainAct.this, AbFragmentGroupAct.class);
+                Intent intent2 = new Intent(MainAct.this, BottomNavigationAct.class);
                 startActivity(intent2);
                 break;
             case R.id.goSlidingMenuAct:
                 Intent intent3 = new Intent(MainAct.this, SlidingMenuAct2.class);
                 startActivity(intent3);
                 break;
+
+            case R.id.goObserver:
+                Intent intent4 = new Intent(MainAct.this, UseRxJavaAct.class);
+                startActivity(intent4);
+                break;
+
             default:
                 break;
         }

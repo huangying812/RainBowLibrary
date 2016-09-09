@@ -1,6 +1,9 @@
 package com.zsw.testmodel.ui.act;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,9 +60,7 @@ public class LoginAct extends AbActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sign_in:
-//                Intent intent = new Intent(LoginAct.this,MainAct.class);
-//                LoginAct.this.startActivity(intent);
-                login();
+                sendHttp();
                 break;
             case R.id.sign_up:
                 sendHttp();
@@ -76,7 +77,6 @@ public class LoginAct extends AbActivity {
                 LOG.printD("retrofit","-onResponse errorBody=="+ response.errorBody());
                 LOG.printD("retrofit","-onResponse body=="+ response.body());
                 LOG.printD("retrofit","-onResponse isSuccess=="+ response.isSuccessful());
-
             }
 
             @Override
@@ -89,25 +89,47 @@ public class LoginAct extends AbActivity {
 
     }
 
-    public void sendHttp(){
-        getAPIService().getUser("Harkben").enqueue(new Callback<UserBean>() {
+    public void sendHttp() {
+        String userName = loginName.getText().toString().trim()+"";
+        getAPIService().getUser(userName).enqueue(new Callback<UserBean>() {
             @Override
             public void onResponse(Call<UserBean> call, Response<UserBean> response) {
-                LOG.printD("retrofit","-onResponse code=="+ response.code());
-                LOG.printD("retrofit","-onResponse errorBody=="+ response.errorBody());
-                LOG.printD("retrofit","-onResponse body=="+ response.body());
-                LOG.printD("retrofit","-onResponse isSuccess=="+ response.isSuccessful());
-                LOG.printD("retrofit","-onResponse UserBean Email=="+ response.body().getEmail());
+                LOG.printD("retrofit", "-onResponse code==" + response.code());
+                LOG.printD("retrofit", "-onResponse errorBody==" + response.errorBody());
+                LOG.printD("retrofit", "-onResponse body==" + response.body());
+                LOG.printD("retrofit", "-onResponse isSuccess==" + response.isSuccessful());
+                if(response.code() == 200){
+                    LOG.printD("retrofit", "-onResponse UserBean Email==" + response.body().getEmail());
+                    showSnackbar(response.code()+"-email="+response.body().getEmail());
+                }else{
+                    showSnackbar(response.code()+"-失败");
+                }
+
             }
 
             @Override
             public void onFailure(Call<UserBean> call, Throwable t) {
                 t.printStackTrace();
-                LOG.printD("retrofit","-onFailure 请求失败="+t.getMessage());
-
+                LOG.printD("retrofit", "-onFailure 请求失败=" + t.getMessage());
 
             }
         });
+
+    }
+        public void showSnackbar(String msg){
+        Snackbar.make(signIn,msg,Snackbar.LENGTH_INDEFINITE)
+                .setActionTextColor(Color.BLUE)
+                .setAction("知道了", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(LoginAct.this,MainAct.class);
+                        startActivity(intent);
+                    }
+                })
+                .show();
+
+         }
+
 
 
     }
@@ -117,4 +139,3 @@ public class LoginAct extends AbActivity {
 
 
 
-}

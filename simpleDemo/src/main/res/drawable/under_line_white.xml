@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 线 的颜色-->
+<item>
+    <shape>
+        <solid android:color="@color/white"></solid>
+    </shape>
+
+</item>
+    <!-- 主体色 -->
+<item android:bottom="10dip">
+    <shape>
+        <solid android:color="@color/grey700"></solid>
+    </shape>
+</item>
+</layer-list>

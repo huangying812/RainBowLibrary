@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="20dip"
+    android:background="@mipmap/menu_top"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/display"
+        android:layout_width="match_parent"
+        android:text="内容显示区"
+        android:layout_weight="1"
+        android:textColor="@color/white"
+        android:background="@color/mohei_tp"
+        android:layout_height="0dip" />
+    <Button
+        android:id="@+id/excute"
+        android:layout_width="match_parent"
+        android:text="执---行"
+        android:textColor="@color/white"
+        android:layout_marginTop="40dip"
+        android:background="@drawable/btn_ripple"
+        android:layout_height="45dip" />
+</LinearLayout>

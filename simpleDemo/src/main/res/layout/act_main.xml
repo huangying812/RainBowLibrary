@@ -71,6 +71,25 @@
                     android:layout_margin="3dip"
                     />
             </com.andexert.library.RippleView>
+            <com.andexert.library.RippleView
+                android:id="@+id/goObserver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rv_centered="false"
+                android:layout_margin="10dip"
+                app:rv_rippleDuration="150"
+                app:rv_color="@color/testModelgreen"
+                android:layoutAnimation="@anim/fragmentlayoutanim"
+                >
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="70dip"
+                    android:text="@string/rxjava"
+                    android:background="@color/testmodelblue"
+                    android:textColor="@android:color/white"
+                    android:layout_margin="3dip"
+                    />
+            </com.andexert.library.RippleView>
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

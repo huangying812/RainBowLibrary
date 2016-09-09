@@ -20,7 +20,7 @@ import java.util.HashMap;
 /**
  * Created by Administrator on 2016/7/4.
  */
-public class AbFragmentGroupAct extends TBaseFragmentGroupActivity {
+public class BottomNavigationAct extends TBaseFragmentGroupActivity {
     //返回 将用来显示fragment的 frameLayout id !! id
     @Override
     public int fragmentContainerId() {
@@ -53,7 +53,7 @@ public class AbFragmentGroupAct extends TBaseFragmentGroupActivity {
         item2.setDrawable(R.drawable.ic_business_white_24dp);
 
         AHBottomNavigationItem item3 = new AHBottomNavigationItem("Rest",R.drawable.ic_flag_white_24dp);
-        item3.setColor(getResources().getColor(R.color.testmodelf));
+        item3.setColor(getResources().getColor(R.color.tp_2));
 
         AHBottomNavigationItem item4 = new AHBottomNavigationItem("Dogain",0);
         item4.setColor(getResources().getColor(R.color.testModelgreen));

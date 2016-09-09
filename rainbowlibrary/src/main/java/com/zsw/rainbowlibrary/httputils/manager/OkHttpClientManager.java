@@ -21,7 +21,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
  */
 public   class OkHttpClientManager {
 
-    private static OkHttpClientManager INSTANCE;
+    private volatile static OkHttpClientManager INSTANCE;
     private  boolean isDebug = true;
     /**
      * 读取超时

@@ -6,10 +6,8 @@
     <color name="popup_bg">#8f000000</color>
     <color name="line_bg">#CDCDCD</color>
     <color name="testModelcpink">#FF4081</color>
-    <color name="testModelBlue">#0000ff</color>
     <color name="testModelgreen">#4CAF50</color>
     <color name="testmodelblue">#2B5569</color>
-    <color name="testmodelf">#acbdff</color>
     <color name="mohei_tp">#9F424E5A</color><!--墨黑色 半透明-->
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
