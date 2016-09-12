@@ -17,11 +17,16 @@ public enum APIManager {
      */
     public static final String BASEURL = "http://www.xx.com/";
     private final GitHubAPIService apiService;
+    private RetrofitManager retrofitManager;
 
      APIManager(){
-        apiService = RetrofitManager.getInstance(BASEURL).createService(GitHubAPIService.class);
+         retrofitManager = RetrofitManager.getInstance(BASEURL);
+         apiService = retrofitManager.createService(GitHubAPIService.class);
     }
 
+    public RetrofitManager getRetrofitManager() {
+        return retrofitManager;
+    }
     public GitHubAPIService getApiService(){
         return apiService;
     }

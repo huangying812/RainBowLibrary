@@ -85,8 +85,6 @@ public class LoginAct extends AbActivity {
                 LOG.printD("retrofit","-onFailure 请求失败="+t.getMessage());
             }
         });
-
-
     }
 
     public void sendHttp() {
@@ -118,7 +116,7 @@ public class LoginAct extends AbActivity {
     }
         public void showSnackbar(String msg){
         Snackbar.make(signIn,msg,Snackbar.LENGTH_INDEFINITE)
-                .setActionTextColor(Color.BLUE)
+                .setActionTextColor(Color.GRAY)
                 .setAction("知道了", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

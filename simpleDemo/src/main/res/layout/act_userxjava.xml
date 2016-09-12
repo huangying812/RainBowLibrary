@@ -13,6 +13,11 @@
         android:textColor="@color/white"
         android:background="@color/mohei_tp"
         android:layout_height="0dip" />
+
+    <ImageView
+        android:id="@+id/ux_image"
+        android:layout_width="50dip"
+        android:layout_height="50dip" />
     <Button
         android:id="@+id/excute"
         android:layout_width="match_parent"
