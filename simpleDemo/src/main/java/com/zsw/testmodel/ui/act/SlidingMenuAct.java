@@ -18,7 +18,7 @@ public class SlidingMenuAct extends TBaseFragmentGroupActivity {
 
     @Override
     public void onLayoutloaded() {
-        removeBaseTitleBar();
+        removeTBaseTitleBar();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("骚气侧漏");
 //        toolbar.setLogo(getResources().getDrawable(R.mipmap.ic_account_balance_white_24dp));

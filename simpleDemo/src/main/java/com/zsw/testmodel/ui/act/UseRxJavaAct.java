@@ -1,21 +1,18 @@
 package com.zsw.testmodel.ui.act;
 
-import android.content.res.AssetManager;
+import android.database.*;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zsw.rainbowlibrary.utils.LOG;
+import com.zsw.rainbowlibrary.utils.L;
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
 import com.zsw.testmodel.entity.Phone;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +20,12 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import rx.*;
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+import rx.subjects.Subject;
 
 /**
  * author  z.sw
@@ -53,11 +52,16 @@ public class UseRxJavaAct extends AbActivity {
         loadContentView(R.layout.act_userxjava);
         ButterKnife.bind(this);
         phones = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             Phone p = new Phone();
-            p.setModels("诺基亚--" + (i * 3));
+            p.setModels("型号诺基亚" + i);
             p.setName("诺基亚");
             p.setPrice(3500);
+            List<Integer> colors = new ArrayList<>();
+            colors.add(1);
+            colors.add(2);
+
+            p.setColors(colors);
             phones.add(p);
         }
     }
@@ -73,17 +77,16 @@ public class UseRxJavaAct extends AbActivity {
         msg = "";
         //同步观察者
 //        createObserver1();
-
         //异步观察者
 //        createObserver2();
-
-
         //  线程控制范例
-
 //        createObserver3();
-
-        //使用 变换
-        createObserver4();
+        //使用单次  一对一 转换
+//        createObserver4();
+        //使用多次 一对多转换
+//        createObserver5();
+        //多次 一对多转换
+        createObserver6();
     }
 
     /**
@@ -98,24 +101,24 @@ public class UseRxJavaAct extends AbActivity {
         Subscriber<String> subscriber = new Subscriber<String>() {
             @Override
             public void onStart() {
-                LOG.printD(TAG, "onStart");
+                L.printD(TAG, "onStart");
 
             }
 
 
             @Override
             public void onCompleted() {
-                LOG.printD(TAG, "onCompleted");
+                L.printD(TAG, "onCompleted");
             }
 
             @Override
             public void onError(Throwable e) {
-                LOG.printD(TAG, "onError=" + e.getMessage());
+                L.printD(TAG, "onError=" + e.getMessage());
             }
 
             @Override
             public void onNext(String s) {
-                LOG.printD(TAG, s);
+                L.printD(TAG, s);
             }
         };
 
@@ -225,7 +228,7 @@ public class UseRxJavaAct extends AbActivity {
              */
             @Override
             public void onNext(String s) {
-                LOG.printD(TAG, s);
+                L.printD(TAG, s);
                 showMsg("警察发现 小偷---" + s);
 
             }
@@ -233,7 +236,7 @@ public class UseRxJavaAct extends AbActivity {
 
         /**
          * 被观察者-小偷儿
-         * 创建一个被观察者，并订阅观察者（小偷作案前要告诉警察我要作案了，记得抓我，世界第一快手都是这样）
+         * 创建一个被观察者(Observable)，并订阅观察者(Observer)（小偷作案前要告诉警察我要作案了，记得抓我---快枪手Observable）
          *
          */
         Observable<String> observable = Observable.create(new Observable.OnSubscribe<String>() {
@@ -267,15 +270,17 @@ public class UseRxJavaAct extends AbActivity {
 
 
     /**
-     * 使用 变换，将事件序列中的对象或整个序列进行加工处理，转换成不同的事件或事件序列
+     * 使用 转换，将事件序列中的对象或整个序列进行加工处理，转换成不同的事件或事件序列
+     * 简单转换 map()，一对一转换，转换后返回 --具体对象
      */
     void createObserver4() {
+
         Observable.just(R.mipmap.back_f)
-                .map(new Func1<Integer, Bitmap>() {
+                .map(new Func1<Integer, Bitmap>() {//使用变换，更改回掉
 
                     @Override
                     public Bitmap call(Integer s) {
-                        LOG.printD(TAG, "bitmap path =" + s);
+                        L.printD(TAG, "bitmap path =" + s);
                         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), s.intValue());
                         return bitmap;
                     }
@@ -283,17 +288,81 @@ public class UseRxJavaAct extends AbActivity {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers
                         .mainThread())
-                .subscribe(new Action1<Bitmap>() {
+                .subscribe(new Action1<Bitmap>() {//观察者直接拿到 指定返回值
                     @Override
                     public void call(Bitmap bitmap) {
                         uxImage.setImageBitmap(bitmap);
                     }
                 });
+    }
 
+    /**
+     * map() 一对一转换 实用
+     * 给观察者直接 传出 手机 型号
+     */
+    void createObserver5() {
+        Observable.from(phones)
+                .map(new Func1<Phone, String>() {
+
+                    @Override
+                    public String call(Phone phone) {
+                        return phone.getModels();
+                    }
+                }).subscribe(new Action1<String>() {
+            @Override
+            public void call(String s) {
+                L.printD(TAG, "手机型号==" + s);
+            }
+        });
 
     }
 
-    void createObserver5(){
+    /**
+     * flatMap 一对多转换，
+     * 一对多 结构 -- <A,Observer<T>>
+     * 第二个泛型的时候，转换返回的是 Oberver<T> 可以是任意对象 就此实现一对多转换
+     */
+    void createObserver6() {
+
+        Observable.from(phones)
+                .flatMap(new Func1<Phone, Observable<Integer>>() {
+                    @Override
+                    public Observable<Integer> call(Phone phone) {
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        return Observable.from(phone.getColors());//逐个返回Colors 中的 Integer对象
+
+                      /*OK这里的转换就是通过在创建一个Observable 来逐个转换出来Integer,同样的这里可以继续使用调度器
+                      切换线程，默认当然依然是阻塞的，所以这里单次返回结果是 单个Colors中所有的对象。
+                      总结：flatMap 转换 就是将多个Map装进Observable 统一返回给Observe,
+                      所以如果你想，这里可以无限拆分数据结构，直到具体到对象
+
+                        */
+
+                    }
+                }).subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Integer>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Integer integer) {
+                        L.printD(TAG, "颜色值==" + integer);
+                        showMsg("颜色值==" + integer);
+
+                    }
+                });
 
 
 

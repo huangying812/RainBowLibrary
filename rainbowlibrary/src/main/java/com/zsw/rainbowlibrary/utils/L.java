@@ -7,7 +7,7 @@ import android.util.Log;
  * email  zhusw@visionet.com.cn
  * Description-
  */
-public class LOG {
+public class L {
 /**
  * 项目打印日志
  */

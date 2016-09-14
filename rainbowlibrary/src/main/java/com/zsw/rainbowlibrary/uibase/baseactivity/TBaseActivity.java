@@ -10,9 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
-import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -26,7 +24,7 @@ import android.widget.LinearLayout;
 import com.victor.loading.rotate.RotateLoading;
 import com.zsw.rainbowlibrary.R;
 import com.zsw.rainbowlibrary.customview.basetitle.TbaseTitleBar;
-import com.zsw.rainbowlibrary.utils.LOG;
+import com.zsw.rainbowlibrary.utils.L;
 import com.zsw.rainbowlibrary.utils.LanguageTAG;
 import com.zsw.rainbowlibrary.utils.SharedPUtils;
 import com.zsw.rainbowlibrary.utils.Verifier;
@@ -103,7 +101,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
 
     private int getStatusBarColor(){
         int color = SharedPUtils.getInt(this,SharedPUtils.THEME_COLOR);
-        LOG.printD("TbaseActivity","-statusBarColor - SP = "+color);
+        L.printD("TbaseActivity", "-statusBarColor - SP = " + color);
         if(color == 0){
             color = getResources().getColor(R.color.tbaseColorcolorNormal_status);
         }
@@ -118,7 +116,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
     private void reSetLanguageConfiguration(Resources resources , String tag){
         Configuration config = resources.getConfiguration();
         DisplayMetrics dm = resources.getDisplayMetrics();
-        LOG.printD("TBaseActivity","-language setting tag== "+tag);
+        L.printD("TBaseActivity", "-language setting tag== " + tag);
         if (tag.equals(LanguageTAG.EN)) {//英语
 
             config.locale = Locale.ENGLISH;
@@ -227,7 +225,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
     /**
      * 在当前Activity删除以后 将不能再重新添加
      */
-    public final void removeBaseTitleBar(){
+    public final void removeTBaseTitleBar() {
             if( null != titleBar){
                 rootLayout.removeView(titleBar);
                 titleBar = null;

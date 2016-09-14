@@ -47,7 +47,7 @@ public abstract class SlidingMenuActivity  extends  TBaseFragmentGroupActivity{
 
     private void initView(){
 
-        removeBaseTitleBar();
+        removeTBaseTitleBar();
         menuSwitch = (CustomDrawLayout) findViewById(R.id.tsl_drawer_layout);
         menuGroup = (RelativeLayout) findViewById(R.id.tsl_menuLayout);
         titleBar = (TbaseTitleBar) findViewById(R.id.tsl_titleBar);

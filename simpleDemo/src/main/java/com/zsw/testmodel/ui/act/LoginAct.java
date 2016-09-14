@@ -2,14 +2,13 @@ package com.zsw.testmodel.ui.act;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.zsw.rainbowlibrary.utils.LOG;
+import com.zsw.rainbowlibrary.utils.L;
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
 
@@ -41,7 +40,7 @@ public class LoginAct extends AbActivity {
 
     @Override
     public void initLayout() {
-        removeBaseTitleBar();
+        removeTBaseTitleBar();
         removeStatusBar();
         //这里是登陆页 所以不需要顶部工具栏布局
         loadContentView(R.layout.act_login);
@@ -73,16 +72,16 @@ public class LoginAct extends AbActivity {
         getAPIService().getAll(userName).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                LOG.printD("retrofit","-onResponse code=="+ response.code());
-                LOG.printD("retrofit","-onResponse errorBody=="+ response.errorBody());
-                LOG.printD("retrofit","-onResponse body=="+ response.body());
-                LOG.printD("retrofit","-onResponse isSuccess=="+ response.isSuccessful());
+                L.printD("retrofit", "-onResponse code==" + response.code());
+                L.printD("retrofit", "-onResponse errorBody==" + response.errorBody());
+                L.printD("retrofit", "-onResponse body==" + response.body());
+                L.printD("retrofit", "-onResponse isSuccess==" + response.isSuccessful());
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 t.printStackTrace();
-                LOG.printD("retrofit","-onFailure 请求失败="+t.getMessage());
+                L.printD("retrofit", "-onFailure 请求失败=" + t.getMessage());
             }
         });
     }
@@ -92,12 +91,12 @@ public class LoginAct extends AbActivity {
         getAPIService().getUser(userName).enqueue(new Callback<UserBean>() {
             @Override
             public void onResponse(Call<UserBean> call, Response<UserBean> response) {
-                LOG.printD("retrofit", "-onResponse code==" + response.code());
-                LOG.printD("retrofit", "-onResponse errorBody==" + response.errorBody());
-                LOG.printD("retrofit", "-onResponse body==" + response.body());
-                LOG.printD("retrofit", "-onResponse isSuccess==" + response.isSuccessful());
+                L.printD("retrofit", "-onResponse code==" + response.code());
+                L.printD("retrofit", "-onResponse errorBody==" + response.errorBody());
+                L.printD("retrofit", "-onResponse body==" + response.body());
+                L.printD("retrofit", "-onResponse isSuccess==" + response.isSuccessful());
                 if(response.code() == 200){
-                    LOG.printD("retrofit", "-onResponse UserBean Email==" + response.body().getEmail());
+                    L.printD("retrofit", "-onResponse UserBean Email==" + response.body().getEmail());
                     showSnackbar(response.code()+"-email="+response.body().getEmail());
                 }else{
                     showSnackbar(response.code()+"-失败");
@@ -108,7 +107,7 @@ public class LoginAct extends AbActivity {
             @Override
             public void onFailure(Call<UserBean> call, Throwable t) {
                 t.printStackTrace();
-                LOG.printD("retrofit", "-onFailure 请求失败=" + t.getMessage());
+                L.printD("retrofit", "-onFailure 请求失败=" + t.getMessage());
 
             }
         });
