@@ -10,22 +10,22 @@
 ### Gradle
 >   Step 1. 在你的根build.gradle文件中增加JitPack仓库依赖。
    
-        ```gradle
-        allprojects {
-            repositories {
-              jcenter()
-              maven { url "https://jitpack.io" }
+```gradle
+         allprojects {
+                repositories {
+                 jcenter()
+                 maven { url "https://jitpack.io" }
+                }
             }
-        }
-    ```
+```
     
 >   Step 2. 在你的model的build.gradle文件中增加RainbowLibrary依赖。
 
-        ```gradle
-    dependencies {
-    	        compile 'com.github.HarkBen:RainBowLibrary:1.0.1'
-    	}
-    ```
+```gradle
+            dependencies {
+    	                 compile 'com.github.HarkBen:RainBowLibrary:1.0.1'
+    	       }
+```
 
 ### rainbowlibrary 的使用
 >截图
