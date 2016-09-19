@@ -87,10 +87,12 @@
 
 4. **初始加载动画**
 
-            ```java
-                 startLoadAnim();
-                 stopLoadAnim();
-            ```
+           ```java
+             public abstract class TBaseFragmentGroupActivity extends TBaseActivity {
+                           public TBaseFragment switchFragment(Class<?extends TBaseFragment> clazz){
+                                return switchFragment(fragmentContainerId(),clazz);
+                           }
+           ```
 
 5. **Fragment切换**   
    * T extends TBaseFragmentGroupActivity
