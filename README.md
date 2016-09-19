@@ -23,11 +23,9 @@
     	}
 
 ### rainbowlibrary 的使用
-
-
-
-   	![login.png](./pictures/login.png)![ui1.png](./pictures/ui2.png)
-   	![ui2.png](./pictures/ui3.png)![ui3.png](./pictures/ui3.png)
+>截图
+   	![login.png](./pictures/login.png)  ![ui1.png](./pictures/ui2.png)
+   	![ui2.png](./pictures/ui3.png) ![ui3.png](./pictures/ui3.png)
    	![ui4.png](./pictures/ui4.png)   	
 
     	
