@@ -29,11 +29,7 @@
 ### rainbowlibrary 的使用
 >截图
 <br />
-   	![login.png](./pictures/login.png)![ui1.png](./pictures/ui2.png)
-   	<br />
-   	![ui2.png](./pictures/ui3.png) ![ui3.png](./pictures/ui3.png)
-   <br />
-   	![ui4.png](./pictures/ui4.png)   	
+   	![login.png](./pictures/login.png)  ![ui1.png](./pictures/ui2.png) ![ui2.png](./pictures/ui3.png) ![ui3.png](./pictures/ui3.png)  ![ui4.png](./pictures/ui4.png)   	
 
     	
 ### 为了能熟练使用Retrofit 我决定 两种方式(Observer ,callback ) 都使用，先从callback开始吧
