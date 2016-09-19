@@ -94,13 +94,12 @@
    * T extends TBaseFragmentGroupActivity
    * 使用switchFragment()
     
-    ```java
-    public abstract class TBaseFragmentGroupActivity extends TBaseActivity {
+         ```java
+        public abstract class TBaseFragmentGroupActivity extends TBaseActivity {
                 public TBaseFragment switchFragment(Class<?extends TBaseFragment> clazz){
                      return switchFragment(fragmentContainerId(),clazz);
                 }
         }
-        
         class T extends TBaseFragmentGroupActivity{
              ahBottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
                         @Override
@@ -109,9 +108,8 @@
                             return true;
                         }
                     });
-        
         }
-    ```
+         ```
       
            
             
