@@ -39,23 +39,24 @@
 <p>  需要使用loadContentView(View v)方法设置布局，方便点再加个BaseAct 做中间层提供资源初始化和Http初始化
 >
  
-         ```java
-           @Override
-                                               public void onLayoutLoading() {
-                                                   getTitleBar().setTitleBarBackgroundColor(getResources().getColor(R.color.testmodelblue));
-                                                   setStatusColor(R.color.testmodelblue);
-                                                   getTitleBar().setLeftNormalButton(new TbaseTitleBar.OnTbaseTitleLeftViewClickListener() {
-                                                       @Override
-                                                       public void onClick(View v) {
-                                                           finish();
-                                                       }
-                                                   }).setBackgroundResource(R.mipmap.back_f);
-                                                           //removeTBaseTitleBar();
-                                                          // removeStatusBar();
-                                                           loadContentView(R.layout.act_login);
-                                                           ButterKnife.bind(this);
-                                               }
-           ```                                    
+                ```java
+         
+                @Override
+                public void onLayoutLoading() {
+                        getTitleBar().setTitleBarBackgroundColor(getResources().getColor(R.color.testmodelblue));
+                        setStatusColor(R.color.testmodelblue);
+                        getTitleBar().setLeftNormalButton(new TbaseTitleBar.OnTbaseTitleLeftViewClickListener() {
+                      @Override
+                      public void onClick(View v) {
+                             finish();
+                             }
+                        }).setBackgroundResource(R.mipmap.back_f);
+                                 //removeTBaseTitleBar();
+                                 // removeStatusBar();
+                                 loadContentView(R.layout.act_login);
+                                  ButterKnife.bind(this);
+               }
+                ```                                    
 
 2. **切换主题**
    * 先保存一个默认主题用来显示: 
@@ -63,7 +64,7 @@
           ```java
          SharedPUtils.saveNormalTheme(this,R.style.AppTheme,Color.BLUE);
                  switchTheme(R.style.AppTheme,Color.BLUE);
-          ```
+         ```
     
    * 在需要的地方切换:
 
@@ -87,15 +88,16 @@
 4. **初始加载动画**
 
             ```java
-                startLoadAnim();
-                stopLoadAnim();
-             ```
+                 startLoadAnim();
+                 stopLoadAnim();
+            ```
 
 5. **Fragment切换**   
    * T extends TBaseFragmentGroupActivity
    * 使用switchFragment()
     
          ```java
+         
         public abstract class TBaseFragmentGroupActivity extends TBaseActivity {
                 public TBaseFragment switchFragment(Class<?extends TBaseFragment> clazz){
                      return switchFragment(fragmentContainerId(),clazz);
@@ -110,9 +112,11 @@
                         }
                     });
         }
-         ```
+        ```
+        
+         
       
-           
+>          
             
         
         
