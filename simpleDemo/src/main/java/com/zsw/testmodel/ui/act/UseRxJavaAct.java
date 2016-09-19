@@ -336,10 +336,9 @@ public class UseRxJavaAct extends AbActivity {
                         return Observable.from(phone.getColors());//逐个返回Colors 中的 Integer对象
 
                       /*OK这里的转换就是通过在创建一个Observable 来逐个转换出来Integer,同样的这里可以继续使用调度器
-                      切换线程，默认当然依然是阻塞的，所以这里单次返回结果是 单个Colors中所有的对象。
+                      切换线程，默认当然依然是阻塞的，所以这里单次返回结果是 Colors中所有的对象。
                       总结：flatMap 转换 就是将多个Map装进Observable 统一返回给Observe,
                       所以如果你想，这里可以无限拆分数据结构，直到具体到对象
-
                         */
 
                     }
