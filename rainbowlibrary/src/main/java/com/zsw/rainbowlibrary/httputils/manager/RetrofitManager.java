@@ -14,6 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public  class RetrofitManager {
 
     private   Retrofit retrofit;
+
     private volatile static RetrofitManager retorfitManager;
 
     /**

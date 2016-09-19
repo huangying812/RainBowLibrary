@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.zsw.rainbowlibrary.utils.L;
+import com.zsw.rainbowlibrary.utils.LanguageTAG;
+import com.zsw.rainbowlibrary.utils.SharedPUtils;
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
 
@@ -47,9 +49,11 @@ public class LoginAct extends AbActivity {
         ButterKnife.bind(this);
 
         initView();
+
     }
 
     private void initView() {
+
 
     }
 

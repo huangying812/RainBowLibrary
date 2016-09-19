@@ -30,9 +30,94 @@
 >截图
 <br />
    	![login.png](./pictures/login.png)  ![ui1.png](./pictures/ui2.png) ![ui2.png](./pictures/ui3.png) ![ui3.png](./pictures/ui3.png)  ![ui4.png](./pictures/ui4.png)   	
+>
+### TbaseActivity & TbaseFragment
 
-    	
-### 为了能熟练使用Retrofit 我决定 两种方式(Observer ,callback ) 都使用，先从callback开始吧
+1. **T extends TbaseActivity** 
+<p>  选择使用或者不使用TbaseTitleBar ,</p> 
+<p>  可以隐藏和删除，statusBar也可以删除，但都不提供重新ADD</p>
+<p>  需要使用loadContentView(View v)方法设置布局，方便点再加个BaseAct 做中间层提供资源初始化和Http初始化
+>
+        ```java
+         @Override
+            public void onLayoutLoading() {
+                getTitleBar().setTitleBarBackgroundColor(getResources().getColor(R.color.testmodelblue));
+                setStatusColor(R.color.testmodelblue);
+                getTitleBar().setLeftNormalButton(new TbaseTitleBar.OnTbaseTitleLeftViewClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                }).setBackgroundResource(R.mipmap.back_f);
+                        //removeTBaseTitleBar();
+                       // removeStatusBar();
+                        loadContentView(R.layout.act_login);
+                        ButterKnife.bind(this);
+            }
+
+2. **切换主题**
+   * 先保存一个默认主题用来显示: 
+
+            ```java
+         SharedPUtils.saveNormalTheme(this,R.style.AppTheme,Color.BLUE);
+                 switchTheme(R.style.AppTheme,Color.BLUE);
+    
+   * 在需要的地方切换:
+   
+          ```java
+            switchTheme(R.style.AppTheme,Color.BLUE);  
+            
+3. **切换语言**
+   * 先保存一个默认语言
+        
+        ```java
+        SharedPUtils.saveLanguageSetting(this, LanguageTAG.ZH);
+        
+   * 切换语言
+        
+        ```java
+        switchLanguage(getResources(),LanguageTAG.FRENCH);
+        ```
+
+4. **初始加载动画**
+    
+    ```java
+            startLoadAnim();
+            stopLoadAnim();
+    ```
+
+5. **Fragment切换**   
+    * T extends TBaseFragmentGroupActivity
+    * 使用switchFragment()
+    
+    ```java
+    public abstract class TBaseFragmentGroupActivity extends TBaseActivity {
+            public TBaseFragment switchFragment(Class<?extends TBaseFragment> clazz){
+                 return switchFragment(fragmentContainerId(),clazz);
+            }
+    }
+    
+    class T extends TBaseFragmentGroupActivity{
+         ahBottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
+                    @Override
+                    public boolean onTabSelected(int position, boolean wasSelected) {
+                            switchFragment(map.get(position));
+                        return true;
+                    }
+                });
+    
+    }
+    
+    ```
+           
+            
+        
+        
+
+
+
+ 
+
     
    
    

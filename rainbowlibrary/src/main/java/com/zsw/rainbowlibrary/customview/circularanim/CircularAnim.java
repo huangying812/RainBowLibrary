@@ -14,6 +14,7 @@ import android.widget.ImageView;
  * Created on 16/8/5.
  * <p/>
  * 对 ViewAnimationUtils.createCircularReveal() 方法的封装.
+ *
  * <p/>
  * GitHub: https://github.com/XunMengWinter
  * <p/>

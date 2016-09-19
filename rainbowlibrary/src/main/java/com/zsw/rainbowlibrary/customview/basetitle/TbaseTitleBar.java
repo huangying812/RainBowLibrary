@@ -14,10 +14,13 @@ import android.widget.TextView;
 import com.zsw.rainbowlibrary.R;
 
 /**
- * author  z.sw
- * time  2016/8/2.
- * email  zhusw@visionet.com.cn
- * Description-
+ * Create on 2016/8/19.
+ *
+ * @author HarkBen
+ *         Description-
+ *         <p>
+ *         github  https://github.com/HarkBen
+ * @Last_update time - 2016年9月19日14:33:21
  */
 public class TbaseTitleBar extends LinearLayout implements View.OnClickListener {
 
@@ -41,6 +44,7 @@ public class TbaseTitleBar extends LinearLayout implements View.OnClickListener 
     public interface OnTbaseTitleCenterViewClickListener {
         public void onClick(View v);
     }
+
 
     public interface OnTbaseTitleRightViewClickListener {
         public void onClick(View v);
