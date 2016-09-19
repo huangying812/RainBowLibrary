@@ -23,9 +23,9 @@
     	}
 
 ### rainbowlibrary 的使用
-1. **范例视图**
-\n
->
+
+
+
    	![login.png](./pictures/login.png)![ui1.png](./pictures/ui2.png)
    	![ui2.png](./pictures/ui3.png)![ui3.png](./pictures/ui3.png)
    	![ui4.png](./pictures/ui4.png)   	
