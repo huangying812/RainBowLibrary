@@ -8,23 +8,24 @@
     也正在学习使用 RxJava + okhttp + Retrofit
 
 ### Gradle
->
->    Step 1. 在你的根build.gradle文件中增加JitPack仓库依赖。
->    
-    ```java
+>   Step 1. 在你的根build.gradle文件中增加JitPack仓库依赖。
+   
+        ```gradle
         allprojects {
             repositories {
               jcenter()
               maven { url "https://jitpack.io" }
             }
         }
->    
+    ```
+    
 >   Step 2. 在你的model的build.gradle文件中增加RainbowLibrary依赖。
->
-    ```java
+
+        ```gradle
     dependencies {
     	        compile 'com.github.HarkBen:RainBowLibrary:1.0.1'
     	}
+    ```
 
 ### rainbowlibrary 的使用
 >截图
@@ -39,8 +40,7 @@
 <p>  需要使用loadContentView(View v)方法设置布局，方便点再加个BaseAct 做中间层提供资源初始化和Http初始化
 >
  
-                ```java
-         
+    ```java
                 @Override
                 public void onLayoutLoading() {
                         getTitleBar().setTitleBarBackgroundColor(getResources().getColor(R.color.testmodelblue));
@@ -55,48 +55,48 @@
                                  // removeStatusBar();
                                  loadContentView(R.layout.act_login);
                                   ButterKnife.bind(this);
-               }
-                ```                                    
+               } 
+```                                    
 
 2. **切换主题**
    * 先保存一个默认主题用来显示: 
 
-          ```java
+    ```java
          SharedPUtils.saveNormalTheme(this,R.style.AppTheme,Color.BLUE);
                  switchTheme(R.style.AppTheme,Color.BLUE);
-         ```
+```
     
    * 在需要的地方切换:
 
-          ```java
+    ```java
             switchTheme(R.style.AppTheme,Color.BLUE);  
-          ```
+```
             
 3. **切换语言**
    * 先保存一个默认语言
 
-        ```java
+    ```java
         SharedPUtils.saveLanguageSetting(this, LanguageTAG.ZH);
-        ```
+```
         
    * 切换语言
         
-        ```java
+    ```java
         switchLanguage(getResources(),LanguageTAG.FRENCH);
-        ```
+```
 
 4. **初始加载动画**
 
-        ```java
+    ```java
             startLoadAnim();
             stopLoadAnim();
-        ```
+```
 
 5. **Fragment切换**   
    * T extends TBaseFragmentGroupActivity
    * 使用switchFragment()
     
-         ```java
+    ```java
          
         public abstract class TBaseFragmentGroupActivity extends TBaseActivity {
                 public TBaseFragment switchFragment(Class<?extends TBaseFragment> clazz){
@@ -112,11 +112,11 @@
                         }
                     });
         }
-        ```
+```
         
          
       
->          
+         
             
         
         
