@@ -38,23 +38,24 @@
 <p>  可以隐藏和删除，statusBar也可以删除，但都不提供重新ADD</p>
 <p>  需要使用loadContentView(View v)方法设置布局，方便点再加个BaseAct 做中间层提供资源初始化和Http初始化
 >
-        ```java
-         @Override
-            public void onLayoutLoading() {
-                getTitleBar().setTitleBarBackgroundColor(getResources().getColor(R.color.testmodelblue));
-                setStatusColor(R.color.testmodelblue);
-                getTitleBar().setLeftNormalButton(new TbaseTitleBar.OnTbaseTitleLeftViewClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        finish();
-                    }
-                }).setBackgroundResource(R.mipmap.back_f);
-                        //removeTBaseTitleBar();
-                       // removeStatusBar();
-                        loadContentView(R.layout.act_login);
-                        ButterKnife.bind(this);
-            }
-          ```
+ 
+         ```java
+           @Override
+                                               public void onLayoutLoading() {
+                                                   getTitleBar().setTitleBarBackgroundColor(getResources().getColor(R.color.testmodelblue));
+                                                   setStatusColor(R.color.testmodelblue);
+                                                   getTitleBar().setLeftNormalButton(new TbaseTitleBar.OnTbaseTitleLeftViewClickListener() {
+                                                       @Override
+                                                       public void onClick(View v) {
+                                                           finish();
+                                                       }
+                                                   }).setBackgroundResource(R.mipmap.back_f);
+                                                           //removeTBaseTitleBar();
+                                                          // removeStatusBar();
+                                                           loadContentView(R.layout.act_login);
+                                                           ButterKnife.bind(this);
+                                               }
+           ```                                    
 
 2. **切换主题**
    * 先保存一个默认主题用来显示: 
@@ -85,10 +86,10 @@
 
 4. **初始加载动画**
 
-        ```java
-            startLoadAnim();
-            stopLoadAnim();
-         ```
+            ```java
+                startLoadAnim();
+                stopLoadAnim();
+             ```
 
 5. **Fragment切换**   
    * T extends TBaseFragmentGroupActivity
