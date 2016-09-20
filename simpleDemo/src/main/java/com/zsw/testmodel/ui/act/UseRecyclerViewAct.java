@@ -75,7 +75,6 @@ public class UseRecyclerViewAct extends AbActivity {
             holder.content.setText("Message" + messages.get(position).arg1);
             holder.imageView.setBackgroundResource(messages.get(position).arg2);
 
-
         }
 
         @Override
@@ -93,21 +92,16 @@ public class UseRecyclerViewAct extends AbActivity {
          */
         class ZViewHolder extends RecyclerView.ViewHolder {
             //初始化
+            @Bind(R.id.urv_rec_text)
             TextView content;
+            @Bind(R.id.urv_rec_iamge)
             ImageView imageView;
 
             public ZViewHolder(View itemView) {
                 super(itemView);
-
-                bindView(itemView);
+                ButterKnife.bind(this, itemView);
 
             }
-
-            void bindView(View itemView) {
-                content = (TextView) itemView.findViewById(R.id.urv_rec_text);
-                imageView = (ImageView) itemView.findViewById(R.id.urv_rec_iamge);
-            }
-
 
         }
 

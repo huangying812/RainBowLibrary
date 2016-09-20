@@ -2,7 +2,9 @@ package com.zsw.rainbowlibrary.httputils.manager;
 
 import android.util.Log;
 
+import retrofit2.CallAdapter;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -26,6 +28,7 @@ public  class RetrofitManager {
         builder.client(OkHttpClientManager.getInstance().getOkHttpClient());
         builder.baseUrl(baseUrl);
         builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addCallAdapterFactory(RxJavaCallAdapterFactory.create());
         retrofit = builder.build();
         Log.d("RetrofitManager","create RetrofitManager");
     }

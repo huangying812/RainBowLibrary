@@ -21,6 +21,11 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.Observer;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * author  z.sw
@@ -29,6 +34,7 @@ import retrofit2.Response;
  * Description-登陆
  */
 public class LoginAct extends AbActivity {
+    private final static String TAG = "LoginAct";
 
     @Bind(R.id.loginName)
     EditText loginName;
@@ -39,6 +45,21 @@ public class LoginAct extends AbActivity {
     Button signIn;
     @Bind(R.id.sign_up)
     TextView signUp;
+
+    //声明一个全局的 订阅协议/ 和生命周期绑定 解除订阅
+    private Subscription subscription;
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unSubscribe();
+    }
+
+    private void unSubscribe() {
+        if (null != subscription && !subscription.isUnsubscribed()) {
+            subscription.unsubscribe();
+        }
+    }
 
     @Override
     public void initLayout() {
@@ -63,12 +84,50 @@ public class LoginAct extends AbActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sign_in:
-                sendHttp();
+
+//                sendHttp();
+                rxRequest();
                 break;
             case R.id.sign_up:
+
                 sendHttp();
+
+
                 break;
         }
+    }
+
+    private Observer<UserBean> observer = new Observer<UserBean>() {
+        @Override
+        public void onCompleted() {
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            e.printStackTrace();
+            L.printD(TAG, "onError=");
+
+
+        }
+
+        @Override
+        public void onNext(UserBean userBean) {
+            L.printD(TAG, "onNext=" + userBean.getEmail() + "\n" + userBean.getAvatar_url() + "\n"
+                    + userBean.getId() + "\n" + userBean.getCompany());
+            showSnackbar(userBean.getEmail());
+        }
+    };
+
+    public void rxRequest() {
+        final String userName = loginName.getText().toString().trim();
+        subscription = getAPIService()
+                .rxGetUser(userName)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(observer);
+
+
     }
 
     public void login(){
