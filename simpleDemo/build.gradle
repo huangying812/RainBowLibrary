@@ -42,7 +42,7 @@ dependencies {
     /**
      * api 21 推出的 CardView
      */
-    compile 'com.android.support:cardview-v7:+'
+    compile 'com.android.support:cardview-v7:23.3.0'
     /**
      * 给任意view添加水纹波点击效果
      * 未了避免动画还未播放结束 就跳转了页面 返回页面后动画继续执行所以使用
@@ -53,8 +53,6 @@ dependencies {
      * 基于谷歌bottom Navigate 封装的底部导航（可以设置badge)
      */
     compile 'com.aurelhubert:ahbottomnavigation:1.3.1'
-    compile 'com.android.support:recyclerview-v7:+'
-
     /**
      * RxJava & RxAndroid
      */
@@ -64,5 +62,5 @@ dependencies {
      * 为Retrofit 适配 Rx模式
      */
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0'
-
+    compile 'com.android.support:recyclerview-v7:23.3.0@aar'
 }

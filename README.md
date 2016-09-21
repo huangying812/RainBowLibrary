@@ -56,7 +56,7 @@
                                  loadContentView(R.layout.act_login);
                                   ButterKnife.bind(this);
                } 
-```                                    
+    ```                                    
 
 2. **切换主题**
    * 先保存一个默认主题用来显示: 
@@ -64,33 +64,33 @@
     ```java
          SharedPUtils.saveNormalTheme(this,R.style.AppTheme,Color.BLUE);
                  switchTheme(R.style.AppTheme,Color.BLUE);
-```
+    ```
     
    * 在需要的地方切换:
 
     ```java
             switchTheme(R.style.AppTheme,Color.BLUE);  
-```
+    ```
             
 3. **切换语言**
    * 先保存一个默认语言
 
     ```java
         SharedPUtils.saveLanguageSetting(this, LanguageTAG.ZH);
-```
+    ```
         
    * 切换语言
         
     ```java
         switchLanguage(getResources(),LanguageTAG.FRENCH);
-```
+    ```
 
 4. **初始加载动画**
 
     ```java
             startLoadAnim();
             stopLoadAnim();
-```
+    ```
 
 5. **Fragment切换**   
    * T extends TBaseFragmentGroupActivity
@@ -112,7 +112,7 @@
                         }
                     });
         }
-```
+    ```
         
         
          
