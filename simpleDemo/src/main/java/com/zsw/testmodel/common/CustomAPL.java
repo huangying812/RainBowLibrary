@@ -3,6 +3,7 @@ package com.zsw.testmodel.common;
 import android.app.Application;
 
 import com.zsw.rainbowlibrary.httputils.manager.OkHttpClientManager;
+import com.zsw.rainbowlibrary.utils.L;
 
 
 /**
@@ -23,6 +24,7 @@ public class CustomAPL extends Application {
                 .setTimeout_read(20)
                 .setDebug(true)
                 .buildOkHttpClient(this);
+        L.setDeBug(true);
 
     }
 }

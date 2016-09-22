@@ -114,7 +114,38 @@
         }
     ```
         
+6. **日志跟踪和打印**
+    * 提供日志开启关闭 默认开启  
+    ```java
+    
+    //L.setDeBug(true);
+    
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        printLogE("");
+    //输出结果--rainbowL--runing>>com.zsw.testmodel.ui.act.SlidingMenuAct>>)
+    }
+    ```
+           
+    ```java
+        public String printLogD(String log){
+               L.printD(getClass().getName(),log);
+               return getClass()+">msg=="+log;
+           }
+           public String printLogE(String log){
+               L.printE(getClass().getName(),log);
+               return getClass()+">msg=="+log;
+           }
+               
+            
+    ```     
+      
+    * 或者 
         
+    ```java
+             L.printD(getClass().getName(),log);
+    ```
          
       
          

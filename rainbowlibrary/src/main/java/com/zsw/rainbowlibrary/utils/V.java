@@ -6,9 +6,9 @@ import java.util.regex.Pattern;
  * author  z.sw
  * time  2016/8/2.
  * email  zhusw@visionet.com.cn
- * Description- 字符串验证器
+ * Description- Verifier 验证器
  */
-public class Verifier {
+public class V {
 	/**
 	 * 注册验证两次密码是否一致
 	 * 
@@ -17,7 +17,7 @@ public class Verifier {
 	 * @return
 	 */
 	public static boolean pswVerifier(String psw1, String psw2) {
-		if (!(psw1.trim().equals(psw2.trim()))) {
+		if (!(psw1.trim().replace(" ","").equals(psw2.trim().replace(" ","")))) {
 			return false;
 		}
 		return true;

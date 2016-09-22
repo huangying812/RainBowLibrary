@@ -27,7 +27,7 @@ import com.zsw.rainbowlibrary.customview.basetitle.TbaseTitleBar;
 import com.zsw.rainbowlibrary.utils.L;
 import com.zsw.rainbowlibrary.utils.LanguageTAG;
 import com.zsw.rainbowlibrary.utils.SharedPUtils;
-import com.zsw.rainbowlibrary.utils.Verifier;
+import com.zsw.rainbowlibrary.utils.V;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +76,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
             setTheme(SharedPUtils.getInt(this,SharedPUtils.THEME_ID));
 
         }
-        if(!Verifier.isNull(SharedPUtils.getString(this,SharedPUtils.LANGUAGE))){
+        if(!V.isNull(SharedPUtils.getString(this,SharedPUtils.LANGUAGE))){
             reSetLanguageConfiguration(getResources(),SharedPUtils.getString(this,SharedPUtils.LANGUAGE));
         }
 

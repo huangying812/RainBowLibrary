@@ -67,10 +67,13 @@ public class ImageLoaderUtils {
     }
 
     public static ImageLoader getInstance(){
-        if(null == imageLoader) {
-            throw new IllegalArgumentException("ImageLoaderUtils.imageLoader not init");
+
+        synchronized(ImageLoaderUtils.class){
+            if(null == imageLoader) {
+                throw new IllegalArgumentException("ImageLoaderUtils.imageLoader not init");
+            }
+            return  imageLoader;
         }
-        return  imageLoader;
     }
     /**
      *

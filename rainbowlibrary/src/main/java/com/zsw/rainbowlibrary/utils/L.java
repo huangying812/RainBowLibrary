@@ -14,7 +14,7 @@ public class L {
 	private static boolean deBug = true;
 	private static String str = "";
 
-	public static  void printLog(boolean isDebug){
+	public static  void setDeBug(boolean isDebug){
 		deBug = isDebug;
 	}
 

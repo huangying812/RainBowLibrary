@@ -33,7 +33,7 @@ public class SharedPUtils {
 	public static String saveLanguageSetting(Context con,String values){
 		SharedPreferences.Editor sp = con.getSharedPreferences(TAG,
 				Context.MODE_PRIVATE).edit();
-		if (Verifier.isNull(values)) {
+		if (V.isNull(values)) {
 			sp.putString(LANGUAGE, "");
 			sp.commit();
 			return "";
@@ -47,7 +47,7 @@ public class SharedPUtils {
 	public static String saveString(Context con, String key, String values) {
 		SharedPreferences.Editor sp = con.getSharedPreferences(TAG,
 				Context.MODE_PRIVATE).edit();
-		if (Verifier.isNull(values)) {
+		if (V.isNull(values)) {
 			sp.putString(key, "");
 			sp.commit();
 			return "";
