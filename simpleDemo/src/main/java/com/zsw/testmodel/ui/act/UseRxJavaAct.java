@@ -370,6 +370,8 @@ public class UseRxJavaAct extends AbActivity {
     }
 
 
-
-
+    @Override
+    public Class getRuningClass() {
+        return getClass();
+    }
 }

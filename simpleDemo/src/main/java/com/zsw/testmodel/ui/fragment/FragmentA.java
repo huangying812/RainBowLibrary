@@ -23,6 +23,11 @@ public class FragmentA extends AbFragment {
     private View view;
 
     @Override
+    public Class getRuningClass() {
+        return getClass();
+    }
+
+    @Override
     public void onInitLayout(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_a, container, false);
         setContentLayout(view);

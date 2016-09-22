@@ -102,4 +102,9 @@ public class BottomNavigationAct extends TBaseFragmentGroupActivity {
             }
         }).setBackgroundResource(R.mipmap.icon_back);
     }
+
+    @Override
+    public Class getRuningClass() {
+        return getClass();
+    }
 }

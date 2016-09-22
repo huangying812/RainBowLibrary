@@ -8,10 +8,13 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * author  z.sw
- * time  2016/9/1.
- * email  zhusw@visionet.com.cn
- * Description-
+ * Create on 2016/8/19.
+ *
+ * @author Ben
+ *         Description-
+ *         <p>
+ *         github  https://github.com/HarkBen
+ * @Last_update time - 2016年9月19日14:33:21
  */
 public  class RetrofitManager {
 

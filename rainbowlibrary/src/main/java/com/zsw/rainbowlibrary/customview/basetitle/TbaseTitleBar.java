@@ -16,7 +16,7 @@ import com.zsw.rainbowlibrary.R;
 /**
  * Create on 2016/8/19.
  *
- * @author HarkBen
+ * @author Ben
  *         Description-
  *         <p>
  *         github  https://github.com/HarkBen

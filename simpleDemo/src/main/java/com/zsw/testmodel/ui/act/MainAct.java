@@ -68,6 +68,10 @@ public class MainAct extends AbActivity {
     }
 
 
+    @Override
+    public Class getRuningClass() {
+        return getClass();
+    }
 }
 
 

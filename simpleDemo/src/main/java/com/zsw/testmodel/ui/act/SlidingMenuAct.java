@@ -41,4 +41,9 @@ public class SlidingMenuAct extends TBaseFragmentGroupActivity {
     public View setLayoutView() {
         return LayoutInflater.from(this).inflate(R.layout.activity_slidinglayout,null);
     }
+
+    @Override
+    public Class getRuningClass() {
+        return getClass();
+    }
 }

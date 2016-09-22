@@ -1,8 +1,5 @@
 package com.zsw.testmodel.ui.act;
 
-import android.graphics.Color;
-import android.support.v4.view.GravityCompat;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -20,7 +17,7 @@ import com.zsw.testmodel.ui.fragment.FragmentA;
 public class SlidingMenuAct2 extends SlidingMenuActivity {
 
     @Override
-    public void onInitView() {
+    public void onLayoutInitialized() {
         //初始化菜单按钮的事件 及其他view的绑定都在这里操作
         getTitleBar().setCenterNormalTextView("侧滑菜单");
         getTitleBar().setTitleBarBackgroundColor(getResources().getColor(R.color.mohei_tp));
@@ -40,5 +37,8 @@ public class SlidingMenuAct2 extends SlidingMenuActivity {
     }
 
 
-
+    @Override
+    public Class getRuningClass() {
+        return getClass();
+    }
 }

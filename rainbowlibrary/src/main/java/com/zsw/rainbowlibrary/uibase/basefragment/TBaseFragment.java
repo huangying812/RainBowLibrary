@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 
 import com.zsw.rainbowlibrary.uibase.baseactivity.TBaseActivity;
 import com.zsw.rainbowlibrary.exception.NotFindActivityException;
+import com.zsw.rainbowlibrary.utils.L;
 
 /**
  * author  z.sw
@@ -49,11 +50,30 @@ public abstract class TBaseFragment extends Fragment {
             contentView.setLayoutParams(params);
             rootView.addView(contentView);
         onInitLayout(inflater,container,savedInstanceState);
+        //输出运行日志
+        printLogE("");
         return rootView;
     }
 
+    public String printLogD(String log){
+        L.printD(getClass().getName(),log);
+        return getClass()+">msg=="+log;
+    }
+    public String printLogE(String log){
+        L.printE(getClass().getName(),log);
+        return getClass()+">msg=="+log;
+    }
+
     /**
-     * 提供给子类加载器
+     * 返回当前页面类名 方便日志查看
+     * @return
+     */
+    public abstract Class getRuningClass();
+
+
+
+    /**
+     * 提供给子类 布局加载器
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -78,7 +98,6 @@ public abstract class TBaseFragment extends Fragment {
 
 
     /**
-     *   //防止重复引用同一个Activity  Fragment重叠
       * @param activity -检查是否继承自TbaseActivity 并抛出NotFindActivityException
      */
     @Override

@@ -42,7 +42,7 @@ public abstract class SlidingMenuActivity  extends  TBaseFragmentGroupActivity{
     public void onLayoutloaded() {
 
         initView();
-        onInitView();
+        onLayoutInitialized();
     }
 
     private void initView(){
@@ -79,7 +79,7 @@ public abstract class SlidingMenuActivity  extends  TBaseFragmentGroupActivity{
     /**
      * 提供初始化变量的抽象方法
      */
-    public abstract  void onInitView();
+    public abstract  void onLayoutInitialized();
 
     public abstract View setMenuView();
 

@@ -8,6 +8,11 @@ import com.zsw.testmodel.R;
 public class FragmentD extends  FragmentA {
 
     @Override
+    public Class getRuningClass() {
+        return getClass();
+    }
+
+    @Override
     public int getBgColor() {
         return getTBaseActivity().getResources().getColor(R.color.testModelgreen);
     }

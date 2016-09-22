@@ -5,8 +5,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
 
 /**
- * CustomDrawLayout -覆盖onMeasure 重新计算高度，否则不能作为childlayout嵌套使用
- * author @zhusw
+ * Create on 2016/8/19.
+ *
+ * @author Ben
+ *         Description-覆盖onMeasure 重新计算高度，否则不能作为childlayout嵌套使用
+ *         <p>
+ *         github  https://github.com/HarkBen
+ * @Last_update time - 2016年9月19日14:33:21
  */
 public class CustomDrawLayout extends DrawerLayout {
 

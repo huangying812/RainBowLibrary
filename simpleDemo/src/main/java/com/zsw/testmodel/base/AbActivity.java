@@ -71,4 +71,5 @@ public abstract class AbActivity extends TBaseActivity implements RippleView.OnR
         return LayoutInflater.from(this).inflate(layoutId,null);
     }
 
+
 }

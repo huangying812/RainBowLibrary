@@ -191,8 +191,11 @@ public class LoginAct extends AbActivity {
          }
 
 
-
+    @Override
+    public Class getRuningClass() {
+        return getClass();
     }
+}
 
 
 

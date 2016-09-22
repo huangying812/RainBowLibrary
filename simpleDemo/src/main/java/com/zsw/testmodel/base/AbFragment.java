@@ -11,7 +11,7 @@ import com.zsw.rainbowlibrary.uibase.basefragment.TBaseFragment;
 /**
  * Created by z.sw on 2016/7/5.
  */
-public class AbFragment extends TBaseFragment {
+public abstract class AbFragment extends TBaseFragment {
 
     /**
      * 避免库中TbaseFragment 直接持有子类的activity 在getResoures 查找资源失败

@@ -66,9 +66,12 @@ public abstract class TBaseActivity extends AppCompatActivity {
     private boolean isAddStatus ;
 
     private List<TBaseActivity> actList = new ArrayList<>();
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        printLogE("");
         if(SharedPUtils.getInt(this,SharedPUtils.THEME_ID) != 0){
             setTheme(SharedPUtils.getInt(this,SharedPUtils.THEME_ID));
 
@@ -87,6 +90,21 @@ public abstract class TBaseActivity extends AppCompatActivity {
         onLayoutLoading();
         actList.add(this);
     }
+
+    public String printLogD(String log){
+        L.printD(getClass().getName(),log);
+        return getClass()+">msg=="+log;
+    }
+    public String printLogE(String log){
+        L.printE(getClass().getName(),log);
+        return getClass()+">msg=="+log;
+    }
+
+    /**
+     * 返回当前页面类名 方便日志查看
+     * @return
+     */
+    public abstract Class getRuningClass();
 
     public void finishAllAct(){
         if(null != actList && actList.size()>0){

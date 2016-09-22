@@ -56,6 +56,11 @@ public class UseRecyclerViewAct extends AbActivity {
 
     }
 
+    @Override
+    public Class getRuningClass() {
+        return getClass();
+    }
+
 
     class MyAdapter extends RecyclerView.Adapter<MyAdapter.ZViewHolder> {
 
