@@ -27,7 +27,7 @@
         <activity android:name=".ui.act.SlidingMenuAct2" />
         <activity android:name=".ui.act.UseRxJavaAct" />
         <activity android:name=".ui.act.UseRecyclerViewAct" />
-
+        <activity android:name=".ui.act.HttpTestAct" />
     </application>
 
 </manifest>

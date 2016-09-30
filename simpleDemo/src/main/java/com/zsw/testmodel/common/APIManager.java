@@ -1,6 +1,6 @@
 package com.zsw.testmodel.common;
 
-import com.zsw.rainbowlibrary.httputils.manager.RetrofitManager;
+import com.zsw.rainbowlibrary.httputils.factory.TBRetrofitFactory;
 
 /**
  * author  z.sw
@@ -18,16 +18,16 @@ public enum APIManager {
     public static final String BASEURL = "http://www.xx.com/";
 
     private final GitHubAPIService apiService;
-    private RetrofitManager retrofitManager;
+    private TBRetrofitFactory TBRetrofitFactory;
 
      APIManager(){
-         retrofitManager = RetrofitManager.getInstance(BASEURL);
-         apiService = retrofitManager.createService(GitHubAPIService.class);
+         TBRetrofitFactory = TBRetrofitFactory.getInstance(BASEURL);
+         apiService = TBRetrofitFactory.createService(GitHubAPIService.class);
 
      }
 
-    public RetrofitManager getRetrofitManager() {
-        return retrofitManager;
+    public TBRetrofitFactory getTBRetrofitFactory() {
+        return TBRetrofitFactory;
     }
     public GitHubAPIService getApiService(){
         return apiService;

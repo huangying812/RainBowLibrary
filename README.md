@@ -36,7 +36,7 @@
 
 1. **T extends TbaseActivity** 
 <p>  选择使用或者不使用TbaseTitleBar ,</p> 
-<p>  可以隐藏和删除，statusBar也可以删除，但都不提供重新ADD</p>
+<p>  可以隐藏和删除，statusBar也可以删除，但都不提供再重新添加</p>
 <p>  需要使用loadContentView(View v)方法设置布局，方便点再加个BaseAct 做中间层提供资源初始化和Http初始化
 >
  
@@ -56,6 +56,7 @@
                                  loadContentView(R.layout.act_login);
                                   ButterKnife.bind(this);
                } 
+               ···日常省略
     ```                                    
 
 2. **切换主题**
@@ -102,8 +103,11 @@
                 public TBaseFragment switchFragment(Class<?extends TBaseFragment> clazz){
                      return switchFragment(fragmentContainerId(),clazz);
                 }
+                ···日常省略
         }
+        
         class T extends TBaseFragmentGroupActivity{
+                    ···日常省略
              ahBottomNavigation.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
                         @Override
                         public boolean onTabSelected(int position, boolean wasSelected) {
@@ -111,6 +115,7 @@
                             return true;
                         }
                     });
+                    ···日常省略
         }
     ```
         
@@ -126,6 +131,7 @@
         printLogE("");
     //输出结果--rainbowL--runing>>com.zsw.testmodel.ui.act.SlidingMenuAct>>)
     }
+    
     ```
            
     ```java

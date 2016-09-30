@@ -8,11 +8,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.zsw.rainbowlibrary.httputils.factory.TBRequestFactory;
+import com.zsw.rainbowlibrary.httputils.TBRequest;
+import com.zsw.rainbowlibrary.httputils.factory.TBCallBack;
 import com.zsw.rainbowlibrary.utils.L;
-import com.zsw.rainbowlibrary.utils.LanguageTAG;
-import com.zsw.rainbowlibrary.utils.SharedPUtils;
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -79,25 +84,24 @@ public class LoginAct extends AbActivity {
     }
 
 
-
     @OnClick({R.id.sign_in, R.id.sign_up})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sign_in:
-
-//                sendHttp();
-                rxRequest();
+                requestGet_RESTFUL();
                 break;
             case R.id.sign_up:
-
-                sendHttp();
-
 
                 break;
         }
     }
 
-    private Observer<UserBean> observer = new Observer<UserBean>() {
+    private Subscriber<UserBean> observer = new Subscriber<UserBean>() {
+        @Override
+        public void onStart() {
+            super.onStart();
+        }
+
         @Override
         public void onCompleted() {
 
@@ -126,69 +130,65 @@ public class LoginAct extends AbActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(observer);
-
-
     }
 
-    public void login(){
+    public void requestGet_RESTFUL() {
+        TBRequest.create()
+                .GET("https://api.github.com/users", new String[]{"HarkBen"}, new TBCallBack() {
+                    @Override
+                    public void onSuccess(int code, String body) {
+                        printLogD(code + "");
+                        printLogD(body);
+                        Gson gson = new Gson();
+                        UserBean user= gson.fromJson(body,UserBean.class);
+                        showSnackbar(code+"=="+user.getEmail());
+
+
+                    }
+
+                    @Override
+                    public void onFailed(String errorMsg) {
+                        printLogD(errorMsg);
+                    }
+                });
+    }
+
+    public void requestGet_Normal() {
         String userName = loginName.getText().toString().trim();
-        getAPIService().getAll(userName).enqueue(new Callback<ResponseBody>() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("user", userName);
+        TBRequestFactory.getInstance().get("https://api.github.com/", map, new TBCallBack() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                L.printD("retrofit", "-onResponse code==" + response.code());
-                L.printD("retrofit", "-onResponse errorBody==" + response.errorBody());
-                L.printD("retrofit", "-onResponse body==" + response.body());
-                L.printD("retrofit", "-onResponse isSuccess==" + response.isSuccessful());
-            }
+            public void onSuccess(int code, String body) {
+                printLogD(code + "");
+                printLogD(body);
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                t.printStackTrace();
-                L.printD("retrofit", "-onFailure 请求失败=" + t.getMessage());
-            }
-        });
-    }
-
-    public void sendHttp() {
-        String userName = loginName.getText().toString().trim()+"";
-        getAPIService().getUser(userName).enqueue(new Callback<UserBean>() {
-            @Override
-            public void onResponse(Call<UserBean> call, Response<UserBean> response) {
-                L.printD("retrofit", "-onResponse code==" + response.code());
-                L.printD("retrofit", "-onResponse errorBody==" + response.errorBody());
-                L.printD("retrofit", "-onResponse body==" + response.body());
-                L.printD("retrofit", "-onResponse isSuccess==" + response.isSuccessful());
-                if(response.code() == 200){
-                    L.printD("retrofit", "-onResponse UserBean Email==" + response.body().getEmail());
-                    showSnackbar(response.code()+"-email="+response.body().getEmail());
-                }else{
-                    showSnackbar(response.code()+"-失败");
-                }
 
             }
 
             @Override
-            public void onFailure(Call<UserBean> call, Throwable t) {
-                t.printStackTrace();
-                L.printD("retrofit", "-onFailure 请求失败=" + t.getMessage());
-
+            public void onFailed(String errorMsg) {
+                printLogD(errorMsg);
             }
         });
 
+
     }
-        public void showSnackbar(String msg){
-        Snackbar.make(signIn,msg,Snackbar.LENGTH_INDEFINITE)
+
+
+    public void showSnackbar(String msg) {
+        Snackbar.make(signIn, msg, Snackbar.LENGTH_INDEFINITE)
                 .setActionTextColor(Color.GRAY)
                 .setAction("知道了", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(LoginAct.this,MainAct.class);
+                        Intent intent = new Intent(LoginAct.this, MainAct.class);
                         startActivity(intent);
                     }
                 })
                 .show();
 
-         }
+    }
 
 
     @Override

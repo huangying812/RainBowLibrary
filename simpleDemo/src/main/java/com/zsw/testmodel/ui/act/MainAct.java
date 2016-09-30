@@ -27,7 +27,8 @@ public class MainAct extends AbActivity {
     Button goObserver;
     @Bind(R.id.goRecyclerView)
     Button goRecyclerView;
-
+    @Bind(R.id.goHttpRequest)
+    Button  goHttpRequest;
     @Override
     public void initLayout() {
         removeStatusBar();
@@ -37,7 +38,7 @@ public class MainAct extends AbActivity {
     }
 
     @OnClick({R.id.goRecyclerView, R.id.gosliding,
-            R.id.goButtomNavigate, R.id.goSlidingMenuAct, R.id.goObserver})
+            R.id.goButtomNavigate, R.id.goSlidingMenuAct, R.id.goObserver,R.id.goHttpRequest})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.gosliding:
@@ -61,7 +62,10 @@ public class MainAct extends AbActivity {
                 Intent intent5 = new Intent(MainAct.this, UseRecyclerViewAct.class);
                 startActivity(intent5);
                 break;
-
+            case R.id.goHttpRequest:
+                Intent intent6 = new Intent(MainAct.this, HttpTestAct.class);
+                startActivity(intent6);
+                break;
             default:
                 break;
         }

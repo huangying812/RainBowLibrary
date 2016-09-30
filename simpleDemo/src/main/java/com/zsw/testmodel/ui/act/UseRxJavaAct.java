@@ -303,7 +303,6 @@ public class UseRxJavaAct extends AbActivity {
     void createObserver5() {
         Observable.from(phones)
                 .map(new Func1<Phone, String>() {
-
                     @Override
                     public String call(Phone phone) {
                         return phone.getModels();

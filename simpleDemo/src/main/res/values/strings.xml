@@ -3,6 +3,17 @@
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="httpRequestinit">初始Client 和 Factory:
+        \nTBOkHttpClientFactory.Builder.create() \n
+                .setSyncCookie(this) \n
+                .setTimeout_connection(10) \n
+                .setTimeout_read(10) \n
+                .setTimeout_write(10) \n
+                .setDebug(true) \n
+                .build(); \n \n \n
+        TBRequestFactory \n
+        .build(TBRetrofitFactory \n
+        .getInstance("https://xx.x.x/"));</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

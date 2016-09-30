@@ -2,7 +2,9 @@ package com.zsw.testmodel.common;
 
 import android.app.Application;
 
-import com.zsw.rainbowlibrary.httputils.manager.OkHttpClientManager;
+import com.zsw.rainbowlibrary.httputils.factory.TBOkHttpClientFactory;
+import com.zsw.rainbowlibrary.httputils.factory.TBRequestFactory;
+import com.zsw.rainbowlibrary.httputils.factory.TBRetrofitFactory;
 import com.zsw.rainbowlibrary.utils.L;
 
 
@@ -18,12 +20,14 @@ public class CustomAPL extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        OkHttpClientManager.getInstance()
-                .setTimeout_connection(20)
-                .setTimeout_write(20)
-                .setTimeout_read(20)
+        TBOkHttpClientFactory.Builder.create()
+                .setSyncCookie(this)
+                .setTimeout_connection(10)
+                .setTimeout_read(10)
+                .setTimeout_write(10)
                 .setDebug(true)
-                .buildOkHttpClient(this);
+                .build();
+        TBRequestFactory.build(TBRetrofitFactory.getInstance("https://xx.x.x/"));
         L.setDeBug(true);
 
     }
