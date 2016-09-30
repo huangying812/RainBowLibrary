@@ -30,7 +30,10 @@
 ### rainbowlibrary 的使用
 >截图
 <br />
-   	![login.png](./pictures/login.png)  ![ui1.png](./pictures/ui2.png) ![ui2.png](./pictures/ui3.png) ![ui3.png](./pictures/ui3.png)  ![ui4.png](./pictures/ui4.png)   	
+   	![ui1.png](./pictures/ui2.png)
+   	![ui2.png](./pictures/ui3.png) 
+   	![ui4.png](./pictures/ui4.png)
+   	![http.png](./pictures/http.png)
 >
 ### TbaseActivity & TbaseFragment
 
@@ -152,6 +155,7 @@
     ```java
              L.printD(getClass().getName(),log);
     ```
+         
          
       
          
