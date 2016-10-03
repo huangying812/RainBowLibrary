@@ -31,49 +31,49 @@ import rx.Observable;
  */
 public  interface GitHubAPIService {
 
-    @GET(API.GETUSERINFO)
+    @GET(API.BASEURL)
     Call<UserBean> getUser(@Path("user") String user);
 
-    @GET(API.GETUSERINFO)
+    @GET(API.BASEURL)
     Call<ResponseBody> getAll(@Path("user") String user);
 
     //Rx模式
-    @GET(API.GETUSERINFO)
+    @GET(API.BASEURL)
     Observable<UserBean> rxGetUser(@Path("user") String name);
 
     //Retrofit 注解详解
 
     //第一类：HTTP请请求方法
     // GET POST PUT   DELETE PATCH HEAD OPTIONS HTTP
-    @HTTP(method = "get",path = API.GETUSERINFO)//hasBody 默认为false 可以不写
-    Call<UserBean> getUserInfo1(@Path("user") String user);
+    @HTTP(method = "get",path = API.BASEURL)//hasBody 默认为false 可以不写
+    Call<UserBean> BASEURL1(@Path("user") String user);
 
     /**
      * 简单字符串
      * @param user
      * @return
      */
-    @GET(API.GETUSERINFO)
-    Call<ResponseBody> getUserInfo4(@Query("user") String user);
+    @GET(API.BASEURL)
+    Call<ResponseBody> BASEURL4(@Query("user") String user);
 
     /**
      * 支持数组
      * @param list
      * @return
      */
-    @GET(API.GETUSERINFO)
+    @GET(API.BASEURL)
     Call<RequestBody> getUuserInfo5(@Query("ids[]") List<Integer> list);
 
 
-    @GET(API.GETUSERINFO)
-    Call<ResponseBody> getUserInfo2(@QueryMap Map<String,String> map);
+    @GET(API.BASEURL)
+    Call<ResponseBody> BASEURL2(@QueryMap Map<String,String> map);
     /**
      *
      * @param url 如果GET() 没有指定url 则必须在 参数入口内使用{@link Url} 这样会摒弃BaseUrl
      * @return
      */
     @GET
-    Call<ResponseBody> getUserInfo3(@Url String url);
+    Call<ResponseBody> BASEURL3(@Url String url);
 
     //第二类 标记类
     //1.表单请求 FormUrlEncoded  表单数据 {Content-Type:application/x-www-from-urlencoded}
@@ -88,7 +88,7 @@ public  interface GitHubAPIService {
      * {@link FormUrlEncoded} 表明是一个表单格式的请求（Content-Type:application/x-www-form-urlencoded）
      * <code>Field("username")</code> 表示将后面的 <code>String name</code> 中name的取值作为 username 的值
      */
-    @POST(API.GETUSERINFO)
+    @POST(API.BASEURL)
     @FormUrlEncoded                //     KEY            Value
     Call<ResponseBody> fromUrlEncoded1(@Field("user") String name);
 
@@ -97,7 +97,7 @@ public  interface GitHubAPIService {
      * @param map
      * @return
      */
-    @POST(API.GETUSERINFO)
+    @POST(API.BASEURL)
     @FormUrlEncoded
     Call<ResponseBody> fromUrlEncoded2(@FieldMap Map<String,String> map);
 
@@ -105,9 +105,9 @@ public  interface GitHubAPIService {
      * {@link retrofit2.http.Part } 后面支持三种类型 {@link okhttp3.RequestBody} ,{@link okhttp3.MultipartBody.Part} ,任意类型
      * @return
      */
-    @POST(API.GETUSERINFO)
+    @POST(API.BASEURL)
     @Multipart
-    Call<ResponseBody> getUserInfo3(@Part("name") RequestBody name, @Part("age") RequestBody age, @Part MultipartBody.Part file);
+    Call<ResponseBody> BASEURL3(@Part("name") RequestBody name, @Part("age") RequestBody age, @Part MultipartBody.Part file);
 
     /**
      *{@link PartMap} 支持一个Map作为参数，支持{@link RequestBody} 类型，
@@ -116,9 +116,9 @@ public  interface GitHubAPIService {
      * @param file 文件
      * @return
      */
-    @POST(API.GETUSERINFO)
+    @POST(API.BASEURL)
     @Multipart
-    Call<ResponseBody> getUserInfo4(@PartMap Map<String,RequestBody> map,
+    Call<ResponseBody> BASEURL4(@PartMap Map<String,RequestBody> map,
                                     @Part MultipartBody.Part file);
 
     /**
@@ -126,8 +126,8 @@ public  interface GitHubAPIService {
      * @param user
      * @return
      */
-    @POST(API.GETUSERINFO)
-    Call<UserBean> getUserinfo5(@Body UserBean user);
+    @POST(API.BASEURL)
+    Call<UserBean> BASEURL5(@Body UserBean user);
 
 
 

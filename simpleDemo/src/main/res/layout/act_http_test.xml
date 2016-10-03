@@ -30,7 +30,7 @@
             android:textColor="@color/white"
             android:id="@+id/att_restful"
             android:layout_width="wrap_content"
-            android:text="TESTFUL"
+            android:text="RESTFUL"
             android:layout_height="wrap_content" />
         <Button
             android:background="@drawable/btn_ripple"
@@ -52,9 +52,16 @@
         <Button
             android:background="@drawable/btn_ripple"
             android:textColor="@color/white"
-            android:id="@+id/att_post_txt"
+            android:id="@+id/att_post_json"
             android:layout_width="wrap_content"
-            android:text="纯文本表单"
+            android:text="json"
+            android:layout_height="wrap_content" />
+        <Button
+            android:background="@drawable/btn_ripple"
+            android:textColor="@color/white"
+            android:id="@+id/att_post_formData"
+            android:layout_width="wrap_content"
+            android:text="formData"
             android:layout_height="wrap_content" />
         <Button
             android:background="@drawable/btn_ripple"

@@ -20,14 +20,14 @@ import static android.os.Build.VERSION_CODES.M;
  * author Ben
  * Last_Update - 2016/9/27
  */
-public class TBRequestFactory {
+public class TBRequestFactory implements RequestInterface{
 
-    private static TBRetrofitService TBRetrofitService;
+    private static TBRetrofitService tBRetrofitService;
 
-    private static TBRequestFactory TBRequestFactory;
+    private static TBRequestFactory tBRequestFactory;
 
     private TBRequestFactory(TBRetrofitFactory rm) {
-        TBRetrofitService = rm.createService(TBRetrofitService.class);
+        tBRetrofitService = rm.createService(TBRetrofitService.class);
     }
 
     /**
@@ -35,31 +35,38 @@ public class TBRequestFactory {
      * @param rm
      */
     public static void build(TBRetrofitFactory rm) {
-        if (null == TBRequestFactory) {
+        if (null == tBRequestFactory) {
             synchronized (TBRequestFactory.class) {
-                if (null == TBRequestFactory)
-                    TBRequestFactory = new TBRequestFactory(rm);
+                if (null == tBRequestFactory)
+                    tBRequestFactory = new TBRequestFactory(rm);
             }
         }
     }
 
     public static TBRequestFactory getInstance() {
-        if (null == TBRequestFactory) {
+        if (null == tBRequestFactory) {
             try {
-                throw new NullPointerException("com.zsw.rainbowlibrary.httputils.factory.TBRequestFactory does not build!");
+                throw new NullPointerException(TBRequestFactory.class.getPackage()+ "TBRequestFactory does not build!");
             } catch (NullPointerException e) {
-                L.printE("TBRequestFactory", "com.zsw.rainbowlibrary.httputils.factory.TBRequestFactory does not build!");
+                L.printE("TBRequestFactory", TBRequestFactory.class.getPackage()+"TBRequestFactory does not build!");
                 e.printStackTrace();
             }
         } else {
-            return TBRequestFactory;
+            return tBRequestFactory;
         }
         return null;
     }
 
-    //GET 请求
+    //GET 请求--------------------------------------
+
+    /**
+     * 无参
+     * @param url
+     * @param tBCallBack
+     */
+    @Override
     public void get(String url, TBCallBack tBCallBack) {
-        TBRetrofitService.get(url).enqueue(tBCallBack);
+        tBRetrofitService.get(url).enqueue(tBCallBack);
     }
 
     /**
@@ -69,6 +76,7 @@ public class TBRequestFactory {
      * @param tBCallBack
      * @param values
      */
+    @Override
     public void get(String url, String[] values,TBCallBack tBCallBack) {
         if(values == null || values.length== 0){
             get(url,tBCallBack);
@@ -89,10 +97,10 @@ public class TBRequestFactory {
      * @param map
      * @param tBCallBack
      */
+    @Override
     public void get(String url, Map<String, Object> map, TBCallBack tBCallBack) {
-        TBRetrofitService.get(url, map).enqueue(tBCallBack);
+        tBRetrofitService.get(url, map).enqueue(tBCallBack);
     }
-
 
 
     //POST---------------------------------------------------------------------------
@@ -103,19 +111,20 @@ public class TBRequestFactory {
      * @param json
      * @param tbCallBack
      */
-   public void postByJson(String url, JSONObject json, TBCallBack tbCallBack){
-        TBRetrofitService.postJson(url,json.toString()).enqueue(tbCallBack);
+    @Override
+   public void postJson(String url, JSONObject json, TBCallBack tbCallBack){
+        tBRetrofitService.postJson(url,json.toString()).enqueue(tbCallBack);
     }
 
     /**
      * 接口泛型 RequestBody
      * @param url
-     * @param json
+     * @param body
      * @param tbCallBack
      */
-    public void postByRequestBody(String url, JSONObject json, TBCallBack tbCallBack){
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),json.toString());
-        TBRetrofitService.postJson(url,body).enqueue(tbCallBack);
+    @Override
+    public void postRequestBody(String url, RequestBody body, TBCallBack tbCallBack){
+        tBRetrofitService.post(url,body).enqueue(tbCallBack);
     }
 
 
@@ -126,8 +135,9 @@ public class TBRequestFactory {
      * @param map
      * @param tBCallBack
      */
-    public void postForm(String url, Map<String, Object> map, TBCallBack tBCallBack) {
-        TBRetrofitService.postForm(url, map).enqueue(tBCallBack);
+    @Override
+    public void postFormData(String url, Map<String, Object> map, TBCallBack tBCallBack) {
+        tBRetrofitService.postForm(url, map).enqueue(tBCallBack);
     }
 
 

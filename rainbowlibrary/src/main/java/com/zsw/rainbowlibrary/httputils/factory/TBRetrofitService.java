@@ -25,7 +25,7 @@ import static android.os.Build.VERSION_CODES.M;
  * github  https://github.com/HarkBen
  * Description:
  * 声明基本请求接口,不能保证所有后台的接口都是给你个对象，所以这里返回数据类型都为String，不再支持直接返回序列化的对象和集合
- * 后面会单独封一个解析器取名就叫ConverUtils.class
+ * 后面会单独封一个解析器取名就叫ConverUtils.class吧
  * 参数包含 Get POST(map 表单 bean) 参数值为基本数据类型和String
  * @Warning 不包含File及其他流式
  * 额外的大体积的数据请求，可以创建单独新的API接口并使用{@link TBRetrofitFactory}，它已经被初始化过了
@@ -65,7 +65,6 @@ public interface TBRetrofitService {
     Call<String> postForm(@Url String url, @FieldMap Map<String,Object> map);
 
     /**
-     * 做非表单的提交，
      * 提交json格式
      * @param url
      * @return
@@ -75,13 +74,12 @@ public interface TBRetrofitService {
     Call<String> postJson(@Url String url, @Body String body);
 
     /**
-     * 做非表单的提交，
-     * 提交json格式
+     * RequestBody 可以单独设置 content-type
      * @param url
      * @return
      */
     @POST
-    Call<String> postJson(@Url String url, @Body RequestBody body);
+    Call<String> post(@Url String url, @Body RequestBody body);
 
     /**
      * 上传单个文件

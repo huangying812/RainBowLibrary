@@ -30,11 +30,10 @@ public  class TBRetrofitFactory {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.client(TBOkHttpClientFactory.getOkHttpClient());
         builder.baseUrl(baseUrl);
-//        builder.addConverterFactory(GsonConverterFactory.create());
         builder.addConverterFactory(StringConverterFactory.create());
         builder.addCallAdapterFactory(RxJavaCallAdapterFactory.create());
         retrofit = builder.build();
-        Log.d("TBRetrofitFactory","create TBRetrofitFactory");
+        Log.d("TBRetrofitFactory","Have created TBRetrofitFactory");
     }
 
     /**

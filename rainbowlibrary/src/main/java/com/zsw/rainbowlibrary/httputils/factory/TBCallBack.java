@@ -22,7 +22,7 @@ public abstract class TBCallBack implements Callback<String> {
     }
 
     /**
-     * 这里的异常处理 数据转换优先级 要比 onResponse
+     * 这里的异常处理 数据转换优先级 要比 onResponse更早调用
      * 所以 请求成功 但是数据转换错误就不会走onResponse
      * @param call
      * @param t

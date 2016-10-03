@@ -8,29 +8,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.zsw.rainbowlibrary.httputils.factory.TBRequestFactory;
 import com.zsw.rainbowlibrary.httputils.TBRequest;
 import com.zsw.rainbowlibrary.httputils.factory.TBCallBack;
-import com.zsw.rainbowlibrary.utils.L;
+import com.zsw.rainbowlibrary.httputils.factory.TBRequestFactory;
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
+import com.zsw.testmodel.common.API;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import rx.Observer;
-import rx.Subscriber;
 import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * author  z.sw
@@ -70,25 +61,19 @@ public class LoginAct extends AbActivity {
     public void initLayout() {
         removeTBaseTitleBar();
         removeStatusBar();
-        //这里是登陆页 所以不需要顶部工具栏布局
         loadContentView(R.layout.act_login);
         ButterKnife.bind(this);
 
-        initView();
 
     }
 
-    private void initView() {
-
-
-    }
 
 
     @OnClick({R.id.sign_in, R.id.sign_up})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sign_in:
-                requestGet_RESTFUL();
+                    login();
                 break;
             case R.id.sign_up:
 
@@ -96,85 +81,33 @@ public class LoginAct extends AbActivity {
         }
     }
 
-    private Subscriber<UserBean> observer = new Subscriber<UserBean>() {
-        @Override
-        public void onStart() {
-            super.onStart();
-        }
+   void login(){
+       String url = API.LOGIN;
+       TBRequest.create()
+               .put("username","zhusw")
+               .put("password","333333")
+               .put("client_flag","android")
+               .put("model","SCL-AL00")
+               .put("locale","zh")
+               .post(url, new TBCallBack() {
+                   @Override
+                   public void onSuccess(int code, String body) {
+                       JSONObject json = null;
+                       try {
+                           json = new JSONObject(body);
+                           showSnackbar(code+"--"+ json.getString("loginName"));
+                       } catch (JSONException e) {
+                           e.printStackTrace();
+                       }
 
-        @Override
-        public void onCompleted() {
+                   }
 
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            e.printStackTrace();
-            L.printD(TAG, "onError=");
-
-
-        }
-
-        @Override
-        public void onNext(UserBean userBean) {
-            L.printD(TAG, "onNext=" + userBean.getEmail() + "\n" + userBean.getAvatar_url() + "\n"
-                    + userBean.getId() + "\n" + userBean.getCompany());
-            showSnackbar(userBean.getEmail());
-        }
-    };
-
-    public void rxRequest() {
-        final String userName = loginName.getText().toString().trim();
-        subscription = getAPIService()
-                .rxGetUser(userName)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer);
-    }
-
-    public void requestGet_RESTFUL() {
-        TBRequest.create()
-                .GET("https://api.github.com/users", new String[]{"HarkBen"}, new TBCallBack() {
-                    @Override
-                    public void onSuccess(int code, String body) {
-                        printLogD(code + "");
-                        printLogD(body);
-                        Gson gson = new Gson();
-                        UserBean user= gson.fromJson(body,UserBean.class);
-                        showSnackbar(code+"=="+user.getEmail());
-
-
-                    }
-
-                    @Override
-                    public void onFailed(String errorMsg) {
-                        printLogD(errorMsg);
-                    }
-                });
-    }
-
-    public void requestGet_Normal() {
-        String userName = loginName.getText().toString().trim();
-        Map<String, Object> map = new HashMap<>();
-        map.put("user", userName);
-        TBRequestFactory.getInstance().get("https://api.github.com/", map, new TBCallBack() {
-            @Override
-            public void onSuccess(int code, String body) {
-                printLogD(code + "");
-                printLogD(body);
-
-
-            }
-
-            @Override
-            public void onFailed(String errorMsg) {
-                printLogD(errorMsg);
-            }
-        });
-
-
-    }
-
+                   @Override
+                   public void onFailed(String errorMsg) {
+                       showSnackbar("error=="+errorMsg);
+                   }
+               });
+   }
 
     public void showSnackbar(String msg) {
         Snackbar.make(signIn, msg, Snackbar.LENGTH_INDEFINITE)

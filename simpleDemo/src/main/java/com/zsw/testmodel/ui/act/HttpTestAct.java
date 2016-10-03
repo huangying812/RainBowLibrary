@@ -9,6 +9,7 @@ import com.zsw.rainbowlibrary.httputils.TBRequest;
 import com.zsw.rainbowlibrary.httputils.factory.TBCallBack;
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
+import com.zsw.testmodel.common.API;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -31,7 +32,7 @@ public class HttpTestAct extends AbActivity {
     Button attRestful;
     @Bind(R.id.att_Normal)
     Button attNormal;
-    @Bind(R.id.att_post_txt)
+    @Bind(R.id.att_post_json)
     Button attPostTxt;
     @Bind(R.id.att_post_file)
     Button attPostFile;
@@ -39,8 +40,12 @@ public class HttpTestAct extends AbActivity {
     Button attPostTxtAndFile;
     @Bind(R.id.att_post_fileList)
     Button attPostFileList;
+    @Bind(R.id.att_post_formData)
+    Button attPostFormData;
 
-    private static final String URL_RESTFUL = "https://api.github.com/users";
+    private static final String GITHUB_RESTFUL = "https://api.github.com/users";
+
+
 
     @Override
     public void initLayout() {
@@ -54,7 +59,7 @@ public class HttpTestAct extends AbActivity {
     }
 
 
-    @OnClick({R.id.att_restful, R.id.att_Normal, R.id.att_post_txt, R.id.att_post_file, R.id.att_post_txtAndFile, R.id.att_post_fileList})
+    @OnClick({R.id.att_restful, R.id.att_post_formData,R.id.att_Normal, R.id.att_post_json, R.id.att_post_file, R.id.att_post_txtAndFile, R.id.att_post_fileList})
     public void onClick(View view) {
         attLog.setText("---------清除日志-------------");
         switch (view.getId()) {
@@ -64,7 +69,7 @@ public class HttpTestAct extends AbActivity {
             case R.id.att_Normal:
                 GETByNormal();
                 break;
-            case R.id.att_post_txt:
+            case R.id.att_post_json:
                 POSTByNormal();
                 break;
             case R.id.att_post_file:
@@ -72,6 +77,9 @@ public class HttpTestAct extends AbActivity {
             case R.id.att_post_txtAndFile:
                 break;
             case R.id.att_post_fileList:
+                break;
+            case R.id.att_post_formData:
+
                 break;
         }
     }
@@ -86,7 +94,7 @@ public class HttpTestAct extends AbActivity {
      */
     void GETByRestful() {
         TBRequest.create()
-                .GET(URL_RESTFUL, new String[]{"Harkben"}, new TBCallBack() {
+                .get(GITHUB_RESTFUL, new String[]{"Harkben"}, new TBCallBack() {
                     @Override
                     public void onSuccess(int code, String body) {
                         showResult(code + "--" + body);
@@ -102,7 +110,7 @@ public class HttpTestAct extends AbActivity {
     void GETByNormal() {
         TBRequest.create()
                 .put("user", "HarkBen")
-                .GET(URL_RESTFUL, new TBCallBack() {
+                .get(GITHUB_RESTFUL, new TBCallBack() {
                     @Override
                     public void onSuccess(int code, String body) {
                         showResult(code + "--" + body);
@@ -118,26 +126,27 @@ public class HttpTestAct extends AbActivity {
 
     }
 
-    void POSTByNormal(){
-        String url ="http://180.166.66.226:43230/baoshi/mobilelogin";
+    void POSTByNormal() {
+        String url = API.LOGIN;
         TBRequest.create()
-                .put("clientMobileVersion","Redmi Note 2")
-                .put("loginName","huangyw@visionet.com.cn")
-                .put("password","111111")
-                .put("client_flag","android")
-                .put("model","SCL-AL00")
-                .put("locale","zh")
-                .POST(url, new TBCallBack() {
+                .put("username", "zhusw")
+                .put("password", "333333")
+                .put("client_flag", "android")
+                .put("model", "SCL-AL00")
+                .put("locale", "zh")
+                .post(url, new TBCallBack() {
                     @Override
                     public void onSuccess(int code, String body) {
-                        showResult(code+"--"+body);
+                        showResult(code + "--" + body);
                     }
 
                     @Override
                     public void onFailed(String errorMsg) {
-                        showResult("error=="+errorMsg);
+                        showResult("error==" + errorMsg);
                     }
                 });
     }
+
+
 
 }

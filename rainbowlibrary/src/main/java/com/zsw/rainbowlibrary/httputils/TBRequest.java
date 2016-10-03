@@ -1,5 +1,6 @@
 package com.zsw.rainbowlibrary.httputils;
 
+import com.zsw.rainbowlibrary.httputils.factory.RequestInterface;
 import com.zsw.rainbowlibrary.httputils.factory.TBCallBack;
 import com.zsw.rainbowlibrary.httputils.factory.TBRequestFactory;
 import com.zsw.rainbowlibrary.utils.L;
@@ -18,7 +19,8 @@ import okhttp3.RequestBody;
  * github  https://github.com/HarkBen
  * Description:
  * -----构建参数和选择请求方式
- * 支持 GET / 表单 POST/单文件上传
+ * 支持： GET 普通/REST FUL
+ *       POST 表单/json/文件上传
  * ------
  * author Ben
  * Last_Update - 2016/9/29
@@ -27,14 +29,16 @@ public class TBRequest {
 
 
     private Map<String,Object> params = null;
+    private RequestInterface request;
 
     /**
      * 默认创建一个Obj Map
+     * 填充基础参数
      */
     private TBRequest(){
         params = new HashMap<>();
+        request = TBRequestFactory.getInstance();
     }
-
 
     public static TBRequest create(){
         return new TBRequest();
@@ -50,20 +54,21 @@ public class TBRequest {
         return  this;
     }
 
-    public JSONObject Map2JSONObject(){
+    public JSONObject map2JSONObject(){
         return new JSONObject(params);
     }
 
     /**
      * 普通模式
+     * 拼接参数直接使用 map即可
      * @param url
      * @param tBCallBack
      */
-    public void GET(String url, TBCallBack tBCallBack){
+    public void get(String url, TBCallBack tBCallBack){
         if(null == params || params.isEmpty()){
-            TBRequestFactory.getInstance().get(url,tBCallBack);
+            request.get(url,tBCallBack);
         }else {
-            TBRequestFactory.getInstance().get(url, params,tBCallBack);
+            request.get(url, params,tBCallBack);
         }
     }
 
@@ -73,29 +78,37 @@ public class TBRequest {
      * @param values
      * @param tBCallBack
      */
-    public void GET(String url,String[] values, TBCallBack tBCallBack){
-        TBRequestFactory.getInstance().get(url, values,tBCallBack);
+    public void get(String url,String[] values, TBCallBack tBCallBack){
+        request.get(url, values,tBCallBack);
     }
 
 
     // POST
 
-    public void POST(String url,TBCallBack tbCallBack){
-        TBRequestFactory.getInstance().postByJson(url,Map2JSONObject(),tbCallBack);
+    /**
+     * 将map参数转换为 JSON格式提交
+     * @param url
+     * @param tbCallBack
+     */
+    public void post(String url,TBCallBack tbCallBack){
+        request.postJson(url,map2JSONObject(),tbCallBack);
     }
 
-    public void POSTByRequestBody(String url,TBCallBack tbCallBack){
-        TBRequestFactory.getInstance().postByRequestBody(url,Map2JSONObject(),tbCallBack);
+
+
+    public void postRequestBody(String url,RequestBody body,TBCallBack tbCallBack){
+        request.postRequestBody(url,body,tbCallBack);
     }
 
 
     /**
+     * 单纯表单
      * Content-Type: application/x-www-form-urlencoded
      * @param url
      * @param tBCallBack
      */
-    public void requestPost(String url,TBCallBack tBCallBack){
-        TBRequestFactory.getInstance().postForm(url,params, tBCallBack);
+    public void postFormData(String url,TBCallBack tBCallBack){
+        request.postFormData(url,params, tBCallBack);
     }
 
 

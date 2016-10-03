@@ -10,16 +10,19 @@ package com.zsw.testmodel.common;
  */
 
 public class API {
-    private static String getAPI(String path){
-        return BASEURL+path;
-    }
-    public static final String BASEURL = "https://api.github.com/users/";
+
+    public static final String BASEURL = "http://vn-functional.chinacloudapp.cn/wsk-ns/api/";
 
     /**
-     * 获取GitHub 上的用户信息
+     * 测试登陆
+     * 参数
+     * {"username":"zhusw",
+     * "password":"333333",
+     * "client_flag":"android",
+     * "model":"SCL-AL00",
+     * "locale":"zh"}
      */
-    public static final String GETUSERINFO =  BASEURL+"{user}";
-    public static final String GETUSERINFO2 =  BASEURL+"{user}";
+    public static final String LOGIN = BASEURL +"/mobilelogin";
 
 
 
