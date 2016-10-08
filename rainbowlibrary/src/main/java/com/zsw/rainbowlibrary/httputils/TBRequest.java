@@ -8,10 +8,13 @@ import com.zsw.rainbowlibrary.utils.L;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
+import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 /**
@@ -26,11 +29,8 @@ import okhttp3.RequestBody;
  * Last_Update - 2016/9/29
  */
 public class TBRequest {
-
-
     private Map<String,Object> params = null;
     private RequestInterface request;
-
     /**
      * 默认创建一个Obj Map
      * 填充基础参数
@@ -54,7 +54,7 @@ public class TBRequest {
         return  this;
     }
 
-    public JSONObject map2JSONObject(){
+    private JSONObject map2JSONObject(){
         return new JSONObject(params);
     }
 
@@ -87,15 +87,22 @@ public class TBRequest {
 
     /**
      * 将map参数转换为 JSON格式提交
+     * Content-Type: application/json
      * @param url
      * @param tbCallBack
      */
-    public void post(String url,TBCallBack tbCallBack){
+    public void postJson(String url,TBCallBack tbCallBack){
         request.postJson(url,map2JSONObject(),tbCallBack);
     }
 
 
-
+    /**
+     * 在外部构建参数 RequestBody
+     * 设置参数类型和Content-Type
+     * @param url
+     * @param body
+     * @param tbCallBack
+     */
     public void postRequestBody(String url,RequestBody body,TBCallBack tbCallBack){
         request.postRequestBody(url,body,tbCallBack);
     }
@@ -111,7 +118,36 @@ public class TBRequest {
         request.postFormData(url,params, tBCallBack);
     }
 
+    /**
+     * 上传单个文件
+     * @param url
+     * @param file
+     */
+    public void uploadFile(String url,File file,String contentType,TBCallBack tbCallBack){
+        request.uploadFile(url,file,MediaType.parse(contentType),tbCallBack);
+    }
 
+    /**
+     * 上传多个文件
+     * @Body MultipartBody body);
+     * @param url
+     * @param files
+     * @param contentType
+     * @param tbCallBack
+     */
+    public void uploadFiles(String url, List<File> files, String contentType, TBCallBack tbCallBack){
+        request.uploadFiles(url,files,MediaType.parse(contentType),tbCallBack);
+    }
 
+    /**
+     *  @Part() List<MultipartBody.Part> parts);
+     * @param url
+     * @param files
+     * @param contentType
+     * @param tbCallBack
+     */
+    public void uploadPartFiles(String url, List<File> files, String contentType, TBCallBack tbCallBack){
+        request.uploadPartFiles(url,files,MediaType.parse(contentType),tbCallBack);
+    }
 
 }

@@ -20,10 +20,14 @@ public  class TBRetrofitFactory {
 
     private   Retrofit retrofit;
 
+    /**
+     * volatile 简单解释
+     * ---------
+     */
     private volatile static TBRetrofitFactory retorfitManager;
 
     /**
-     * 构造私有掉，保证retorfitManager唯一，retrofit也就唯一
+     * 构造私有掉，保证TBRetrofitFactory唯一，retrofit也就唯一
      * @param baseUrl
      */
     private TBRetrofitFactory(String baseUrl){

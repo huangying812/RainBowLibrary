@@ -4,11 +4,16 @@ import com.zsw.rainbowlibrary.utils.L;
 
 import org.json.JSONObject;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import retrofit2.http.Multipart;
 
 import static android.os.Build.VERSION_CODES.M;
 
@@ -16,7 +21,7 @@ import static android.os.Build.VERSION_CODES.M;
  * Create on 2016/9/27.
  * github  https://github.com/HarkBen
  * Description:
- * -----------
+ * -----真正执行请求的类------
  * author Ben
  * Last_Update - 2016/9/27
  */
@@ -31,7 +36,7 @@ public class TBRequestFactory implements RequestInterface{
     }
 
     /**
-     * 保证内部的RetrofitService 单利
+     * 保证内部的RetrofitService 单例
      * @param rm
      */
     public static void build(TBRetrofitFactory rm) {
@@ -45,16 +50,11 @@ public class TBRequestFactory implements RequestInterface{
 
     public static TBRequestFactory getInstance() {
         if (null == tBRequestFactory) {
-            try {
-                throw new NullPointerException(TBRequestFactory.class.getPackage()+ "TBRequestFactory does not build!");
-            } catch (NullPointerException e) {
-                L.printE("TBRequestFactory", TBRequestFactory.class.getPackage()+"TBRequestFactory does not build!");
-                e.printStackTrace();
-            }
+            //这里选择抛出ANR，切断后续的引用保持清晰
+                throw new NullPointerException(TBRequestFactory.class.getPackage()+ ".TBRequestFactory does not build!");
         } else {
             return tBRequestFactory;
         }
-        return null;
     }
 
     //GET 请求--------------------------------------
@@ -141,8 +141,52 @@ public class TBRequestFactory implements RequestInterface{
     }
 
 
+    @Override
+    public void uploadFile(String url, File file, MediaType contentType,TBCallBack tBCallBack) {
+        if(null == file) throw new NullPointerException("Hi Man!  the file is null!");
+        if(file.isDirectory()) throw new NullPointerException("oh Shit! the file is Directory,don't use floder!");
+        RequestBody requestBody = RequestBody.create(contentType,file);
+        MultipartBody.Part part = MultipartBody.Part.create(requestBody);
+        tBRetrofitService.upLoadFile(url,part).enqueue(tBCallBack);
+    }
 
-//
+    @Override
+    public void uploadPartFiles(String url, List<File> files, MediaType contentType, TBCallBack tbCallBack) {
+        if(null == files ){
+            throw  new NullPointerException("files is null!");
+        }
+        if(files.size() == 0){
+            throw new IllegalArgumentException("files size  equal 0,You must  include at least one file!");
+        }
+        List<MultipartBody.Part> parts = new ArrayList<>();
+        for(File file : files){
+            RequestBody body = RequestBody.create(contentType,file);
+            parts.add(MultipartBody.Part.create(body));
+        }
+        tBRetrofitService.upLoadFiles(url,parts).enqueue(tbCallBack);
+    }
+
+    @Override
+    public void uploadFiles(String url, List<File> files, MediaType contentType, TBCallBack tbCallBack) {
+        if(null == files ){
+          throw  new NullPointerException("files is null!");
+        }
+        if(files.size() == 0){
+           throw new IllegalArgumentException("files size  equal 0,You must  include at least one file!");
+        }
+
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        for(File file : files){
+            RequestBody body = RequestBody.create(contentType,file);
+            builder.addPart(body);//里面依然是Part.create(body);
+        }
+        MultipartBody multipartBody =  builder.build();
+        tBRetrofitService.upLoadFiles(url,multipartBody).enqueue(tbCallBack);
+    }
+
+
+
+    //
 //    Map<String, RequestBody> a = new HashMap<>();
 //    MediaType textType = MediaType.parse("text/plain");
 //    RequestBody name = RequestBody.create(textType, "怪盗kidou");
@@ -151,5 +195,5 @@ public class TBRequestFactory implements RequestInterface{
     //支持单文件
 //    RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpeg"),new File("xx"));
 //    MultipartBody.Part part = MultipartBody.Part.create(requestBody);
-
+      ;
 }

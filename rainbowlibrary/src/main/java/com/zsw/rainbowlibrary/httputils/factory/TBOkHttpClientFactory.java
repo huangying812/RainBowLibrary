@@ -21,7 +21,7 @@ import okhttp3.OkHttpClient;
  *         Description-
  *         <p>
  *         github  https://github.com/HarkBen
- * @Last_update time - 2016年9月19日14:33:21
+ * @Last_update time - 2016年10月8日14:38:32
  */
 public class TBOkHttpClientFactory {
 
@@ -29,7 +29,6 @@ public class TBOkHttpClientFactory {
 
 
     public static final class Builder {
-        private boolean isDebug = true;
         /**
          * 读取超时
          */
@@ -49,10 +48,6 @@ public class TBOkHttpClientFactory {
         }
         public static final Builder create(){
             return new Builder();
-        }
-        public Builder setDebug(boolean isDebug) {
-            this.isDebug = isDebug;
-            return this;
         }
 
         public Builder setTimeout_read(int timeout_read) {
@@ -76,9 +71,8 @@ public class TBOkHttpClientFactory {
         }
 
         /**
-         * 这里没有对日志拦截器做判断
-         * 因为LogInterceptor 内的打印已经依赖 L
-         * debug 状态跟随 L 本身的状态
+         *这里使用的LogInterceptor 内部采用的也是日志类 Ｌ　
+         *对于 L的 debug 模式的更改这里统一受约束
          * @return
          */
         public  void build() {
@@ -95,12 +89,9 @@ public class TBOkHttpClientFactory {
                                             new SharedPrefsCookiePersistor(context));
                             builder.cookieJar(cookieJar);
                         }
-                            LogInterceptor loggingInterceptor = new LogInterceptor();
-                            loggingInterceptor.setLevel(LogInterceptor.Level.BODY);
-                            builder.addInterceptor(loggingInterceptor);
-                        L.printD(getClass().getName(),"TIMEOUT_CONNECTION ="+TIMEOUT_CONNECTION);
-                        L.printD(getClass().getName(),"TIMEOUT_READ ="+TIMEOUT_READ);
-                        L.printD(getClass().getName(),"TIMEOUT_WRITE ="+TIMEOUT_WRITE);
+                            LogInterceptor logingInterceptor = new LogInterceptor();
+                            logingInterceptor.setLevel(LogInterceptor.Level.BODY);
+                            builder.addInterceptor(logingInterceptor);
                         okHttpClient = builder.build();
                     }
                 }
@@ -111,14 +102,9 @@ public class TBOkHttpClientFactory {
 
     public static final OkHttpClient getOkHttpClient() {
         if (null == okHttpClient) {
-            try {
-                throw new NullPointerException("uh~. When you initialize  TBOkHttpClientFactory,you didn't build OkClient");
-            } catch (Exception e) {
-                Log.e("TBOkHttpClientFactory", "uh~. When you initialize  TBOkHttpClientFactory,you didn't build OkClient!");
-                e.printStackTrace();
-            }
+            throw new NullPointerException("uh~. When you initialize  TBOkHttpClientFactory,you didn't build OkClient");
+        }else{
+            return okHttpClient;
         }
-        return okHttpClient;
     }
-
 }

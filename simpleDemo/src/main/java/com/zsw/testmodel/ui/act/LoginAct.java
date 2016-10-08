@@ -76,12 +76,40 @@ public class LoginAct extends AbActivity {
                     login();
                 break;
             case R.id.sign_up:
-
+                    logintoBr();
                 break;
         }
     }
 
-   void login(){
+    private void logintoBr() {
+        String url = API.LOGINTOBR;
+        TBRequest.create()
+                .put("client_flag","android")
+                .put("clientMobileVersion","Redmi Note 2")
+                .put("locale","zh")
+                .put("loginName","huangyw@visionet.com.cn")
+                .put("password","111111")
+                .postJson(url, new TBCallBack() {
+                    @Override
+                    public void onSuccess(int code, String body) {
+                        JSONObject json = null;
+                        try {
+                            json = new JSONObject(body);
+                            showSnackbar(code+"--"+ json.getString("phoneNumber"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailed(String errorMsg) {
+
+                    }
+                });
+    }
+
+    void login(){
        String url = API.LOGIN;
        TBRequest.create()
                .put("username","zhusw")
@@ -89,13 +117,13 @@ public class LoginAct extends AbActivity {
                .put("client_flag","android")
                .put("model","SCL-AL00")
                .put("locale","zh")
-               .post(url, new TBCallBack() {
+               .postJson(url, new TBCallBack() {
                    @Override
                    public void onSuccess(int code, String body) {
                        JSONObject json = null;
                        try {
                            json = new JSONObject(body);
-                           showSnackbar(code+"--"+ json.getString("loginName"));
+                           showSnackbar(code+"--"+ json.getString("phoneNumber"));
                        } catch (JSONException e) {
                            e.printStackTrace();
                        }

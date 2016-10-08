@@ -1,6 +1,13 @@
 package com.zsw.testmodel.ui.act;
 
+import android.content.ContentResolver;
+import android.content.CursorLoader;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,9 +18,15 @@ import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
 import com.zsw.testmodel.common.API;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static android.view.View.X;
 
 /**
  * Create on 2016/9/30.
@@ -70,13 +83,17 @@ public class HttpTestAct extends AbActivity {
                 GETByNormal();
                 break;
             case R.id.att_post_json:
-                POSTByNormal();
+                POSTByJson();
                 break;
             case R.id.att_post_file:
+                uploadFile();
+
                 break;
             case R.id.att_post_txtAndFile:
+                uploadPartFiles();
                 break;
             case R.id.att_post_fileList:
+                uploadFiles();
                 break;
             case R.id.att_post_formData:
 
@@ -126,7 +143,7 @@ public class HttpTestAct extends AbActivity {
 
     }
 
-    void POSTByNormal() {
+    void POSTByJson() {
         String url = API.LOGIN;
         TBRequest.create()
                 .put("username", "zhusw")
@@ -134,7 +151,7 @@ public class HttpTestAct extends AbActivity {
                 .put("client_flag", "android")
                 .put("model", "SCL-AL00")
                 .put("locale", "zh")
-                .post(url, new TBCallBack() {
+                .postJson(url, new TBCallBack() {
                     @Override
                     public void onSuccess(int code, String body) {
                         showResult(code + "--" + body);
@@ -147,6 +164,67 @@ public class HttpTestAct extends AbActivity {
                 });
     }
 
+    void uploadFile(){
+        File file = new File(parentPath+"291733413425432.png");
+        TBRequest.create()
+                .uploadFile(API.UPLOADFILE, file,  "image/jpeg", new TBCallBack() {
+                    @Override
+                    public void onSuccess(int code, String body) {
+                        showResult(code+"--"+body);
+                    }
 
+                    @Override
+                    public void onFailed(String errorMsg) {
+                        showResult("onFailed--"+errorMsg);
+                    }
+                });
+    }
+
+  static  String parentPath = Environment.getExternalStorageDirectory().getAbsolutePath()+File.separatorChar
+            +"tencent/Qtl/find/";
+
+    void uploadPartFiles(){
+        File file2 = new File(parentPath+"291733413425432.png");
+        File file3 = new File(parentPath+"222004413632569.png");
+        File file4 = new File(parentPath+"291739323217867.png");
+        List<File> files = new ArrayList<>();
+        files.add(file2);
+        files.add(file3);
+        files.add(file4);
+        TBRequest.create()
+                .uploadPartFiles(API.UPLOADFILE, files, "image/jpeg", new TBCallBack() {
+                    @Override
+                    public void onSuccess(int code, String body) {
+                        showResult(code+"--"+body);
+                    }
+
+                    @Override
+                    public void onFailed(String errorMsg) {
+                        showResult("onFailed--"+errorMsg);
+                    }
+                });
+    }
+
+    void uploadFiles(){
+        File file2 = new File(parentPath+"291733413425432.png");
+        File file3 = new File(parentPath+"222004413632569.png");
+        File file4 = new File(parentPath+"291739323217867.png");
+        List<File> files = new ArrayList<>();
+        files.add(file2);
+        files.add(file3);
+        files.add(file4);
+        TBRequest.create()
+                .uploadFiles(API.UPLOADFILE, files, "image/jpeg", new TBCallBack() {
+                    @Override
+                    public void onSuccess(int code, String body) {
+                        showResult(code+"--"+body);
+                    }
+
+                    @Override
+                    public void onFailed(String errorMsg) {
+                        showResult("onFailed--"+errorMsg);
+                    }
+                });
+    }
 
 }

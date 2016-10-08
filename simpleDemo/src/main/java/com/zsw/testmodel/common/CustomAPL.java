@@ -25,7 +25,6 @@ public class CustomAPL extends Application {
                 .setTimeout_connection(10)
                 .setTimeout_read(10)
                 .setTimeout_write(10)
-                .setDebug(true)
                 .build();
         TBRequestFactory.build(TBRetrofitFactory.getInstance("https://xx.x.x/"));
         L.setDeBug(true);

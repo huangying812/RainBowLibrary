@@ -25,8 +25,18 @@ public class API {
     public static final String LOGIN = BASEURL +"/mobilelogin";
 
 
+    public static final String UPLOADFILE = "http://180.166.66.226:43230/baoshi/upload";
+//public static final String UPLOADFILE = "http://192.168.0.30:8080/baoshi/upload";
 
-
-
+    /**
+     * 参数
+     * {"clientMobileVersion":"Redmi Note 2",
+     * "client_flag":"android",
+     * "locale":"zh",
+     * "loginName":"huangyw@visionet.com.cn",
+     * "password":"111111"}
+     */
+    public static final String LOGINTOBR = "http://180.166.66.226:43230/baoshi/mobilelogin";
+//    public static final String LOGINTOBR = "http://192.168.0.30:8080/baoshi/mobilelogin";
 
 }

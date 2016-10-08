@@ -1,5 +1,6 @@
 package com.zsw.rainbowlibrary.httputils.factory;
 
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -83,27 +84,20 @@ public interface TBRetrofitService {
 
     /**
      * 上传单个文件
+     * Content-Type:multipart/form-data
      * @param url
-     * @param file
-     * @return
-     */
-    @POST
-    @Multipart//带文件的表单 Content-Type:multipart/form-data
-    Call<String> postMulipart(@Url String url, @Part MultipartBody.Part file);
-
-
-    /**
-     * 不带文件的表单
-     * @param url
-     * @param map
+     * @param part
      * @return
      */
     @POST
     @Multipart
-    Call<String> postMulipart(@Url String url, @PartMap Map<String, RequestBody> map);
+    Call<String> upLoadFile(@Url String url, @Part MultipartBody.Part part);
 
+    @POST
+    Call<String> upLoadFiles(@Url String url,@Body MultipartBody body);
 
-
-
+    @POST
+    @Multipart
+    Call<String> upLoadFiles(@Url String url, @Part() List<MultipartBody.Part> parts);
 
 }
