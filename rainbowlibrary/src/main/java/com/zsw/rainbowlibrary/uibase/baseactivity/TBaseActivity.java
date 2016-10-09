@@ -30,6 +30,7 @@ import com.zsw.rainbowlibrary.utils.SharedPUtils;
 import com.zsw.rainbowlibrary.utils.V;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
@@ -65,7 +66,10 @@ public abstract class TBaseActivity extends AppCompatActivity {
      */
     private boolean isAddStatus ;
 
-    private List<TBaseActivity> actList = new ArrayList<>();
+    /**
+     * 这里使用static 修饰防止 被子类继承时重复初始化
+     */
+    private static List<TBaseActivity> actList = new LinkedList<>();
 
 
     @Override
@@ -88,7 +92,8 @@ public abstract class TBaseActivity extends AppCompatActivity {
         addSetStatus(getStatusBarColor());
         setRootLayout();
         onLayoutLoading();
-        actList.add(this);
+//        actList.add(this);
+        addAct(TBaseActivity.this);
     }
 
     public String printLogD(String log){
@@ -105,6 +110,11 @@ public abstract class TBaseActivity extends AppCompatActivity {
      * @return
      */
     public abstract Class getRuningClass();
+
+    public void addAct(TBaseActivity activity){
+        actList.add(activity);
+        L.printD("TBaseActivity","actListSize="+actList.size());
+    }
 
     public void finishAllAct(){
         if(null != actList && actList.size()>0){
@@ -401,5 +411,13 @@ public abstract class TBaseActivity extends AppCompatActivity {
         }
         childContentLayout.setVisibility(View.VISIBLE);
         loadingLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(actList.contains(this)){
+            actList.remove(this);
+        }
     }
 }

@@ -146,7 +146,8 @@ public class TBRequestFactory implements RequestInterface{
         if(null == file) throw new NullPointerException("Hi Man!  the file is null!");
         if(file.isDirectory()) throw new NullPointerException("oh Shit! the file is Directory,don't use floder!");
         RequestBody requestBody = RequestBody.create(contentType,file);
-        MultipartBody.Part part = MultipartBody.Part.create(requestBody);
+//        MultipartBody.Part part = MultipartBody.Part.create(requestBody);
+        MultipartBody.Part part = MultipartBody.Part.createFormData("file","xx.jpg",requestBody);
         tBRetrofitService.upLoadFile(url,part).enqueue(tBCallBack);
     }
 
@@ -161,7 +162,8 @@ public class TBRequestFactory implements RequestInterface{
         List<MultipartBody.Part> parts = new ArrayList<>();
         for(File file : files){
             RequestBody body = RequestBody.create(contentType,file);
-            parts.add(MultipartBody.Part.create(body));
+//            parts.add(MultipartBody.Part.create(body));
+            parts.add(MultipartBody.Part.createFormData("file",file.getName(),body));
         }
         tBRetrofitService.upLoadFiles(url,parts).enqueue(tbCallBack);
     }
@@ -178,8 +180,11 @@ public class TBRequestFactory implements RequestInterface{
         MultipartBody.Builder builder = new MultipartBody.Builder();
         for(File file : files){
             RequestBody body = RequestBody.create(contentType,file);
-            builder.addPart(body);//里面依然是Part.create(body);
+
+//            builder.addPart(body);//里面依然是Part.create(body);
+            builder.addFormDataPart("file",file.getName(),body);
         }
+        builder.addFormDataPart("test","来自天堂的彩虹");
         MultipartBody multipartBody =  builder.build();
         tBRetrofitService.upLoadFiles(url,multipartBody).enqueue(tbCallBack);
     }
