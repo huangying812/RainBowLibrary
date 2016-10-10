@@ -11,8 +11,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/rainbowlibrary" />
+            <option value="$PROJECT_DIR$/rainbowtbretrofit" />
             <option value="$PROJECT_DIR$/simpleDemo" />
-            <option value="$PROJECT_DIR$/tbretrofit" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

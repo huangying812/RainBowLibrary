@@ -22,6 +22,7 @@ public class CustomAPL extends Application {
         super.onCreate();
         TBOkHttpClientFactory.Builder.create()
                 .syncCookie(this)
+                .setDebug(true)
                 .setTimeout_connection(10)
                 .setTimeout_read(10)
                 .setTimeout_write(10)
