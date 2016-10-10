@@ -2,9 +2,9 @@ package com.zsw.testmodel.common;
 
 import android.app.Application;
 
-import com.zsw.rainbowlibrary.httputils.factory.TBOkHttpClientFactory;
-import com.zsw.rainbowlibrary.httputils.factory.TBRequestFactory;
-import com.zsw.rainbowlibrary.httputils.factory.TBRetrofitFactory;
+import com.tb.tbretrofit.httputils.factory.TBOkHttpClientFactory;
+import com.tb.tbretrofit.httputils.factory.TBRequestFactory;
+import com.tb.tbretrofit.httputils.factory.TBRetrofitFactory;
 import com.zsw.rainbowlibrary.utils.L;
 
 
@@ -21,7 +21,7 @@ public class CustomAPL extends Application {
     public void onCreate() {
         super.onCreate();
         TBOkHttpClientFactory.Builder.create()
-                .setSyncCookie(this)
+                .syncCookie(this)
                 .setTimeout_connection(10)
                 .setTimeout_read(10)
                 .setTimeout_write(10)

@@ -1,8 +1,9 @@
-package com.zsw.rainbowlibrary.httputils.factory;
+package com.tb.tbretrofit.httputils.factory;
 
 import android.util.Log;
 
-import com.zsw.rainbowlibrary.httputils.tools.StringConverterFactory;
+
+import com.tb.tbretrofit.httputils.tools.StringConverterFactory;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;

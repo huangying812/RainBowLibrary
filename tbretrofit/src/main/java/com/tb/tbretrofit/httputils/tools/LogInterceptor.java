@@ -1,6 +1,6 @@
-package com.zsw.rainbowlibrary.httputils.tools;
+package com.tb.tbretrofit.httputils.tools;
 
-import com.zsw.rainbowlibrary.utils.L;
+import com.tb.tbretrofit.TbLog;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -93,7 +93,7 @@ public final class LogInterceptor implements Interceptor {
         /** A {@link Logger} defaults output appropriate for the current platform. */
         Logger DEFAULT = new Logger() {
             @Override public void log(String message) {
-                L.printD(TAG,message);
+                TbLog.printD(TAG,message);
             }
         };
     }

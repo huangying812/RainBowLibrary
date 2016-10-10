@@ -1,26 +1,18 @@
-package com.zsw.rainbowlibrary.httputils.factory;
+package com.tb.tbretrofit.httputils.factory;
 
-import java.util.List;
 import java.util.Map;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
-import retrofit2.http.PartMap;
-import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
-
-import static android.os.Build.VERSION_CODES.M;
 
 /**
  * Create on 2016/9/27.
@@ -53,7 +45,7 @@ public interface TBRetrofitService {
      * @return
      */
     @GET
-    Call<String> get(@Url String url, @QueryMap Map<String,Object> map);
+    Call<String> get(@Url String url, @QueryMap Map<String, Object> map);
 
 
     /**
@@ -64,7 +56,7 @@ public interface TBRetrofitService {
      */
     @POST
     @FormUrlEncoded//单纯表单 Content-Type:application/x-www-form-urlencoded
-    Call<String> postForm(@Url String url, @FieldMap Map<String,Object> map);
+    Call<String> postForm(@Url String url, @FieldMap Map<String, Object> map);
 
     /**
      * 提交json格式
@@ -84,7 +76,7 @@ public interface TBRetrofitService {
     Call<String> post(@Url String url, @Body RequestBody body);
 
     @POST
-    Call<String> postFormDataFiles(@Url String url,@Body MultipartBody body);
+    Call<String> postFormDataFiles(@Url String url, @Body MultipartBody body);
 
 //    @POST
 //    @Multipart

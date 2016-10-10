@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/rainbowlibrary/rainbowlibrary.iml" filepath="$PROJECT_DIR$/rainbowlibrary/rainbowlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/simpleDemo/simpleDemo.iml" filepath="$PROJECT_DIR$/simpleDemo/simpleDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tbretrofit/tbretrofit.iml" filepath="$PROJECT_DIR$/tbretrofit/tbretrofit.iml" />
     </modules>
   </component>
 </project>

@@ -7,8 +7,6 @@ import com.andexert.library.RippleView;
 import com.zsw.rainbowlibrary.customview.basetitle.TbaseTitleBar;
 import com.zsw.rainbowlibrary.uibase.baseactivity.TBaseActivity;
 import com.zsw.testmodel.R;
-import com.zsw.testmodel.common.APIManager;
-import com.zsw.testmodel.common.GitHubAPIService;
 
 /**
  * Created by Administrator on 2016/6/20.
@@ -16,9 +14,6 @@ import com.zsw.testmodel.common.GitHubAPIService;
 public abstract class AbActivity extends TBaseActivity implements RippleView.OnRippleCompleteListener {
 
 
-    public GitHubAPIService getAPIService(){
-       return  APIManager.INSTANCE.getApiService();
-    }
 
     public void setOnRippleComplete(RippleView...rippleView){
         for(RippleView rippleV:rippleView){

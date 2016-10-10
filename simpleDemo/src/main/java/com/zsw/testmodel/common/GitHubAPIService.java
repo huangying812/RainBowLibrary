@@ -27,7 +27,7 @@ import retrofit2.http.Url;
 import rx.Observable;
 
 /**
- * Retrofit 定义接口 所有的注解使用
+ * 几乎包含所有接口定义 和传参示例
  */
 public  interface GitHubAPIService {
 

@@ -1,14 +1,13 @@
-package com.zsw.rainbowlibrary.httputils.factory;
+package com.tb.tbretrofit.httputils.factory;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.franmontiel.persistentcookiejar.ClearableCookieJar;
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
-import com.zsw.rainbowlibrary.httputils.tools.LogInterceptor;
-import com.zsw.rainbowlibrary.utils.L;
+import com.tb.tbretrofit.TbLog;
+import com.tb.tbretrofit.httputils.tools.LogInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
@@ -29,6 +28,9 @@ public class TBOkHttpClientFactory {
 
 
     public static final class Builder {
+
+        private boolean isDebug = false;
+
         /**
          * 读取超时
          */
@@ -50,6 +52,11 @@ public class TBOkHttpClientFactory {
             return new Builder();
         }
 
+        public Builder setDebug(boolean isDebug){
+            this.isDebug = isDebug;
+            return this;
+        }
+
         public Builder setTimeout_read(int timeout_read) {
             this.TIMEOUT_READ = timeout_read;
             return this;
@@ -65,7 +72,7 @@ public class TBOkHttpClientFactory {
             return this;
         }
 
-        public Builder setSyncCookie(Context context) {
+        public Builder syncCookie(Context context) {
             this.context = context;
             return this;
         }
@@ -89,9 +96,10 @@ public class TBOkHttpClientFactory {
                                             new SharedPrefsCookiePersistor(context));
                             builder.cookieJar(cookieJar);
                         }
-                            LogInterceptor logingInterceptor = new LogInterceptor();
-                            logingInterceptor.setLevel(LogInterceptor.Level.BODY);
-                            builder.addInterceptor(logingInterceptor);
+                           LogInterceptor logInterceptor = new LogInterceptor();
+                            logInterceptor.setLevel(LogInterceptor.Level.BODY);
+                            builder.addInterceptor(logInterceptor);
+                            TbLog.setDeBug(isDebug);
                         okHttpClient = builder.build();
                     }
                 }

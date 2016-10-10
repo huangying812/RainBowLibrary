@@ -1,6 +1,6 @@
 package com.zsw.testmodel.common;
 
-import static com.zsw.testmodel.common.APIManager.BASEURL;
+
 
 /**
  * Create on 2016/9/22.

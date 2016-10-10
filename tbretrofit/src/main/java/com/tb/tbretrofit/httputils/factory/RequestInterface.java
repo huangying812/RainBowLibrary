@@ -1,6 +1,4 @@
-package com.zsw.rainbowlibrary.httputils.factory;
-
-import android.support.annotation.NonNull;
+package com.tb.tbretrofit.httputils.factory;
 
 import org.json.JSONObject;
 
@@ -9,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 /**
@@ -27,7 +24,7 @@ public interface RequestInterface {
 
     void get(String url, TBCallBack tbCallBack);
 
-    void get(String url, String[] values,TBCallBack tbCallBack);
+    void get(String url, String[] values, TBCallBack tbCallBack);
 
     void get(String url, Map<String, Object> map, TBCallBack tbCallBack);
 
@@ -37,7 +34,7 @@ public interface RequestInterface {
 
     void postFormData(String url, Map<String, Object> map, TBCallBack tbCallBack);
 
-    void postFormDataFiles(String url, Map<String,Object> map, List<File> files,  MediaType contentType, TBCallBack tbCallBack);
+    void postFormDataFiles(String url, Map<String, Object> map, List<File> files, MediaType contentType, TBCallBack tbCallBack);
 
 
 }

@@ -1,4 +1,4 @@
-package com.zsw.rainbowlibrary.httputils.factory;
+package com.tb.tbretrofit.httputils.factory;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

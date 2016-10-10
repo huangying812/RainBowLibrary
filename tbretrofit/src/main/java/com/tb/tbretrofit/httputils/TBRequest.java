@@ -1,21 +1,18 @@
-package com.zsw.rainbowlibrary.httputils;
+package com.tb.tbretrofit.httputils;
+
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.zsw.rainbowlibrary.httputils.factory.RequestInterface;
-import com.zsw.rainbowlibrary.httputils.factory.TBCallBack;
-import com.zsw.rainbowlibrary.httputils.factory.TBRequestFactory;
-import com.zsw.rainbowlibrary.utils.L;
-import com.zsw.rainbowlibrary.utils.V;
+import com.tb.tbretrofit.httputils.factory.RequestInterface;
+import com.tb.tbretrofit.httputils.factory.TBCallBack;
+import com.tb.tbretrofit.httputils.factory.TBRequestFactory;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -126,11 +123,11 @@ public class TBRequest {
     public void postFormDataFile(String url,@NonNull File file ,TBCallBack tbCallBack){
         postFormDataFile(url,file,null,tbCallBack);
     }
-    public void postFormDataFiles(String url,@NonNull List<File> files,TBCallBack tbCallBack){
+    public void postFormDataFiles(String url, @NonNull List<File> files, TBCallBack tbCallBack){
         postFormDataFiles(url,files,null,tbCallBack);
     }
 
-    public void postFormDataFile(String url, @NonNull  File file, @Nullable  String contentType, TBCallBack tBCallBack) {
+    public void postFormDataFile(String url, @NonNull  File file, @Nullable String contentType, TBCallBack tBCallBack) {
         if(null == file) throw new NullPointerException("Hi Man!  the file is null!");
         if(file.isDirectory()) throw new NullPointerException("oh Shit! the file is Directory,don't use floder!");
         List<File> files = new ArrayList<>();
@@ -148,7 +145,7 @@ public class TBRequest {
      */
     public void postFormDataFiles(String url, List<File> files, @Nullable String contentType, TBCallBack tbCallBack){
         MediaType mediatype = null;
-        if(V.isNotNull(contentType))
+        if(null != contentType && !contentType.equals(""))
             mediatype = MediaType.parse(contentType);
         else
             mediatype = MediaType.parse("octet-stream");
