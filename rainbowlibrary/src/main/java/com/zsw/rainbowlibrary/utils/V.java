@@ -38,7 +38,10 @@ public class V {
 			return true;
 		return false;
 	}
-	
+
+	public static boolean isNotNull(String str){
+		return !isNull(str);
+	}
 	/**
 	 * 判空
 	 * 
@@ -122,12 +125,6 @@ public class V {
 	}
 
 
-	public static Long isNUll(Long l){
-		if(null == l){
-			return 0L;
-		}
-		return l;
-	}
 	public static Long toLong(String s){
 		if(null == s || "".equals(s)){
 			return 0L;

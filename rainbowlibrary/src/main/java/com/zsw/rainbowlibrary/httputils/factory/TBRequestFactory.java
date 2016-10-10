@@ -1,21 +1,18 @@
 package com.zsw.rainbowlibrary.httputils.factory;
 
-import com.zsw.rainbowlibrary.utils.L;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.json.JSONObject;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import retrofit2.http.Multipart;
-
-import static android.os.Build.VERSION_CODES.M;
 
 /**
  * Create on 2016/9/27.
@@ -142,63 +139,31 @@ public class TBRequestFactory implements RequestInterface{
 
 
     @Override
-    public void uploadFile(String url, File file, MediaType contentType,TBCallBack tBCallBack) {
-        if(null == file) throw new NullPointerException("Hi Man!  the file is null!");
-        if(file.isDirectory()) throw new NullPointerException("oh Shit! the file is Directory,don't use floder!");
-        RequestBody requestBody = RequestBody.create(contentType,file);
-//        MultipartBody.Part part = MultipartBody.Part.create(requestBody);
-        MultipartBody.Part part = MultipartBody.Part.createFormData("file","xx.jpg",requestBody);
-        tBRetrofitService.upLoadFile(url,part).enqueue(tBCallBack);
-    }
-
-    @Override
-    public void uploadPartFiles(String url, List<File> files, MediaType contentType, TBCallBack tbCallBack) {
-        if(null == files ){
-            throw  new NullPointerException("files is null!");
-        }
-        if(files.size() == 0){
-            throw new IllegalArgumentException("files size  equal 0,You must  include at least one file!");
-        }
-        List<MultipartBody.Part> parts = new ArrayList<>();
-        for(File file : files){
-            RequestBody body = RequestBody.create(contentType,file);
-//            parts.add(MultipartBody.Part.create(body));
-            parts.add(MultipartBody.Part.createFormData("file",file.getName(),body));
-        }
-        tBRetrofitService.upLoadFiles(url,parts).enqueue(tbCallBack);
-    }
-
-    @Override
-    public void uploadFiles(String url, List<File> files, MediaType contentType, TBCallBack tbCallBack) {
+    public void postFormDataFiles(String url, @Nullable Map<String,Object> map, @NonNull  List<File> files, MediaType contentType, TBCallBack tbCallBack) {
         if(null == files ){
           throw  new NullPointerException("files is null!");
         }
         if(files.size() == 0){
            throw new IllegalArgumentException("files size  equal 0,You must  include at least one file!");
         }
-
         MultipartBody.Builder builder = new MultipartBody.Builder();
         for(File file : files){
             RequestBody body = RequestBody.create(contentType,file);
-
-//            builder.addPart(body);//里面依然是Part.create(body);
-            builder.addFormDataPart("file",file.getName(),body);
+            builder.addFormDataPart("files",file.getName(),body);
         }
-        builder.addFormDataPart("test","来自天堂的彩虹");
+        if(null != map && !map.isEmpty()){
+            Iterator<Map.Entry<String,Object>> keys = map.entrySet().iterator();
+            while (keys.hasNext()){
+                    Map.Entry<String,Object> entry = keys.next();
+                    builder.addFormDataPart(entry.getKey(),String.valueOf(entry.getValue()));
+            }
+        }
         MultipartBody multipartBody =  builder.build();
-        tBRetrofitService.upLoadFiles(url,multipartBody).enqueue(tbCallBack);
+        tBRetrofitService.postFormDataFiles(url,multipartBody).enqueue(tbCallBack);
     }
 
 
 
-    //
-//    Map<String, RequestBody> a = new HashMap<>();
-//    MediaType textType = MediaType.parse("text/plain");
-//    RequestBody name = RequestBody.create(textType, "怪盗kidou");
-//    RequestBody age = RequestBody.create(textType, "24");
-//    a.put("ss",name);
-    //支持单文件
-//    RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpeg"),new File("xx"));
-//    MultipartBody.Part part = MultipartBody.Part.create(requestBody);
-      ;
+
+
 }

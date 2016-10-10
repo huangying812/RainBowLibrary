@@ -1,14 +1,19 @@
 package com.zsw.rainbowlibrary.httputils;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import com.zsw.rainbowlibrary.httputils.factory.RequestInterface;
 import com.zsw.rainbowlibrary.httputils.factory.TBCallBack;
 import com.zsw.rainbowlibrary.httputils.factory.TBRequestFactory;
 import com.zsw.rainbowlibrary.utils.L;
+import com.zsw.rainbowlibrary.utils.V;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -118,13 +123,19 @@ public class TBRequest {
         request.postFormData(url,params, tBCallBack);
     }
 
-    /**
-     * 上传单个文件
-     * @param url
-     * @param file
-     */
-    public void uploadFile(String url,File file,String contentType,TBCallBack tbCallBack){
-        request.uploadFile(url,file,MediaType.parse(contentType),tbCallBack);
+    public void postFormDataFile(String url,@NonNull File file ,TBCallBack tbCallBack){
+        postFormDataFile(url,file,null,tbCallBack);
+    }
+    public void postFormDataFiles(String url,@NonNull List<File> files,TBCallBack tbCallBack){
+        postFormDataFiles(url,files,null,tbCallBack);
+    }
+
+    public void postFormDataFile(String url, @NonNull  File file, @Nullable  String contentType, TBCallBack tBCallBack) {
+        if(null == file) throw new NullPointerException("Hi Man!  the file is null!");
+        if(file.isDirectory()) throw new NullPointerException("oh Shit! the file is Directory,don't use floder!");
+        List<File> files = new ArrayList<>();
+        files.add(file);
+        postFormDataFiles(url,files,contentType,tBCallBack);
     }
 
     /**
@@ -135,19 +146,15 @@ public class TBRequest {
      * @param contentType
      * @param tbCallBack
      */
-    public void uploadFiles(String url, List<File> files, String contentType, TBCallBack tbCallBack){
-        request.uploadFiles(url,files,MediaType.parse(contentType),tbCallBack);
+    public void postFormDataFiles(String url, List<File> files, @Nullable String contentType, TBCallBack tbCallBack){
+        MediaType mediatype = null;
+        if(V.isNotNull(contentType))
+            mediatype = MediaType.parse(contentType);
+        else
+            mediatype = MediaType.parse("octet-stream");
+
+        request.postFormDataFiles(url,params,files,mediatype,tbCallBack);
     }
 
-    /**
-     *  @Part() List<MultipartBody.Part> parts);
-     * @param url
-     * @param files
-     * @param contentType
-     * @param tbCallBack
-     */
-    public void uploadPartFiles(String url, List<File> files, String contentType, TBCallBack tbCallBack){
-        request.uploadPartFiles(url,files,MediaType.parse(contentType),tbCallBack);
-    }
 
 }

@@ -92,13 +92,14 @@ public class LoginAct extends AbActivity {
                 .postJson(url, new TBCallBack() {
                     @Override
                     public void onSuccess(int code, String body) {
-                        JSONObject json = null;
-                        try {
-                            json = new JSONObject(body);
-                            showSnackbar(code+"--"+ json.getString("phoneNumber"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+//                        JSONObject json = null;
+//                        try {
+//                            json = new JSONObject(body);
+//                            showSnackbar(code+"--"+ json.getString("phoneNumber"));
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+                        showSnackbar(code+"--");
 
                     }
 
@@ -110,7 +111,7 @@ public class LoginAct extends AbActivity {
     }
 
     void login(){
-       String url = API.LOGIN;
+       String url = API.LOGINTOBR;
        TBRequest.create()
                .put("username","zhusw")
                .put("password","333333")
@@ -120,13 +121,14 @@ public class LoginAct extends AbActivity {
                .postJson(url, new TBCallBack() {
                    @Override
                    public void onSuccess(int code, String body) {
-                       JSONObject json = null;
-                       try {
-                           json = new JSONObject(body);
-                           showSnackbar(code+"--"+ json.getString("phoneNumber"));
-                       } catch (JSONException e) {
-                           e.printStackTrace();
-                       }
+//                       JSONObject json = null;
+//                       try {
+//                           json = new JSONObject(body);
+//                           showSnackbar(code+"--"+ json.getString("phoneNumber"));
+                        showSnackbar(code+"--");
+// } catch (JSONException e) {
+//                           e.printStackTrace();
+//                       }
 
                    }
 

@@ -1,5 +1,7 @@
 package com.zsw.rainbowlibrary.httputils.factory;
 
+import android.support.annotation.NonNull;
+
 import org.json.JSONObject;
 
 import java.io.File;
@@ -35,9 +37,7 @@ public interface RequestInterface {
 
     void postFormData(String url, Map<String, Object> map, TBCallBack tbCallBack);
 
-    void uploadFile(String url, File file, MediaType contentType,TBCallBack tbCallBack);
+    void postFormDataFiles(String url, Map<String,Object> map, List<File> files,  MediaType contentType, TBCallBack tbCallBack);
 
-    void uploadFiles(String url, List<File> files, MediaType contentType, TBCallBack tbCallBack);
 
-    void uploadPartFiles(String url, List<File> files, MediaType contentType, TBCallBack tbCallBack);
 }

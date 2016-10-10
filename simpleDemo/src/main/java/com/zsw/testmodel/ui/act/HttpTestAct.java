@@ -90,13 +90,13 @@ public class HttpTestAct extends AbActivity {
 
                 break;
             case R.id.att_post_txtAndFile:
-                uploadPartFiles();
+
                 break;
             case R.id.att_post_fileList:
                 uploadFiles();
                 break;
             case R.id.att_post_formData:
-
+                    finishAllAct();
                 break;
         }
     }
@@ -144,7 +144,7 @@ public class HttpTestAct extends AbActivity {
     }
 
     void POSTByJson() {
-        String url = API.LOGIN;
+        String url = API.LOGINTOBR;
         TBRequest.create()
                 .put("username", "zhusw")
                 .put("password", "333333")
@@ -167,7 +167,10 @@ public class HttpTestAct extends AbActivity {
     void uploadFile(){
         File file = new File(parentPath+"291733413425432.png");
         TBRequest.create()
-                .uploadFile(API.UPLOADFILE, file,  "image/jpeg", new TBCallBack() {
+                .put("name","小二郎")
+                .put("arg",34)
+                .put("gender","男")
+                .postFormDataFile(API.UPLOADFILE, file, new TBCallBack() {
                     @Override
                     public void onSuccess(int code, String body) {
                         showResult(code+"--"+body);
@@ -183,38 +186,21 @@ public class HttpTestAct extends AbActivity {
   static  String parentPath = Environment.getExternalStorageDirectory().getAbsolutePath()+File.separatorChar
             +"tencent/Qtl/find/";
 
-    void uploadPartFiles(){
-        File file2 = new File(parentPath+"291733413425432.png");
-        File file3 = new File(parentPath+"222004413632569.png");
-        File file4 = new File(parentPath+"291739323217867.png");
-        List<File> files = new ArrayList<>();
-        files.add(file2);
-        files.add(file3);
-        files.add(file4);
-        TBRequest.create()
-                .uploadPartFiles(API.UPLOADFILE, files, "image/jpeg", new TBCallBack() {
-                    @Override
-                    public void onSuccess(int code, String body) {
-                        showResult(code+"--"+body);
-                    }
-
-                    @Override
-                    public void onFailed(String errorMsg) {
-                        showResult("onFailed--"+errorMsg);
-                    }
-                });
-    }
-
     void uploadFiles(){
+        File file1 = new File(parentPath+"291739323217867.png");
         File file2 = new File(parentPath+"291733413425432.png");
         File file3 = new File(parentPath+"222004413632569.png");
         File file4 = new File(parentPath+"291739323217867.png");
         List<File> files = new ArrayList<>();
+        files.add(file1);
         files.add(file2);
         files.add(file3);
         files.add(file4);
         TBRequest.create()
-                .uploadFiles(API.UPLOADFILE, files, "image/jpeg", new TBCallBack() {
+                .put("name","小二郎他爸")
+                .put("arg",54)
+                .put("gender","男")
+                .postFormDataFiles(API.UPLOADFILE, files, new TBCallBack() {
                     @Override
                     public void onSuccess(int code, String body) {
                         showResult(code+"--"+body);

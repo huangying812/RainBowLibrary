@@ -83,22 +83,11 @@ public interface TBRetrofitService {
     @POST
     Call<String> post(@Url String url, @Body RequestBody body);
 
-    /**
-     * 上传单个文件
-     * Content-Type:multipart/form-data
-     * @param url
-     * @param part
-     * @return
-     */
     @POST
-    @Multipart
-    Call<String> upLoadFile(@Url String url, @Part MultipartBody.Part part);
+    Call<String> postFormDataFiles(@Url String url,@Body MultipartBody body);
 
-    @POST
-    Call<String> upLoadFiles(@Url String url,@Body MultipartBody body);
-
-    @POST
-    @Multipart
-    Call<String> upLoadFiles(@Url String url,@Part List<MultipartBody.Part> parts);
+//    @POST
+//    @Multipart
+//    Call<String> upLoadPartFiles(@Url String url,@Part List<MultipartBody.Part> parts);
 
 }
