@@ -27,5 +27,6 @@ dependencies {
     compile 'com.android.support:design:23.3.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.github.HarkBen:RainBowLibrary:1.0.1'
+    compile 'com.github.HarkBen:RainBowLibrary:tbretrofit1.0'
     compile project(':rainbowtbretrofit')
 }
