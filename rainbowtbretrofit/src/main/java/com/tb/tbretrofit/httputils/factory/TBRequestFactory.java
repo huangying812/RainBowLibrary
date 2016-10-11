@@ -13,6 +13,7 @@ import java.util.Map;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import retrofit2.Callback;
 
 /**
  * Create on 2016/9/27.
@@ -59,31 +60,31 @@ public class TBRequestFactory implements RequestInterface{
     /**
      * 无参
      * @param url
-     * @param tBCallBack
+     * @param callBack
      */
     @Override
-    public void get(String url, TBCallBack tBCallBack) {
-        tBRetrofitService.get(url).enqueue(tBCallBack);
+    public void get(String url, Callback<String> callBack) {
+        tBRetrofitService.get(url).enqueue(callBack);
     }
 
     /**
      * RESTFUL 模式
      * @RequestMapping（/users/{name}/{id}）
      * @param url
-     * @param tBCallBack
+     * @param callBack
      * @param values
      */
     @Override
-    public void get(String url, String[] values,TBCallBack tBCallBack) {
+    public void get(String url, String[] values, Callback<String> callBack) {
         if(values == null || values.length== 0){
-            get(url,tBCallBack);
+            get(url,callBack);
         }else{
             String va = "";
                 for (String value : values) {
                     va += "/" + value;
                 }
                 url = url +va;
-              get(url,tBCallBack);
+              get(url,callBack);
         }
     }
 
@@ -92,11 +93,11 @@ public class TBRequestFactory implements RequestInterface{
      * @RequestMapping（/users/?name=xx&id=xx）
      * @param url
      * @param map
-     * @param tBCallBack
+     * @param callBack
      */
     @Override
-    public void get(String url, Map<String, Object> map, TBCallBack tBCallBack) {
-        tBRetrofitService.get(url, map).enqueue(tBCallBack);
+    public void get(String url, Map<String, Object> map, Callback<String> callBack) {
+        tBRetrofitService.get(url, map).enqueue(callBack);
     }
 
 
@@ -106,22 +107,22 @@ public class TBRequestFactory implements RequestInterface{
      * 接口泛型 String
      * @param url
      * @param json
-     * @param tbCallBack
+     * @param callBack
      */
     @Override
-   public void postJson(String url, JSONObject json, TBCallBack tbCallBack){
-        tBRetrofitService.postJson(url,json.toString()).enqueue(tbCallBack);
+   public void postJson(String url, JSONObject json, Callback<String> callBack){
+        tBRetrofitService.postJson(url,json.toString()).enqueue(callBack);
     }
 
     /**
      * 接口泛型 RequestBody
      * @param url
      * @param body
-     * @param tbCallBack
+     * @param callBack
      */
     @Override
-    public void postRequestBody(String url, RequestBody body, TBCallBack tbCallBack){
-        tBRetrofitService.post(url,body).enqueue(tbCallBack);
+    public void postRequestBody(String url, RequestBody body, Callback<String> callBack){
+        tBRetrofitService.post(url,body).enqueue(callBack);
     }
 
 
@@ -130,16 +131,16 @@ public class TBRequestFactory implements RequestInterface{
      * Content-Type:application/x-www-form-urlencoded
      * @param url
      * @param map
-     * @param tBCallBack
+     * @param callBack
      */
     @Override
-    public void postFormData(String url, Map<String, Object> map, TBCallBack tBCallBack) {
-        tBRetrofitService.postForm(url, map).enqueue(tBCallBack);
+    public void postFormData(String url, Map<String, Object> map, Callback<String> callBack) {
+        tBRetrofitService.postForm(url, map).enqueue(callBack);
     }
 
 
     @Override
-    public void postFormDataFiles(String url, @Nullable Map<String,Object> map, @NonNull  List<File> files, MediaType contentType, TBCallBack tbCallBack) {
+    public void postFormDataFiles(String url, @Nullable Map<String,Object> map, @NonNull  List<File> files, MediaType contentType, Callback<String> callBack) {
         if(null == files ){
           throw  new NullPointerException("files is null!");
         }
@@ -159,7 +160,7 @@ public class TBRequestFactory implements RequestInterface{
             }
         }
         MultipartBody multipartBody =  builder.build();
-        tBRetrofitService.postFormDataFiles(url,multipartBody).enqueue(tbCallBack);
+        tBRetrofitService.postFormDataFiles(url,multipartBody).enqueue(callBack);
     }
 
 

@@ -3,8 +3,7 @@
 # Rainbowlibrary
 *   RainBowLibrary是一个方便搭建Android项目的库，
     UI 默认实现沉浸式状态栏和MD风格，全局获取TitleBa,在Activity和Fragment中显示Loding Logo。
-    主题切换，语言切换。抽象出了侧滑菜单，只提供内部Fragment切换管理。提供OkHttp 和Retrofit的单例和初始化封装。
-    也正在学习使用 RxJava + okhttp + Retrofit
+    主题切换，语言切换。抽象出了侧滑菜单，只提供内部Fragment切换管理。
 
 ### Gradle
 >   Step 1. 在你的根build.gradle文件中增加JitPack仓库依赖。
@@ -29,7 +28,6 @@
 ### rainbowlibrary 的使用
 >截图
 <br />
-   	![ui1.png](./pictures/ui2.png)
    	![ui2.png](./pictures/ui3.png) 
    	![ui4.png](./pictures/ui4.png)
    	![http.png](./pictures/http.png)

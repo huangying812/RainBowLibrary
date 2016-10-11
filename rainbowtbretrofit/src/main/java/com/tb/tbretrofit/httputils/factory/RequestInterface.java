@@ -8,6 +8,7 @@ import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
+import retrofit2.Callback;
 
 /**
  * Create on 2016/10/3.
@@ -22,19 +23,19 @@ import okhttp3.RequestBody;
  */
 public interface RequestInterface {
 
-    void get(String url, TBCallBack tbCallBack);
+    void get(String url, Callback<String> callBack);
 
-    void get(String url, String[] values, TBCallBack tbCallBack);
+    void get(String url, String[] values, Callback<String> callBack);
 
-    void get(String url, Map<String, Object> map, TBCallBack tbCallBack);
+    void get(String url, Map<String, Object> map, Callback<String> callBack);
 
-    void postJson(String url, JSONObject json, TBCallBack tbCallBack);
+    void postJson(String url, JSONObject json, Callback<String> callBack);
 
-    void postRequestBody(String url, RequestBody body, TBCallBack tbCallBack);
+    void postRequestBody(String url, RequestBody body, Callback<String> callBack);
 
-    void postFormData(String url, Map<String, Object> map, TBCallBack tbCallBack);
+    void postFormData(String url, Map<String, Object> map, Callback<String> callBack);
 
-    void postFormDataFiles(String url, Map<String, Object> map, List<File> files, MediaType contentType, TBCallBack tbCallBack);
+    void postFormDataFiles(String url, Map<String, Object> map, List<File> files, MediaType contentType, Callback<String> callBack);
 
 
 }

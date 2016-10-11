@@ -1,5 +1,7 @@
 package com.tb.tbretrofit.httputils.factory;
 
+import com.tb.tbretrofit.httputils.TBRequest;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,8 +18,9 @@ import retrofit2.Response;
 public abstract class TBCallBack implements Callback<String> {
 
     @Override
-    public void onResponse(Call<String> call, Response<String> response) {
+    public void onResponse(final  Call<String> call, Response<String> response) {
         onSuccess(response.code(),response.body());
+
 
     }
 
