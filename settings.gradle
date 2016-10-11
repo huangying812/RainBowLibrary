@@ -1,1 +1,1 @@
-include ':app', ':rainbowlibrary', ':simpleDemo', ':rainbowtbretrofit'
+include ':app', ':rainbowlibrary', ':simpleDemo'
