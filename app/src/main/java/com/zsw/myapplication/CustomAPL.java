@@ -18,12 +18,6 @@ public class CustomAPL extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        TBOkHttpClientFactory.Builder
-                .create()
-                .setDebug(true)
-                .syncCookie(this)
-                .build();
-        TBRequestFactory.build(TBRetrofitFactory.getInstance("http://wwww.xx.com/"));
 
 
     }
