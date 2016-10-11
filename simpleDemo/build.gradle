@@ -63,5 +63,6 @@ dependencies {
      */
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0'
     compile 'com.android.support:recyclerview-v7:23.3.0@aar'
-    compile project(':rainbowtbretrofit')
+
+    compile 'com.github.HarkBen:Tbretrofit:1.0'
 }
