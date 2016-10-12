@@ -26,12 +26,7 @@
 ```
 
 ### rainbowlibrary 的使用
->截图
-<br />
-   	![ui2.png](./pictures/ui3.png) 
-   	![ui4.png](./pictures/ui4.png)
-   	![http.png](./pictures/http.png)
->
+
 ### TbaseActivity & TbaseFragment
 
 1. **T extends TbaseActivity** 
@@ -152,7 +147,8 @@
     ```java
              L.printD(getClass().getName(),log);
     ```
-         
+    未完待续。。。
+***         
          
       
          
