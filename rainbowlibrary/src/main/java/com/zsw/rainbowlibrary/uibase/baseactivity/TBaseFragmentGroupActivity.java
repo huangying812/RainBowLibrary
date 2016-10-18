@@ -27,55 +27,56 @@ public abstract class TBaseFragmentGroupActivity extends TBaseActivity {
     /**
      * 在布局加载完成以后调用
      */
-    public abstract  void onLayoutloaded();
+    public abstract void onLayoutloaded();
+
     /**
      * @return FrameLayout  view id
      */
-    public abstract  int fragmentContainerId();
+    public abstract int fragmentContainerId();
 
     /**
-     * @return  layout View
+     * @return layout View
      */
     public abstract View setLayoutView();
 
-    public TBaseFragment switchFragment(Class<?extends TBaseFragment> clazz){
-       return switchFragment(fragmentContainerId(),clazz);
+    public TBaseFragment switchFragment(Class<? extends TBaseFragment> clazz) {
+        return switchFragment(fragmentContainerId(), clazz);
     }
 
-    public TBaseFragment findFragmentByTag(Class<?extends TBaseFragment> clazz){
+    public TBaseFragment findFragmentByTag(Class<? extends TBaseFragment> clazz) {
         FragmentManager fm = getSupportFragmentManager();
         return (TBaseFragment) fm.findFragmentByTag(clazz.getName());
     }
 
     /**
      * @param frameId frameLayout containerId
-     * @param clazz position fragment
+     * @param clazz   position fragment
      * @return current show fragment
      */
-    private TBaseFragment switchFragment(int frameId, Class<?extends TBaseFragment> clazz){
-         FragmentManager fm = getSupportFragmentManager();
+    private TBaseFragment switchFragment(int frameId, Class<? extends TBaseFragment> clazz) {
+        FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         TBaseFragment currentFragment = (TBaseFragment) fm.findFragmentByTag(clazz.getName());
-            if(null  == currentFragment){
-                try {
-                    currentFragment = clazz.newInstance();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
+        if (null == currentFragment) {
+            try {
+                currentFragment = clazz.newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
             }
-                //如果选择的fragment 不是第一个也不是正在显示的 则隐藏正在显示的
-            if(null != showFragment && showFragment != currentFragment){
-                ft.hide(showFragment);
-            }
-            //对选择的fragment 处理
-            if(!currentFragment.isAdded()){
-                ft.add(frameId,currentFragment,clazz.getName());
-            }else{
-                ft.show(currentFragment);
-            }
-                ft.commitAllowingStateLoss();
+        }
+        //如果选择的fragment 不是第一个也不是正在显示的 则隐藏正在显示的
+        if (null != showFragment && showFragment != currentFragment) {
+            ft.hide(showFragment);
+        }
+        //对选择的fragment 处理
+        if (!currentFragment.isAdded()) {
+            ft.add(frameId, currentFragment, clazz.getName());
+        } else {
+            ft.show(currentFragment);
+        }
+        ft.commitAllowingStateLoss();
         showFragment = currentFragment;
         return currentFragment;
     }

@@ -1,13 +1,11 @@
 package com.zsw.testmodel.ui.act;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.andexert.library.RippleView;
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
+import com.zsw.testmodel.ui.act.customview.CustomView1Act;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,6 +27,11 @@ public class MainAct extends AbActivity {
     Button goRecyclerView;
     @Bind(R.id.goHttpRequest)
     Button  goHttpRequest;
+
+    @Bind(R.id.act_mainCustomView)
+    Button act_mainCustomView;
+
+
     @Override
     public void initLayout() {
         removeStatusBar();
@@ -37,34 +40,31 @@ public class MainAct extends AbActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.goRecyclerView, R.id.gosliding,
+    @OnClick({R.id.act_mainCustomView,R.id.goRecyclerView, R.id.gosliding,
             R.id.goButtomNavigate, R.id.goSlidingMenuAct, R.id.goObserver,R.id.goHttpRequest})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.gosliding:
-                Intent intent = new Intent(MainAct.this, SlidingMenuAct.class);
-                startActivity(intent);
+                sendActIntent(SlidingMenuAct.class);
                 break;
             case R.id.goButtomNavigate:
-                Intent intent2 = new Intent(MainAct.this, BottomNavigationAct.class);
-                startActivity(intent2);
+                sendActIntent(BottomNavigationAct.class);
                 break;
             case R.id.goSlidingMenuAct:
-                Intent intent3 = new Intent(MainAct.this, SlidingMenuAct2.class);
-                startActivity(intent3);
+                sendActIntent(SlidingMenuAct2.class);
                 break;
 
             case R.id.goObserver:
-                Intent intent4 = new Intent(MainAct.this, UseRxJavaAct.class);
-                startActivity(intent4);
+                sendActIntent(UseRxJavaAct.class);
                 break;
             case R.id.goRecyclerView:
-                Intent intent5 = new Intent(MainAct.this, UseRecyclerViewAct.class);
-                startActivity(intent5);
+                sendActIntent(UseRecyclerViewAct.class);
                 break;
             case R.id.goHttpRequest:
-                Intent intent6 = new Intent(MainAct.this, HttpTestAct.class);
-                startActivity(intent6);
+                sendActIntent(HttpTestAct.class);
+                break;
+            case R.id.act_mainCustomView:
+                sendActIntent(CustomView1Act.class);
                 break;
             default:
                 break;

@@ -1,7 +1,7 @@
 **今天不Code 明天就GG**
  
 # Rainbowlibrary
-*   RainBowLibrary是一个方便搭建Android项目的库，
+*   RainBowLibrary是一个方便搭建Android项目的库(TBaseActivity,TitleBar,Fragment管理，常用的View)，
     UI 默认实现沉浸式状态栏和MD风格，全局获取TitleBa,在Activity和Fragment中显示Loding Logo。
     主题切换，语言切换。抽象出了侧滑菜单，只提供内部Fragment切换管理。
 

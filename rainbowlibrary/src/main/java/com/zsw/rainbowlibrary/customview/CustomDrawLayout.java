@@ -27,7 +27,10 @@ public class CustomDrawLayout extends DrawerLayout {
         super(context,attributeSet,defStyle);
     }
 
-
+    /**
+     * @param widthMeasureSpec
+     * @param heightMeasureSpec
+     */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         widthMeasureSpec = MeasureSpec.makeMeasureSpec(MeasureSpec.getSize(widthMeasureSpec),MeasureSpec.EXACTLY);

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="CustomView1"
+        android:layout_height="wrap_content" />
+
+    <com.zsw.testmodel.ui.act.customview.CustomView1
+        android:layout_width="200dip"
+        android:layout_height="100dip"
+        custom:cv1_content="简单TEXT"
+        custom:cv1_textSize="20sp"
+        custom:cv1_bgColor="@android:color/black"
+        custom:cv1_textColor="@android:color/holo_purple"
+        />
+
+
+</LinearLayout>

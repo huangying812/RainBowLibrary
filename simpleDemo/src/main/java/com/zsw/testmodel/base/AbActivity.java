@@ -1,5 +1,6 @@
 package com.zsw.testmodel.base;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -12,8 +13,10 @@ import com.zsw.testmodel.R;
  * Created by Administrator on 2016/6/20.
  */
 public abstract class AbActivity extends TBaseActivity implements RippleView.OnRippleCompleteListener {
-
-
+    @Override
+    public Class getRuningClass() {
+        return null;
+    }
 
     public void setOnRippleComplete(RippleView...rippleView){
         for(RippleView rippleV:rippleView){
@@ -31,7 +34,12 @@ public abstract class AbActivity extends TBaseActivity implements RippleView.OnR
 
     public void onRippleComplete(int id){
 
-    };
+    }
+
+    public void sendActIntent(Class<? extends TBaseActivity> clzz){
+        Intent intent = new Intent(this,clzz);
+        startActivity(intent);
+    }
 
     @Override
     public void onLayoutLoading() {

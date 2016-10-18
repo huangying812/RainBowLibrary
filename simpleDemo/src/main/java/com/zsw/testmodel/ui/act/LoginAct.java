@@ -38,20 +38,12 @@ public class LoginAct extends AbActivity {
     @Bind(R.id.sign_up)
     TextView signUp;
 
-    //声明一个全局的 订阅协议/ 和生命周期绑定 解除订阅
-    private Subscription subscription;
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unSubscribe();
     }
 
-    private void unSubscribe() {
-        if (null != subscription && !subscription.isUnsubscribed()) {
-            subscription.unsubscribe();
-        }
-    }
 
     @Override
     public void initLayout() {
@@ -69,7 +61,7 @@ public class LoginAct extends AbActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sign_in:
-                    login();
+                    sendActIntent(MainAct.class);
                 break;
             case R.id.sign_up:
                     logintoBr();

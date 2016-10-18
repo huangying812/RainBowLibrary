@@ -32,6 +32,7 @@
         <activity android:name=".ui.act.UseRxJavaAct" />
         <activity android:name=".ui.act.UseRecyclerViewAct" />
         <activity android:name=".ui.act.HttpTestAct" />
+        <activity android:name=".ui.act.customview.CustomView1Act"/>
     </application>
 
 </manifest>

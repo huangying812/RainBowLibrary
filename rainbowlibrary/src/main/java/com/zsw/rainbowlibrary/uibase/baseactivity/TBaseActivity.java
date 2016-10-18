@@ -67,7 +67,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
     private boolean isAddStatus ;
 
     /**
-     * 这里使用static 修饰防止 被子类继承时重复初始化
+     * 这里使用static 声明为类变量，防止再子类被创建时重复生成新变量
      */
     private static List<TBaseActivity> actList = new LinkedList<>();
 
@@ -415,9 +415,10 @@ public abstract class TBaseActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         if(actList.contains(this)){
             actList.remove(this);
         }
+        super.onDestroy();
+
     }
 }

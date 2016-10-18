@@ -48,6 +48,12 @@
                 android:typeface="monospace"
                 android:textAllCaps="false"
                 android:layoutAnimation="@anim/fragmentlayoutanim" />
+            <Button
+                android:id="@+id/act_mainCustomView"
+                android:text="自定View学习"
+                style="@style/main_btn"
+                />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
