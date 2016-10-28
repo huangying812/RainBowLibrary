@@ -17,8 +17,6 @@ public class CustomView1Act extends AbActivity {
         loadContentView(R.layout.act_customview1);
     }
 
-
-
     @Override
     public Class getRuningClass() {
         return CustomView1Act.class;
