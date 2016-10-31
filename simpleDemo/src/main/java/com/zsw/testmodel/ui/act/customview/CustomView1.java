@@ -9,6 +9,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.zsw.rainbowlibrary.utils.L;
@@ -113,6 +114,7 @@ public class CustomView1 extends View {
         rect = new Rect();
         paint.setColor(bgColor);
         paint.setTextSize(textSize);
+
         //这里我们设置不填充，为了方便看效果
         paint.setStrokeWidth(50);
         paint.setStyle(Paint.Style.STROKE);
