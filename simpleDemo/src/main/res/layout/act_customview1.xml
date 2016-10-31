@@ -3,23 +3,22 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:gravity="center"
     android:layout_height="match_parent">
 
     <com.zsw.testmodel.ui.act.customview.CustomView1
-        android:layout_width="200dip"
-        android:layout_height="200dip"
-        custom:cv1_content="简单TEXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         custom:cv1_textSize="20sp"
-        custom:cv1_bgColor="@android:color/black"
-        custom:cv1_textColor="@android:color/holo_purple"
+        custom:cv1_stokeColor="@color/red"
         android:layout_margin="10dip"
         android:background="@color/book_loading_book"
         />
 
-<com.zsw.testmodel.ui.act.customview.CloneTextView
-    android:layout_width="wrap_content"
-    android:text="CloneTextView"
-    android:background="@color/line_bg"
-    android:layout_height="wrap_content" />
+<!--<com.zsw.testmodel.ui.act.customview.CloneTextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:text="CloneTextView"-->
+    <!--android:background="@color/line_bg"-->
+    <!--android:layout_height="wrap_content" />-->
 
 </LinearLayout>

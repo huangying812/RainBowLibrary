@@ -12,11 +12,11 @@
     <!--CustomView1Act 的自定义属性-->
     <!--这三个是用xml自定义命名空间使用 公用的-->
     <!--文本内容-->
-    <attr name="cv1_content" format="string"></attr>
+    <attr name="cv1_text" format="string"></attr>
     <!--文本颜色-->
     <attr name="cv1_textColor" format="color"></attr>
     <!--View  背景色-->
-    <attr name="cv1_bgColor" format="color"></attr>
+    <attr name="cv1_stokeColor" format="color"></attr>
     <!--文本 字体大小-->
     <attr name="cv1_textSize" format="dimension"></attr>
     <!--字体-->
@@ -24,9 +24,9 @@
 
     <!--这三个是 在 java代码中用来匹配的 一定是上面声明过的 -->
         <declare-styleable name="CustomView1">
-            <attr name="cv1_content"/>
+            <attr name="cv1_text"/>
             <attr name="cv1_textColor"/>
-            <attr name="cv1_bgColor"/>
+            <attr name="cv1_stokeColor"/>
             <attr name="cv1_textSize"/>
         </declare-styleable>
 

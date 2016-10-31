@@ -1,4 +1,5 @@
 **今天不Code 明天就GG**
+    
  
 # Rainbowlibrary
 *   RainBowLibrary是一个方便搭建Android项目的库(TBaseActivity,TitleBar,Fragment管理，常用的View)，
@@ -52,8 +53,9 @@
                                   ButterKnife.bind(this);
                } 
                ···日常省略
-    ```                                    
-
+    ```  
+                                      
+  
 2. **切换主题**
    * 先保存一个默认主题用来显示: 
 
