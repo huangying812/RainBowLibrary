@@ -16,18 +16,19 @@
     <!--文本颜色-->
     <attr name="cv1_textColor" format="color"></attr>
     <!--View  背景色-->
-    <attr name="cv1_stokeColor" format="color"></attr>
+    <attr name="cv1_strokeColor" format="color"></attr>
     <!--文本 字体大小-->
     <attr name="cv1_textSize" format="dimension"></attr>
-    <!--字体-->
-
+    <!--边框宽度-->
+    <attr name="cv1_strokeWidth" format="dimension"></attr>
 
     <!--这三个是 在 java代码中用来匹配的 一定是上面声明过的 -->
         <declare-styleable name="CustomView1">
             <attr name="cv1_text"/>
             <attr name="cv1_textColor"/>
-            <attr name="cv1_stokeColor"/>
+            <attr name="cv1_strokeColor"/>
             <attr name="cv1_textSize"/>
+            <attr name="cv1_strokeWidth"/>
         </declare-styleable>
 
 </resources>

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:gravity="center"
     android:layout_height="match_parent">
+    <com.zsw.testmodel.ui.act.customview.CustomViewGroup1
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <com.zsw.testmodel.ui.act.customview.CustomView1
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cv1_text="D-B-A-A"
+            custom:cv1_textColor="@color/white"
+            custom:cv1_strokeColor="@color/red"
+            custom:cv1_strokeWidth="20dp"
+            android:background="@color/black"
+            android:id="@+id/customView1" />
+    </com.zsw.testmodel.ui.act.customview.CustomViewGroup1>
 
-    <com.zsw.testmodel.ui.act.customview.CustomView1
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        custom:cv1_textSize="20sp"
-        custom:cv1_stokeColor="@color/red"
-        android:layout_margin="10dip"
-        android:background="@color/book_loading_book"
-        />
 
-<!--<com.zsw.testmodel.ui.act.customview.CloneTextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:text="CloneTextView"-->
-    <!--android:background="@color/line_bg"-->
-    <!--android:layout_height="wrap_content" />-->
 
 </LinearLayout>
