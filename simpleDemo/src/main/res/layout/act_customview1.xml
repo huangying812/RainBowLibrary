@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="20dip">
+
     <com.zsw.testmodel.ui.act.customview.CustomViewGroup1
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/testmodelblue"
         >
         <com.zsw.testmodel.ui.act.customview.CustomView1
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             custom:cv1_text="D-B-A-A"
-            custom:cv1_textColor="@color/white"
+            custom:cv1_textColor="@color/red"
             custom:cv1_strokeColor="@color/red"
-            custom:cv1_strokeWidth="20dp"
-            android:background="@color/black"
+            custom:cv1_textSize="10sp"
+            custom:cv1_strokeWidth="10dp"
+            android:background="@color/line_bg"
             android:id="@+id/customView1" />
     </com.zsw.testmodel.ui.act.customview.CustomViewGroup1>
-
 
 
 </LinearLayout>

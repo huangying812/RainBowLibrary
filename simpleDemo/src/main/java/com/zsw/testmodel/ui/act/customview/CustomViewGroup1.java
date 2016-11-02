@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 
 import com.zsw.rainbowlibrary.utils.L;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * Create on 2016/11/1.
  * github  https://github.com/HarkBen
@@ -35,22 +33,20 @@ public class CustomViewGroup1 extends ViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        //我们这里式容器类了，作为父类要对子类进行测量
         measureChildren(widthMeasureSpec, heightMeasureSpec);
-        //这边我们主动调用了setMeasuredDimension 为自己设置了测量参数 也就不用掉super了
-//        setMeasuredDimension(widthMeasureSpec,heightMeasureSpec);
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
 
         int count = getChildCount();
-        //我们这里什么都不做，就强行设置子View的宽高为 100，200
+        //我们这里什么都不做，就强行设置子View的宽高为 300，300
         for(int i = 0;i<count;i++){
             View childView = getChildAt(i);
             L.printD(TAG,"childView - me width=="+childView.getMeasuredWidth());
             L.printD(TAG,"cheildView - me Height = "+childView.getMeasuredHeight());
-
-            childView.layout(0,0,childView.getMeasuredWidth(),childView.getMeasuredHeight());
+            childView.layout(0,0,400,500);
         }
     }
 }

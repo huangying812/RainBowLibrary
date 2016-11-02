@@ -121,12 +121,10 @@ public class CustomView1 extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         L.printD(TAG, "onMeasure");
-        widthSize = MeasureSpec.getSize(widthMeasureSpec);
-        heightSize = MeasureSpec.getSize(heightMeasureSpec);
-
         L.printD(TAG,"getMeasuredWidth="+getMeasuredWidth());
         L.printD(TAG,"getMeasuredHeight="+getMeasuredHeight());
-
+        widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        heightSize = MeasureSpec.getSize(heightMeasureSpec);
         int widMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         //这里我们判断了模式为AT_MOST时给出默认大小包裹text，不知道为什么这样做的同学可以参考我另一篇文章：
@@ -173,69 +171,74 @@ public class CustomView1 extends View {
 
         L.printD(TAG,"getWidth="+getWidth());
         L.printD(TAG,"getHeight="+getHeight());
-
+        L.printD(TAG,"getMeasuredWidth="+getMeasuredWidth());
+        L.printD(TAG,"getMeasuredHeight="+getMeasuredHeight());
         paint.setStrokeWidth(strokeWidth);
         paint.setStyle(Paint.Style.STROKE);
         /*
           这里我们绘制的宽高尺寸，有两个方法可以获取到 getWidth() 、getMeasureWidth()
           我们该如何选择呢
-        第一遍看完源码我得到如下解释（这里就不贴源码了追两下变量就找到了，分析意义不大）
+        第一遍看完源码我得到如下解释（这里就不贴源码了追两下变量就找到了）
         getWidth()返回mRight - mLeft,他们是在layout()中调用setFrame()赋值.
-        计算的是View在父窗口内被显示的尺寸，对padding、margin处理。
-        getMeasureWidth() 则是在setMeasuredDimension()调用后赋值，用于确认View
-        绘制的实际大小
+        计算的是View在父窗口内被显示的尺寸，对padding、margin及其他布局参数处理，
+        最后保存为子View布局大小参数，确定子View显示尺寸大小。
+        getMeasureWidth() 则是在setMeasuredDimension()调用后赋值，用于确认View绘制的实际大小
         在layout()中 我们还会发现 onMeasure 比 onLayout先调用（有疑问请直接进View的Layout()方法中查看）
 
-        土羊土森破的我惯性理解为 当我们设置的测量尺寸大于父窗口返回的getWidth时(例：xml中 子View设置的宽高超过父窗口时)
-        两种方法返回的值将不一样
-        然而日志出来后结果就像一万只草泥马向我面门踏来：
-        xml 和 页面
-
-        日志：
-        D/CustomView1: rainbowLog-->>CustomView1-->>getMeasuredWidth=4000
-        D/CustomView1: rainbowLog-->>CustomView1-->>getMeasuredHeight=2000
-        D/CustomView1: rainbowLog-->>CustomView1-->>getWidth=4000
-        D/CustomView1: rainbowLog-->>CustomView1-->>getHeight=2000
-
-        脸已被踩肿，鼻子已骨折。
-
-        这时候需要冷静，既然已经知道时父类在处理onLayout 那我就提刀去看看父类 ，这里View的直接父类是LinearLayout
-        果然不出所料！
-        在LinearLayout的onlayout()中会调用layoutHorizontal()（上面xml中是Horizontal）
-        直接进入layoutHorizontal方法
-
-         void layoutHorizontal(int left, int top, int right, int bottom) {
-
-         ...
-
-                for (int i = 0; i < count; i++) {
+        为了更直观的了解 ，我们写一个父布局容器来重写onLayout方法，对子类的布局大小进行设置
+        public class CustomViewGroup1 extends ViewGroup {
                 ...
-                //直接将测量值作为layout值使用
-                final int childWidth = child.getMeasuredWidth();
-                final int childHeight = child.getMeasuredHeight();
+                @Override
+                protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+                   super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+                    measureChildren(widthMeasureSpec, heightMeasureSpec);
+                     }
+
+                @Override
+                protected void onLayout(boolean changed, int l, int t, int r, int b) {
+
+                            int count = getChildCount();
+                            //我们这里什么都不做，就强行设置子View的宽高为 100，200
+                             for(int i = 0;i<count;i++){
+                             View childView = getChildAt(i);
+                             L.printD(TAG,"childView - me width=="+childView.getMeasuredWidth());
+                             L.printD(TAG,"cheildView - me Height = "+childView.getMeasuredHeight());
+                             childView.layout(0,0,300,300);
+                      }
+                  }
                 ...
+                xml:和布局图
+                日志打印：
+                //父类测量子类传入onMeasure的尺寸
+                CustomView1-->>onMeasure
+                CustomView1-->>getMeasuredWidth=1280
+                CustomView1-->>getMeasuredHeight=2108
+                //父类 onLayout方法中获取子类自己重写测量后的尺寸，并设置布局尺寸为300，300
+                CustomViewGroup1-->>childView - me width==260
+                CustomViewGroup1-->>cheildView - me Height = 140
 
-                 childLeft += lp.leftMargin;
-                 //递归会直接进入setFram进行保存，所以getWidth 和 getMeasureWid总是一样
-                setChildFrame(child, childLeft + getLocationOffset(child), childTop,
-                        childWidth, childHeight);
-                //中间不做其他处理，只对下一个子View进行水平位置增量计算
-                childLeft += childWidth + lp.rightMargin +
-                        getNextLocationOffset(child);
-            }
-            上面的的源码告诉我们，我们选错了用来验证的爸爸。。。大写的尴尬
-            我们的目的是搞清楚 getWidth 和getMeasureWidth的情景区别，为了避免同样的窘境再次打脸，
-            我们来自己写一个ViewGroup并重写onLayout()方法，修改入参。
+                CustomView1-->>onLayout
+                CustomView1-->>onDraw----
+                //最终用于绘制的布局尺寸和测量尺寸
+                CustomView1-->>getWidth=300
+                CustomView1-->>getHeight=300
+                CustomView1-->>getMeasuredWidth=260
+                CustomView1-->>getMeasuredHeight=140
 
+                }
+                由此，得知这里绘制应该使用getMeasureWidth()获取的尺寸来绘制，保证图形和文字能够
+                完全绘制出来。如果getWidth 小于 getMeasureWidth()的大小，那么应该是xml中我们给的布局尺寸不够
+                举个小例子，在xml中写了一个TextView 字体很大，行数很多，屏幕上只显示了半行字。
         */
-        canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), paint);
-//        paint.setColor(color);
-//        paint.setTextSize(textSize);
-//        /**
-//         * 这里的 X Y
-//         * 是绘制 的起始位置坐标,不能超过View的测量值MAX
-//         */
-//        canvas.drawText(title,rect.width()/2,getMeasuredHeight()/2,paint);
+        canvas.drawRect(strokeWidth, strokeWidth, getMeasuredWidth()+strokeWidth, getMeasuredHeight()+strokeWidth, paint);
+        paint = new Paint();
+        paint.setColor(textColor);
+        paint.setTextSize(textSize);
+        L.printD(TAG,textColor+"");
+        L.printD(TAG,text);
+        L.printD(TAG,textSize+"");
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawText(text,getMeasuredWidth()/2,getMeasuredHeight()/2,paint);
 
     }
 
