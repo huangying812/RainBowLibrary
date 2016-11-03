@@ -46,7 +46,7 @@ public class CustomViewGroup1 extends ViewGroup {
             View childView = getChildAt(i);
             L.printD(TAG,"childView - me width=="+childView.getMeasuredWidth());
             L.printD(TAG,"cheildView - me Height = "+childView.getMeasuredHeight());
-            childView.layout(0,0,400,500);
+            childView.layout(0,0,childView.getMeasuredWidth(),childView.getMeasuredHeight());
         }
     }
 }

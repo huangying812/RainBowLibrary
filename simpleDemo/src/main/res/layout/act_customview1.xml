@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:padding="20dip">
 
-    <com.zsw.testmodel.ui.act.customview.CustomViewGroup1
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/testmodelblue"
-        >
+    <!--<com.zsw.testmodel.ui.act.customview.CustomViewGroup1-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/testmodelblue"-->
+        <!--android:id="@+id/customViewGroup1">-->
         <com.zsw.testmodel.ui.act.customview.CustomView1
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -18,10 +18,10 @@
             custom:cv1_textColor="@color/red"
             custom:cv1_strokeColor="@color/red"
             custom:cv1_textSize="10sp"
-            custom:cv1_strokeWidth="10dp"
-            android:background="@color/line_bg"
+            custom:cv1_strokeWidth="5dp"
+
             android:id="@+id/customView1" />
-    </com.zsw.testmodel.ui.act.customview.CustomViewGroup1>
+    <!--</com.zsw.testmodel.ui.act.customview.CustomViewGroup1>-->
 
 
 </LinearLayout>

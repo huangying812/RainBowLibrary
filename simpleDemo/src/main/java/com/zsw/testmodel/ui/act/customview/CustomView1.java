@@ -17,9 +17,13 @@ import android.widget.TextView;
 import com.zsw.rainbowlibrary.utils.L;
 import com.zsw.testmodel.R;
 
+import static android.R.attr.factor;
 import static android.R.attr.mode;
 import static android.R.attr.strokeColor;
 import static android.R.attr.x;
+import static android.R.attr.y;
+import static android.R.string.no;
+import static android.os.Build.VERSION_CODES.M;
 import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 /**
@@ -46,8 +50,8 @@ public class CustomView1 extends View {
     private int strokeWidth;
 
     //默认尺寸大小  单位 px
-    private int normalWidth = 260;
-    private int normalHeight = 140;
+    private int normalWidth = 600;
+    private int normalHeight = 300;
 
     public CustomView1(Context context) {
         this(context, null);
@@ -63,7 +67,7 @@ public class CustomView1 extends View {
 
         // 这里其实不是context为我们获取的样式参数，里面会调用getTheme().obtain...，
         // 这里应该有疑问 从何知道用这样的方式获取自定义属性，
-        // 下意识你应该点开TextView的源码，进入最后一个构造器内，一看便知
+        // 下意识应该点开TextView的源码，进入最后一个构造器内，一看便知
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomView1, defStyleAttr, 0);
         //这里获取所有索引数量，下面根据每一个索引值循环取值
         int count = a.getIndexCount();
@@ -162,13 +166,59 @@ public class CustomView1 extends View {
     //要画个框子 矩形对吧 准备一个矩形
     private Rect rect;
 
+    void drawTest(Canvas canvas){
+        //下面的测试代码来源，http://blog.csdn.net/hursing/article/details/18703599
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setStrokeWidth(3);
+        paint.setTextSize(80);
+        Paint.FontMetricsInt fmi = paint.getFontMetricsInt();
+        String testString = "测试Text:的绘制";
+        Rect bounds1 = new Rect();
+        paint.getTextBounds("测", 0, 1, bounds1);
+        Rect bounds2 = new Rect();
+        paint.getTextBounds("测试Text:", 0, 6, bounds2);
+        // 随意设一个位置作为baseline
+        int x = 200;
+        int y = 400;
+        // 把testString画在baseline上
+        canvas.drawText(testString, x, y, paint);
+        // bounds1
+        paint.setStyle(Paint.Style.STROKE);  // 画空心矩形
+        canvas.save();
+        canvas.translate(x, y);  // 注意这里有translate。getTextBounds得到的矩形也是以baseline为基准的
+        paint.setColor(Color.GREEN);
+        canvas.drawRect(bounds1, paint);
+        canvas.restore();
+        // bounds2
+        canvas.save();
+        paint.setColor(Color.MAGENTA);
+        canvas.translate(x, y);
+        canvas.drawRect(bounds2, paint);
+        canvas.restore();
+        // baseline
+        paint.setColor(Color.RED);
+        canvas.drawLine(x, y, 1024, y, paint);
+        // ascent
+        paint.setColor(Color.YELLOW);
+        canvas.drawLine(x, y+fmi.ascent, 1024, y+fmi.ascent, paint);
+        // descent
+        paint.setColor(Color.BLUE);
+        canvas.drawLine(x, y+fmi.descent, 1024, y+fmi.descent, paint);
+        // top
+        paint.setColor(Color.DKGRAY);
+        canvas.drawLine(x, y+fmi.top, 1024, y+fmi.top, paint);
+        // bottom
+        paint.setColor(Color.GREEN);
+        canvas.drawLine(x, y+fmi.bottom, 1024, y+fmi.bottom, paint);
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
+//        drawTest(canvas);
         L.printD(TAG,"onDraw----");
         paint = new Paint();
         rect = new Rect();
         paint.setColor(strokeColor);
-
         L.printD(TAG,"getWidth="+getWidth());
         L.printD(TAG,"getHeight="+getHeight());
         L.printD(TAG,"getMeasuredWidth="+getMeasuredWidth());
@@ -192,6 +242,7 @@ public class CustomView1 extends View {
                 protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
                    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
                     measureChildren(widthMeasureSpec, heightMeasureSpec);
+
                      }
 
                 @Override
@@ -226,19 +277,39 @@ public class CustomView1 extends View {
                 CustomView1-->>getMeasuredHeight=140
 
                 }
-                由此，得知这里绘制应该使用getMeasureWidth()获取的尺寸来绘制，保证图形和文字能够
+                由此，得知这里绘制应该使用getMeasureWidth()获取的尺寸来计算，保证图形和文字能够
                 完全绘制出来。如果getWidth 小于 getMeasureWidth()的大小，那么应该是xml中我们给的布局尺寸不够
                 举个小例子，在xml中写了一个TextView 字体很大，行数很多，屏幕上只显示了半行字。
-        */
-        canvas.drawRect(strokeWidth, strokeWidth, getMeasuredWidth()+strokeWidth, getMeasuredHeight()+strokeWidth, paint);
-        paint = new Paint();
+    */
+        canvas.drawRect(0, 0, getMeasuredWidth()
+                , getMeasuredHeight(), paint);
+        paint.setStrokeWidth(5);
+        canvas.drawLine(0,getMeasuredHeight()/2,getMeasuredWidth(),getMeasuredHeight()/2,paint);
+        /*
+            这里绘制文字的方法是 canvas.drawText(text,x,y,paint);
+            猛的一看，臆想四个参数(文本，x,y(横纵起点左边)，一个画笔)
+            但是注释是这样解释的
+              * @param text  绘制的文本
+              * @param x     x轴绘制起点坐标
+              * @param y     y轴基于基准线baseline的起点坐标(下面会解释baseline是什么)
+              * @param paint 画笔
+          //这里的x起点很好计算，(getMeasuredWidth()-rect.width())/2  左右边距相同即水平居中
+          //首先要记住： baseline 是基准线！基准线！上面注释里说的很清除，
+          //可以理解为在单独绘制文字时,根据局部文本尺寸建立新的坐标系  baseLineY = 0;
+          //下面是对中心y坐标的计算，我也是翻了很多老司机的博客，最后根据自己实际测试代码来学习的
+          //这里给上最一篇我认为分析【字体绘制位置的计算】的最清晰的博客 http://blog.csdn.net/wan778899/article/details/51460849
+          //当然你也可以像笔者一样把FontMetrics中的几个边界线绘制一遍，再推敲计算公式
+          //最后我得到的算法如下： int baseLine = getMeasuredHeight()/2 - ~(fontMetrics.bottom - fontMetrics.top)+rect.height()/2;
+    */
+        paint.reset();
         paint.setColor(textColor);
         paint.setTextSize(textSize);
-        L.printD(TAG,textColor+"");
-        L.printD(TAG,text);
-        L.printD(TAG,textSize+"");
-        paint.setStyle(Paint.Style.FILL);
-        canvas.drawText(text,getMeasuredWidth()/2,getMeasuredHeight()/2,paint);
+        //测量text
+        paint.getTextBounds(text,0,text.length(),rect);
+        Paint.FontMetricsInt fontMetrics = new Paint.FontMetricsInt();
+        //先取得View高度得一半，减去文本得top到view得边距，再下降文本高度得一半 得到baseline
+        int baseLine = getMeasuredHeight()/2 - ~(fontMetrics.bottom - fontMetrics.top)+rect.height()/2;
+        canvas.drawText(text,(getMeasuredWidth()-rect.width())/2,baseLine,paint);
 
     }
 
