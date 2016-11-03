@@ -291,7 +291,7 @@ public class CustomView1 extends View {
             但是注释是这样解释的
               * @param text  绘制的文本
               * @param x     x轴绘制起点坐标
-              * @param y     y轴基于基准线baseline的起点坐标(下面会解释baseline是什么)
+              * @param y     基准线baseline的起点坐标(下面会解释baseline是什么)
               * @param paint 画笔
           //这里的x起点很好计算，(getMeasuredWidth()-rect.width())/2  左右边距相同即水平居中
           //首先要记住： baseline 是基准线！基准线！上面注释里说的很清除，
