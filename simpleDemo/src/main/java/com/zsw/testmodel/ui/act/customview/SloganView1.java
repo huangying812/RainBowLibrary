@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.support.annotation.Dimension;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -34,7 +35,7 @@ import static android.webkit.ConsoleMessage.MessageLevel.LOG;
  * author Ben
  * Last_Update - 2016/10/17
  */
-public class CustomView1 extends View {
+public class SloganView1 extends View {
     /**
      * 我们先模仿一个带边框的TextView ,用来显示个slogan，直接继承自View
      * 步骤
@@ -53,18 +54,17 @@ public class CustomView1 extends View {
     private int normalWidth = 600;
     private int normalHeight = 300;
 
-    public CustomView1(Context context) {
+    public SloganView1(Context context) {
         this(context, null);
     }
 
-    public CustomView1(Context context, AttributeSet attrs) {
+    public SloganView1(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
     //1.构造器中属性获取并且保存下来
-    public CustomView1(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SloganView1(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
         // 这里其实不是context为我们获取的样式参数，里面会调用getTheme().obtain...，
         // 这里应该有疑问 从何知道用这样的方式获取自定义属性，
         // 下意识应该点开TextView的源码，进入最后一个构造器内，一看便知
@@ -86,7 +86,9 @@ public class CustomView1 extends View {
                      *  在自定义控件中使用自定义属性时，需要在java代码中动态的设置默认值
                      *  就需要用到以下三个方法
                      getDimension()
+                     //看完源码具体计算，再加以我蹩脚的英语理解为 合成一个像素值,直接舍去小数
                      getDimensionPixelOffset()
+                     //和上面一样返回一个像素值，但是对小数会进行四舍五入 差别不大
                      getDimensionPixelSize()
                      （在TypedArray和Resources中都有这三个函数，
                      功能类似，TypedArray中的函数是获取自定义属性的，Resources中的函数是获取android预置属性的）
@@ -94,9 +96,9 @@ public class CustomView1 extends View {
                      */
                     //偏移直接去整
                     textSize = a.getDimensionPixelOffset(attrId
-                            //看完源码具体计算，再加以我蹩脚的英语理解为 合成一个像素值,直接舍去小数
+
                             , TypedValue.complexToDimensionPixelOffset(15, getResources().getDisplayMetrics()));
-                    //和上面一样返回一个像素值，但是对小数会进行四舍五入 差别不大
+
 //                            textSize = a.getDimensionPixelSize(attrId,40);
                     break;
                 case R.styleable.CustomView1_cv1_strokeWidth:
@@ -118,31 +120,27 @@ public class CustomView1 extends View {
 
     private static final String TAG = "CustomView1";
 
-    private int widthSize;
-    private int heightSize;
-
+    private int mWidthSize;
+    private int mHeightSize;
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         L.printD(TAG, "onMeasure");
         L.printD(TAG,"getMeasuredWidth="+getMeasuredWidth());
         L.printD(TAG,"getMeasuredHeight="+getMeasuredHeight());
-        widthSize = MeasureSpec.getSize(widthMeasureSpec);
-        heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        mWidthSize = MeasureSpec.getSize(widthMeasureSpec);
+        mHeightSize = MeasureSpec.getSize(heightMeasureSpec);
         int widMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-        //这里我们判断了模式为AT_MOST时给出默认大小包裹text，不知道为什么这样做的同学可以参考我另一篇文章：
-        //自定义View 测量的所有细节。个人觉得这里还是很重要的，因为每一种View的实现都需要考虑到
-        //xml直接影响父类对测量模式的确定继而确定尺寸参数，我们根据模式才能确定自己绘制的大小
         if (widMode == MeasureSpec.AT_MOST) {
-            widthSize = normalWidth;
+            mWidthSize = normalWidth;
         }
 
         if (heightMode == MeasureSpec.AT_MOST) {
-            heightSize = normalHeight;
+            mHeightSize = normalHeight;
         }
 
-        setMeasuredDimension(widthSize, heightSize);
+        setMeasuredDimension(mWidthSize, mHeightSize);
 
         //从这个方法进去最终会进入下面的源码，调用setMeasuredDimension直接将新尺寸作为参数覆盖，
         /*
@@ -163,8 +161,8 @@ public class CustomView1 extends View {
 
     //你要画 你总得需要个笔吧
     private Paint paint;
-    //要画个框子 矩形对吧 准备一个矩形
-    private Rect rect;
+    //用来测量text宽高的矩形框
+    private Rect bounds;
 
     void drawTest(Canvas canvas){
         //下面的测试代码来源，http://blog.csdn.net/hursing/article/details/18703599
@@ -216,15 +214,15 @@ public class CustomView1 extends View {
     protected void onDraw(Canvas canvas) {
 //        drawTest(canvas);
         L.printD(TAG,"onDraw----");
-        paint = new Paint();
-        rect = new Rect();
-        paint.setColor(strokeColor);
         L.printD(TAG,"getWidth="+getWidth());
         L.printD(TAG,"getHeight="+getHeight());
         L.printD(TAG,"getMeasuredWidth="+getMeasuredWidth());
         L.printD(TAG,"getMeasuredHeight="+getMeasuredHeight());
+        paint = new Paint();
+        paint.setColor(strokeColor);
         paint.setStrokeWidth(strokeWidth);
         paint.setStyle(Paint.Style.STROKE);
+
         /*
           这里我们绘制的宽高尺寸，有两个方法可以获取到 getWidth() 、getMeasureWidth()
           我们该如何选择呢
@@ -287,7 +285,7 @@ public class CustomView1 extends View {
         canvas.drawLine(0,getMeasuredHeight()/2,getMeasuredWidth(),getMeasuredHeight()/2,paint);
         /*
             这里绘制文字的方法是 canvas.drawText(text,x,y,paint);
-            猛的一看，臆想四个参数(文本，x,y(横纵起点左边)，一个画笔)
+            猛的一看，臆想四个参数(文本，x,y(横纵起点)，一个画笔)
             但是注释是这样解释的
               * @param text  绘制的文本
               * @param x     x轴绘制起点坐标
@@ -299,17 +297,21 @@ public class CustomView1 extends View {
           //下面是对中心y坐标的计算，我也是翻了很多老司机的博客，最后根据自己实际测试代码来学习的
           //这里给上最一篇我认为分析【字体绘制位置的计算】的最清晰的博客 http://blog.csdn.net/wan778899/article/details/51460849
           //当然你也可以像笔者一样把FontMetrics中的几个边界线绘制一遍，再推敲计算公式
+          //**上面边线的绘制是参照TextView源码中的BoringLayout中对文字绘制的算法**
           //最后我得到的算法如下： int baseLine = getMeasuredHeight()/2 - ~(fontMetrics.bottom - fontMetrics.top)+rect.height()/2;
+          //博主给出的公式，理解上没错但是实际效果确总是靠上一些，希望发现我问题出现在那里的小伙伴能评论告诉我
+
     */
         paint.reset();
         paint.setColor(textColor);
         paint.setTextSize(textSize);
         //测量text
-        paint.getTextBounds(text,0,text.length(),rect);
+        bounds = new Rect();
+        paint.getTextBounds(text,0,text.length(),bounds);
         Paint.FontMetricsInt fontMetrics = new Paint.FontMetricsInt();
-        //先取得View高度得一半，减去文本得top到view得边距，再下降文本高度得一半 得到baseline
-        int baseLine = getMeasuredHeight()/2 - ~(fontMetrics.bottom - fontMetrics.top)+rect.height()/2;
-        canvas.drawText(text,(getMeasuredWidth()-rect.width())/2,baseLine,paint);
+        //先取得View高度得一半，减去文本得top到view的边距，再下降文本高度得一半 得到baseline
+        int baseLine = getMeasuredHeight()/2 - ~(fontMetrics.bottom - fontMetrics.top)+bounds.height()/2;
+        canvas.drawText(text,(getMeasuredWidth()-bounds.width())/2,baseLine,paint);
 
     }
 
