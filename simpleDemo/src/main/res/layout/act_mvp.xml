@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/grey700"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:text="用户名"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:layout_height="wrap_content" />
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="match_parent"
+        android:minHeight="45dip"
+        android:textColor="@color/white"
+        android:hint="......."
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
+        android:id="@+id/am_name"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:text="电话号码"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:layout_height="wrap_content" />
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="match_parent"
+        android:minHeight="45dip"
+        android:textColor="@color/white"
+        android:hint="......."
+        android:textSize="20sp"
+        android:textColorHint="@color/white"
+        android:id="@+id/am_phoneNumber"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:text="地址"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:layout_height="wrap_content" />
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="match_parent"
+        android:minHeight="45dip"
+        android:textColor="@color/white"
+        android:hint="......."
+        android:textSize="20sp"
+        android:id="@+id/am_address"
+        android:textColorHint="@color/white"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/am_commit"
+        android:background="@drawable/btn_ripple"
+        android:layout_width="match_parent"
+        android:minHeight="45dip"
+        android:text="提交参数"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="50dip"
+        android:id="@+id/am_showName"
+        android:layout_width="match_parent"
+        android:textColor="@color/white"
+        android:minHeight="40dip"
+        android:text="用户"
+        android:background="@color/testModelgreen"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/am_showPhoneNumber"
+        android:layout_width="match_parent"
+        android:textColor="@color/white"
+        android:minHeight="40dip"
+        android:text="电话"
+        android:background="@color/testModelgreen"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/am_showAddress"
+        android:layout_width="match_parent"
+        android:textColor="@color/white"
+        android:minHeight="40dip"
+        android:text="地址"
+        android:background="@color/testModelgreen"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/am_loadData"
+        android:background="@drawable/btn_ripple"
+        android:layout_width="match_parent"
+        android:minHeight="45dip"
+        android:text="下载参数"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content" />
+</LinearLayout>

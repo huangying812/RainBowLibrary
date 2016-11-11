@@ -61,7 +61,7 @@
 
     ```java
          SharedPUtils.saveNormalTheme(this,R.style.AppTheme,Color.BLUE);
-                 switchTheme(R.style.AppTheme,Color.BLUE);
+                 
     ```
     
    * 在需要的地方切换:

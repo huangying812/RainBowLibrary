@@ -34,6 +34,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import static android.R.attr.tag;
+
 /**
  * author  z.sw
  * time  2016/8/2.
@@ -139,9 +141,9 @@ public abstract class TBaseActivity extends AppCompatActivity {
     /**
      *
      * @param resources res资源管理器 getResources
-     * @param tag LanguageTAG 中的语言TAG
+     * @param tag 语言TAG
      */
-    private void reSetLanguageConfiguration(Resources resources , String tag){
+    public void reSetLanguageConfiguration(Resources resources , String tag){
         Configuration config = resources.getConfiguration();
         DisplayMetrics dm = resources.getDisplayMetrics();
         L.printD("TBaseActivity", "-language setting tag== " + tag);

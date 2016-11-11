@@ -50,10 +50,20 @@
                 android:layoutAnimation="@anim/fragmentlayoutanim" />
             <Button
                 android:id="@+id/act_mainCustomView"
-                android:text="自定View学习"
+                android:text="View测量、布局尺寸细节"
                 style="@style/main_btn"
                 />
 
+            <Button
+                android:id="@+id/act_mainStretchListView"
+                android:text="StretchListView"
+                style="@style/main_btn"
+                />
+            <Button
+                android:id="@+id/act_LearnMVP"
+                android:text="MVP实例"
+                style="@style/main_btn"
+                />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

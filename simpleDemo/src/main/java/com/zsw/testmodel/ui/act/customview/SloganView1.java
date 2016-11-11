@@ -6,26 +6,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.annotation.Dimension;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.zsw.rainbowlibrary.utils.L;
 import com.zsw.testmodel.R;
 
-import static android.R.attr.factor;
-import static android.R.attr.mode;
-import static android.R.attr.strokeColor;
-import static android.R.attr.x;
-import static android.R.attr.y;
-import static android.R.string.no;
-import static android.os.Build.VERSION_CODES.M;
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 /**
  * Create on 2016/10/17.

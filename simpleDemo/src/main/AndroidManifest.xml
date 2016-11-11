@@ -33,6 +33,8 @@
         <activity android:name=".ui.act.UseRecyclerViewAct" />
         <activity android:name=".ui.act.HttpTestAct" />
         <activity android:name=".ui.act.customview.CustomView1Act"/>
+        <activity android:name=".ui.act.StretchListViewAct"></activity>
+        <activity android:name=".ui.act.mvp.view.MVPSimpleAct"></activity>
     </application>
 
 </manifest>

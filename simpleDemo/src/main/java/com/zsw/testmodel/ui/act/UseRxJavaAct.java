@@ -1,5 +1,6 @@
 package com.zsw.testmodel.ui.act;
 
+import android.app.Activity;
 import android.database.*;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -76,15 +77,15 @@ public class UseRxJavaAct extends AbActivity {
     public void onClick() {
         msg = "";
         //同步观察者
-//        createObserver1();
+        createObserver1();
         //异步观察者
-//        createObserver2();
+        createObserver2();
         //  线程控制范例
-//        createObserver3();
+        createObserver3();
         //使用单次  一对一 转换
-//        createObserver4();
+        createObserver4();
         //使用多次 一对多转换
-//        createObserver5();
+        createObserver5();
         //多次 一对多转换
         createObserver6();
     }
@@ -255,6 +256,7 @@ public class UseRxJavaAct extends AbActivity {
                     }
                     subscriber.onNext("在偷第" + i + "块鸡腿");
                 }
+
                 /**
                  * 偷够了我走了，
                  */
@@ -339,7 +341,7 @@ public class UseRxJavaAct extends AbActivity {
                       总结：flatMap 转换 就是将多个Map装进Observable 统一返回给Observer,
                       所以如果你想，这里可以无限拆分数据结构，直到具体到对象
                         */
-
+//                        Most of the modern Android applications just use View-Model architecture，everything is connected with Activity.
                     }
                 }).subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -6,6 +6,7 @@ import android.widget.Button;
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
 import com.zsw.testmodel.ui.act.customview.CustomView1Act;
+import com.zsw.testmodel.ui.act.mvp.view.MVPSimpleAct;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -27,10 +28,14 @@ public class MainAct extends AbActivity {
     Button goRecyclerView;
     @Bind(R.id.goHttpRequest)
     Button  goHttpRequest;
+    @Bind(R.id.act_mainStretchListView)
+    Button  mainStretchListView;
 
     @Bind(R.id.act_mainCustomView)
     Button act_mainCustomView;
 
+    @Bind(R.id.act_LearnMVP)
+    Button actLearnMVP;
 
     @Override
     public void initLayout() {
@@ -40,8 +45,8 @@ public class MainAct extends AbActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.act_mainCustomView,R.id.goRecyclerView, R.id.gosliding,
-            R.id.goButtomNavigate, R.id.goSlidingMenuAct, R.id.goObserver,R.id.goHttpRequest})
+    @OnClick({R.id.act_mainCustomView,R.id.act_mainStretchListView,R.id.goRecyclerView, R.id.gosliding,
+            R.id.goButtomNavigate, R.id.act_LearnMVP,R.id.goSlidingMenuAct, R.id.goObserver,R.id.goHttpRequest})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.gosliding:
@@ -66,6 +71,13 @@ public class MainAct extends AbActivity {
             case R.id.act_mainCustomView:
                 sendActIntent(CustomView1Act.class);
                 break;
+            case R.id.act_mainStretchListView:
+                sendActIntent(StretchListViewAct.class);
+                break;
+            case  R.id.act_LearnMVP:
+                    sendActIntent(MVPSimpleAct.class);
+                break;
+
             default:
                 break;
         }
