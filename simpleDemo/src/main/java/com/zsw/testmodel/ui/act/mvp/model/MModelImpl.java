@@ -1,6 +1,6 @@
 package com.zsw.testmodel.ui.act.mvp.model;
 
-import com.zsw.testmodel.ui.act.mvp.MUserBean;
+import com.zsw.testmodel.ui.act.mvp.entity.MUserBean;
 
 /**
  * Create on 2016/11/10.

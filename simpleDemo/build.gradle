@@ -65,4 +65,9 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.3.0@aar'
 
     compile 'com.github.HarkBen:Tbretrofit:1.0'
+
+    /**
+     * 组件通信框架- 消息总线
+     */
+    compile 'org.greenrobot:eventbus:3.0.0'
 }

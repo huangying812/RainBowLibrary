@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/O-R-E-NOTE/O-R-E-NOTE.iml" filepath="$PROJECT_DIR$/O-R-E-NOTE/O-R-E-NOTE.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/learnandroidheros/learnandroidheros.iml" filepath="$PROJECT_DIR$/learnandroidheros/learnandroidheros.iml" />
       <module fileurl="file://$PROJECT_DIR$/rainbowlibrary/rainbowlibrary.iml" filepath="$PROJECT_DIR$/rainbowlibrary/rainbowlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/simpleDemo/simpleDemo.iml" filepath="$PROJECT_DIR$/simpleDemo/simpleDemo.iml" />
     </modules>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/java_Observer"
+        android:layout_width="match_parent"
+        android:text="java-Observer"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/Rx_Observer"
+        android:text="Rx-Observer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/eventBus_Observer"
+        android:text="Event-Observer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

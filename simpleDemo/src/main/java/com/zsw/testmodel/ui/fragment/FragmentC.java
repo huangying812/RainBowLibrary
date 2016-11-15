@@ -26,6 +26,7 @@ public class FragmentC extends FragmentA {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getTBaseActivity().startLoadAnim();
+
     }
+
 }

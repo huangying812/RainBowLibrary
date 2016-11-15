@@ -1,7 +1,7 @@
 package com.zsw.testmodel.common;
 
 
-import com.zsw.testmodel.ui.act.UserBean;
+import com.zsw.testmodel.ui.act.menu.UserBean;
 
 import java.util.List;
 import java.util.Map;

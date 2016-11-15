@@ -17,23 +17,23 @@
         android:theme="@style/DemoAppTheme">
 
 
-        <activity android:name=".ui.act.LoginAct" >
+        <activity android:name=".ui.act.menu.LoginAct" >
             <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.act.MainAct" >
+        <activity android:name=".ui.act.menu.MainAct" >
         </activity>
-        <activity android:name=".ui.act.SlidingMenuAct" />
-        <activity android:name=".ui.act.BottomNavigationAct" />
-        <activity android:name=".ui.act.SlidingMenuAct2" />
-        <activity android:name=".ui.act.UseRxJavaAct" />
-        <activity android:name=".ui.act.UseRecyclerViewAct" />
-        <activity android:name=".ui.act.HttpTestAct" />
+        <activity android:name=".ui.act.menu.SlidingMenuAct" />
+        <activity android:name=".ui.act.menu.BottomNavigationAct" />
+        <activity android:name=".ui.act.menu.SlidingMenuAct2" />
+        <activity android:name=".ui.act.menu.UseRxJavaAct" />
+        <activity android:name=".ui.act.menu.UseRecyclerViewAct" />
+        <activity android:name=".ui.act.menu.HttpTestAct" />
         <activity android:name=".ui.act.customview.CustomView1Act"/>
-        <activity android:name=".ui.act.StretchListViewAct"></activity>
+        <activity android:name=".ui.act.menu.StretchListViewAct"></activity>
         <activity android:name=".ui.act.mvp.view.MVPSimpleAct"></activity>
     </application>
 

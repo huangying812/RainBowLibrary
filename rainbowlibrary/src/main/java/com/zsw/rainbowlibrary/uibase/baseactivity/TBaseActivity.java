@@ -73,6 +73,18 @@ public abstract class TBaseActivity extends AppCompatActivity {
      */
     private static List<TBaseActivity> actList = new LinkedList<>();
 
+    private void freeMemory(){
+        childContentLayout = null;
+        animationDrawable = null;
+        titleBar = null;
+        rotateLoading = null;
+        loadingLayout= null;
+        rootLayout = null;
+        if(actList.contains(this)){
+            printLogE("从内存中移除activity");
+            actList.remove(this);
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -417,10 +429,7 @@ public abstract class TBaseActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        if(actList.contains(this)){
-            actList.remove(this);
-        }
         super.onDestroy();
-
+        freeMemory();
     }
 }

@@ -19,4 +19,5 @@ public class API {
 
     public static final String LOGINTOBR = "http://192.168.0.229:8080/login";
 
+    public static final String TEST = "http://180.166.66.226:43230//baoshi/api/version/android";
 }

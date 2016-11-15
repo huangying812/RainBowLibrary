@@ -1,6 +1,5 @@
 package com.zsw.testmodel.ui.act.mvp.view;
 
-import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.view.View;
 import android.widget.Button;
@@ -8,7 +7,7 @@ import android.widget.TextView;
 
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
-import com.zsw.testmodel.ui.act.mvp.MUserBean;
+import com.zsw.testmodel.ui.act.mvp.entity.MUserBean;
 import com.zsw.testmodel.ui.act.mvp.Presenter.Presenter;
 
 import butterknife.Bind;
