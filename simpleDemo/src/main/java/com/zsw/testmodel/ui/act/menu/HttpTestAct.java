@@ -1,12 +1,15 @@
 package com.zsw.testmodel.ui.act.menu;
 
+import android.graphics.Color;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.tb.tbretrofit.httputils.TBRequest;
 import com.tb.tbretrofit.httputils.factory.TBCallBack;
+import com.zsw.rainbowlibrary.customview.basetitle.TbaseTitleBar;
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
 import com.zsw.testmodel.common.API;
@@ -55,6 +58,8 @@ public class HttpTestAct extends AbActivity {
     public void initLayout() {
         loadContentView(R.layout.act_http_test);
         ButterKnife.bind(this);
+
+
     }
 
     @Override

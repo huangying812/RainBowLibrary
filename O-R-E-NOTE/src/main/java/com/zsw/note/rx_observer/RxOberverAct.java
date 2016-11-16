@@ -52,31 +52,17 @@ public class RxOberverAct extends BaseActivity {
     @OnClick(R.id.startTask)
     public void onClick() {
 
-
+        startTask();
     }
 
 
     Bitmap getBitmap(String path){
         return null;
     }
-    Subscriber<Bitmap>    subscriber = new Subscriber<Bitmap>() {
-        @Override
-        public void onCompleted() {
-
-        }
-
-        @Override
-        public void onError(Throwable e) {
-
-        }
-
-        @Override
-        public void onNext(Bitmap bitmap) {
-
-        }
-    };
     //模拟一次传入图片路径，然后读取出bitmap显示到UI上
-    //这里用到了 map  一对一转换  也会是最常用的 异步处理事件。
+    //这里用到了 map  一对一转换  也会是最常用的 异步处理事件。替换AsyncTask
+    //这里被观察者 Observable 在主动订阅观察者 subscriber
+
     void startTask(){
         final String path  =" xx/xx.png";
      Observable observable =  Observable.just(path)
@@ -89,7 +75,22 @@ public class RxOberverAct extends BaseActivity {
                 });
         observable.subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriber);
+                .subscribe(new Subscriber<Bitmap>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Bitmap bitmap) {
+
+                    }
+                });
 
     }
 

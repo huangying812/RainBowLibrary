@@ -3,6 +3,7 @@ package com.zsw.note;
 import android.view.View;
 import android.widget.Button;
 
+import com.zsw.note.ebus_observer.EventBusReceiverAct;
 import com.zsw.note.nor_observer.NObserverAct;
 import com.zsw.note.rx_observer.RxOberverAct;
 
@@ -46,7 +47,7 @@ public class MainAct extends BaseActivity {
                 goTo(RxOberverAct.class);
                 break;
             case R.id.eventBus_Observer:
-
+                    goTo(EventBusReceiverAct.class);
                 break;
         }
     }

@@ -12,8 +12,8 @@
 
     <activity android:name=".nor_observer.NObserverAct"></activity>
         <activity android:name=".rx_observer.RxOberverAct"></activity>
-
-
+    <activity android:name=".ebus_observer.EventBusReceiverAct"></activity>
+    <activity android:name=".ebus_observer.EventBusSenderAct"></activity>
 
     </application>
 
