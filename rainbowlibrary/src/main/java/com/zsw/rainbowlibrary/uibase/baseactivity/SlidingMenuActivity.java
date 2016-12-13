@@ -1,18 +1,13 @@
 package com.zsw.rainbowlibrary.uibase.baseactivity;
 
-import android.graphics.drawable.Drawable;
-import android.support.v4.view.GravityCompat;
-import android.text.Layout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.zsw.rainbowlibrary.R;
 import com.zsw.rainbowlibrary.customview.CustomDrawLayout;
-import com.zsw.rainbowlibrary.customview.basetitle.TbaseTitleBar;
+import com.zsw.rainbowlibrary.customview.TbaseTitleBar;
 
 /**
  * author  z.sw

@@ -23,18 +23,15 @@ import android.widget.LinearLayout;
 
 import com.victor.loading.rotate.RotateLoading;
 import com.zsw.rainbowlibrary.R;
-import com.zsw.rainbowlibrary.customview.basetitle.TbaseTitleBar;
+import com.zsw.rainbowlibrary.customview.TbaseTitleBar;
 import com.zsw.rainbowlibrary.utils.L;
 import com.zsw.rainbowlibrary.utils.LanguageTAG;
 import com.zsw.rainbowlibrary.utils.SharedPUtils;
 import com.zsw.rainbowlibrary.utils.V;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-
-import static android.R.attr.tag;
 
 /**
  * author  z.sw
@@ -92,7 +89,6 @@ public abstract class TBaseActivity extends AppCompatActivity {
         printLogE("");
         if(SharedPUtils.getInt(this,SharedPUtils.THEME_ID) != 0){
             setTheme(SharedPUtils.getInt(this,SharedPUtils.THEME_ID));
-
         }
         if(!V.isNull(SharedPUtils.getString(this,SharedPUtils.LANGUAGE))){
             reSetLanguageConfiguration(getResources(),SharedPUtils.getString(this,SharedPUtils.LANGUAGE));
@@ -100,14 +96,13 @@ public abstract class TBaseActivity extends AppCompatActivity {
 
         initSystemSet();
         /**
-         * 无路如何请不要替换下面方法的调用顺序
+         * 无论如何请不要替换下面方法的调用顺序
          */
         initRootLayout();
         addSetStatus(getStatusBarColor());
         setRootLayout();
-        onLayoutLoading();
-//        actList.add(this);
         addAct(TBaseActivity.this);
+        onLayoutLoading();
     }
 
     public String printLogD(String log){

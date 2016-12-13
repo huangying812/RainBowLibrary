@@ -6,11 +6,11 @@
     android:id="@+id/tbase_activity_rootlayout"
     android:layout_height="match_parent">
 
-    <com.zsw.rainbowlibrary.customview.basetitle.TbaseTitleBar
+    <com.zsw.rainbowlibrary.customview.TbaseTitleBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tbase_activity_titleBar">
-    </com.zsw.rainbowlibrary.customview.basetitle.TbaseTitleBar>
+    </com.zsw.rainbowlibrary.customview.TbaseTitleBar>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"

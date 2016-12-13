@@ -1,4 +1,4 @@
-package com.zsw.rainbowlibrary.customview.basetitle;
+package com.zsw.rainbowlibrary.customview;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -126,7 +126,7 @@ public class TbaseTitleBar extends LinearLayout implements View.OnClickListener 
         if (rootLayout.getChildCount() > 0) {
             rootLayout.removeAllViews();
         }
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(params);
         rootLayout.addView(view, rootLayout.getChildCount(),getLinearLayoutLParams());
     }
