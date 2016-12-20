@@ -84,5 +84,4 @@ public abstract   class AbAdapter<T> extends BaseAdapter  {
 
     public abstract  void bindData(WidgetHolder holder,T model);
 
-
 }

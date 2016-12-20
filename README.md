@@ -149,7 +149,37 @@
     ```java
              L.printD(getClass().getName(),log);
     ```
-    未完待续。。。
+    
+7. 快速实现一个侧滑菜单
+    
+```java
+public class SlidingMenuAct2 extends SlidingMenuActivity {
+
+    @Override
+    public void onLayoutInitialized() {
+        //初始化菜单按钮的事件 及其他view的绑定都在这里操作
+        getTitleBar().setCenterNormalTextView("侧滑菜单");
+        getTitleBar().setTitleBarBackgroundColor(getResources().getColor(R.color.mohei_tp));
+        getTitleBar().setLeftNormalButton(new TbaseTitleBar.OnTbaseTitleLeftViewClickListener() {
+            @Override
+            public void onClick(View v) {
+               openMenu();
+            }
+        }).setBackgroundResource(R.mipmap.back_f);
+        switchFragment(FragmentA.class);
+
+    }
+
+    @Override
+    public View setMenuView() {
+        return LayoutInflater.from(this).inflate(R.layout.menu_layout,null);
+    }
+
+```
+
+
+
+    
 ***         
          
       

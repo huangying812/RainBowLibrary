@@ -35,6 +35,12 @@ public class WidgetHolder {
         }
     }
 
+    /**
+     * 查找View,并进行缓存
+     * @param id
+     * @param <T>
+     * @return
+     */
     public  <T extends View> T findView(@IdRes int id){
         View view = views.get(id);
         if(null  == view){
