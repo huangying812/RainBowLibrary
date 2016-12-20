@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.tb.tbretrofit.httputils.TBRequest;
 import com.tb.tbretrofit.httputils.factory.TBCallBack;
-import com.zsw.rainbowlibrary.customview.basetitle.TbaseTitleBar;
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
 import com.zsw.testmodel.common.API;

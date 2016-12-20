@@ -3,7 +3,7 @@ package com.zsw.testmodel.ui.act.menu;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.zsw.rainbowlibrary.customview.basetitle.TbaseTitleBar;
+import com.zsw.rainbowlibrary.customview.TbaseTitleBar;
 import com.zsw.rainbowlibrary.uibase.baseactivity.SlidingMenuActivity;
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.ui.fragment.FragmentA;

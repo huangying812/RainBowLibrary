@@ -1,87 +1,65 @@
 package com.zsw.testmodel.ui.act.menu;
 
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-import android.widget.Button;
 
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
+import com.zsw.testmodel.ui.act.adapter.MyRecycleAdapter;
 import com.zsw.testmodel.ui.act.customview.CustomView1Act;
 import com.zsw.testmodel.ui.act.mvp.view.MVPSimpleAct;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+
+import static android.os.Build.VERSION_CODES.M;
+
 
 /**
  * Created by zhhusw on 2016/6/19.
  */
 public class MainAct extends AbActivity {
-    @Bind(R.id.gosliding)
-    Button gosliding;
-    @Bind(R.id.goButtomNavigate)
-    Button goButtomNavigate;
-    @Bind(R.id.goSlidingMenuAct)
-    Button goSlidingMenuAct;
-    @Bind(R.id.goObserver)
-    Button goObserver;
-    @Bind(R.id.goRecyclerView)
-    Button goRecyclerView;
-    @Bind(R.id.goHttpRequest)
-    Button  goHttpRequest;
-    @Bind(R.id.act_mainStretchListView)
-    Button  mainStretchListView;
-
-    @Bind(R.id.act_mainCustomView)
-    Button act_mainCustomView;
-
-    @Bind(R.id.act_LearnMVP)
-    Button actLearnMVP;
-
+    @Bind(R.id.am_recycle)
+    RecyclerView amRecycle;
+    private List<Class> datas = new ArrayList<>();
     @Override
     public void initLayout() {
-        removeStatusBar();
-        removeTBaseTitleBar();
+        getTitleBar().setCenterNormalTextView("MENU");
         loadContentView(R.layout.act_main);
         ButterKnife.bind(this);
+        initData();
+        MyRecycleAdapter adapter = new MyRecycleAdapter(this,datas);
+        amRecycle.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
+        amRecycle.setAdapter(adapter);
+        adapter.setOnItemClickListener(new MyRecycleAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View convertView, Class clzz) {
+                sendActIntent(clzz);
+            }
+        });
     }
 
-    @OnClick({R.id.act_mainCustomView,R.id.act_mainStretchListView,R.id.goRecyclerView, R.id.gosliding,
-            R.id.goButtomNavigate, R.id.act_LearnMVP,R.id.goSlidingMenuAct, R.id.goObserver,R.id.goHttpRequest})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.gosliding:
-                sendActIntent(SlidingMenuAct.class);
-                break;
-            case R.id.goButtomNavigate:
-                sendActIntent(BottomNavigationAct.class);
-                break;
-            case R.id.goSlidingMenuAct:
-                sendActIntent(SlidingMenuAct2.class);
-                break;
+    private void initData() {
+        datas.add(SlidingMenuAct.class);
+        datas.add(BottomNavigationAct.class);
+        datas.add(SlidingMenuAct2.class);
+        datas.add(UseRxJavaAct.class);
+        datas.add(UseRecyclerViewAct.class);
+        datas.add(HttpTestAct.class);
+        datas.add(CustomView1Act.class);
+        datas.add(StretchListViewAct.class);
+        datas.add(MVPSimpleAct.class);
+        datas.add(ActAbAdapter.class);
 
-            case R.id.goObserver:
-                sendActIntent(UseRxJavaAct.class);
-                break;
-            case R.id.goRecyclerView:
-                sendActIntent(UseRecyclerViewAct.class);
-                break;
-            case R.id.goHttpRequest:
-                sendActIntent(HttpTestAct.class);
-                break;
-            case R.id.act_mainCustomView:
-                sendActIntent(CustomView1Act.class);
-                break;
-            case R.id.act_mainStretchListView:
-                sendActIntent(StretchListViewAct.class);
-                break;
-            case  R.id.act_LearnMVP:
-                    sendActIntent(MVPSimpleAct.class);
-                break;
-
-            default:
-                break;
-        }
     }
+
+
+
+
 
 
     @Override

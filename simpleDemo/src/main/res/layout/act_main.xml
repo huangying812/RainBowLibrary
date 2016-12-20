@@ -5,65 +5,12 @@
     android:layout_height="match_parent"
     android:background="@mipmap/bg_login"
     android:fitsSystemWindows="true">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-                <Button
-                    android:id="@+id/gosliding"
-                    style="@style/main_btn"
-                    android:text="DrawLayout - 侧滑"
-                    />
-                <Button
-                    android:id="@+id/goSlidingMenuAct"
-                    android:text="DrawLayout -侧滑2"
-                    style="@style/main_btn"
-                    />
-                <Button
-                    android:id="@+id/goButtomNavigate"
-                    android:text="Buttom Naviagte- 底部导航"
-                    style="@style/main_btn"
-                    />
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/am_recycle"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
 
-                <Button
-                    android:id="@+id/goObserver"
-                    style="@style/main_btn"
-                    android:text="@string/rxjava"
-                    />
+  </android.support.v7.widget.RecyclerView>
 
-            <Button
-                android:id="@+id/goRecyclerView"
-                style="@style/main_btn"
-                android:text="RecyclerView"
-                android:typeface="monospace"
-                android:textAllCaps="false"
-                android:layoutAnimation="@anim/fragmentlayoutanim" />
-            <Button
-                android:id="@+id/goHttpRequest"
-                style="@style/main_btn"
-                android:text="TBRequest"
-                android:typeface="monospace"
-                android:textAllCaps="false"
-                android:layoutAnimation="@anim/fragmentlayoutanim" />
-            <Button
-                android:id="@+id/act_mainCustomView"
-                android:text="View测量、布局尺寸细节"
-                style="@style/main_btn"
-                />
 
-            <Button
-                android:id="@+id/act_mainStretchListView"
-                android:text="StretchListView"
-                style="@style/main_btn"
-                />
-            <Button
-                android:id="@+id/act_LearnMVP"
-                android:text="MVP实例"
-                style="@style/main_btn"
-                />
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>

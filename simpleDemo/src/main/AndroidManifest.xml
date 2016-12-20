@@ -17,7 +17,9 @@
         android:theme="@style/DemoAppTheme">
 
 
-        <activity android:name=".ui.act.menu.LoginAct" >
+        <activity android:name=".ui.act.menu.LoginAct"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            >
             <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
@@ -35,6 +37,9 @@
         <activity android:name=".ui.act.customview.CustomView1Act"/>
         <activity android:name=".ui.act.menu.StretchListViewAct"></activity>
         <activity android:name=".ui.act.mvp.view.MVPSimpleAct"></activity>
+        <activity android:name=".ui.act.menu.ActAbAdapter"></activity>
+
+
     </application>
 
 </manifest>

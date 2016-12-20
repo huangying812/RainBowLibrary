@@ -90,7 +90,7 @@ public class UseRecyclerViewAct extends AbActivity {
         }
 
         /**
-         * 实现 ViewHolder
+         * 实现 WidgetHolder
          */
         class ZViewHolder extends RecyclerView.ViewHolder {
             //初始化
