@@ -21,12 +21,11 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:design:+'
-    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.0.0'
+    compile 'com.android.support:appcompat-v7:23.0.0'
     compile 'com.victor:lib:1.0.4'
     compile files('libs/universal-image-loader-1.9.3.jar')
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
-    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
     compile 'com.github.franmontiel:PersistentCookieJar:v1.0.0'

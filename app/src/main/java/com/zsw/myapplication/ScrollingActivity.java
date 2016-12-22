@@ -14,7 +14,7 @@ public class ScrollingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("升旗的太阳");
+        toolbar.setTitle("升起的太阳");
 
 //        setSupportActionBar(toolbar);
 
