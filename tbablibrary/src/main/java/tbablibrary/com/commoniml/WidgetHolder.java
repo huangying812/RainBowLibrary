@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import static android.R.attr.id;
+
 /**
  * Create on 2016/12/1.
  * github  https://github.com/HarkBen
@@ -25,7 +27,19 @@ public class WidgetHolder {
         convertView = LayoutInflater.from(context).inflate(id,parent,false);
         convertView.setTag(this);
     }
-
+    public WidgetHolder(View itemView){
+        views = new SparseArray<>();
+        convertView = itemView;
+        convertView.setTag(this);
+    }
+    public static WidgetHolder getHolder(View convertView,View itemView){
+        if(null  == convertView){
+            return new WidgetHolder(itemView);
+        }else{
+            WidgetHolder holder = (WidgetHolder) convertView.getTag();
+            return  holder;
+        }
+    }
     public static WidgetHolder getHolder(Context context,View convertView,ViewGroup parent,@LayoutRes int id){
         if(null  == convertView){
             return new WidgetHolder(context,parent,id);
