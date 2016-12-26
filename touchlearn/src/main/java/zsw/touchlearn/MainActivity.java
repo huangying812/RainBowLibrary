@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     default:break;
                 }
+                //不消费
                 return false;
             }
         });
