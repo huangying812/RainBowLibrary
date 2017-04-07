@@ -68,5 +68,5 @@ dependencies {
      * 组件通信框架- 消息总线
      */
     compile 'org.greenrobot:eventbus:3.0.0'
-    compile project(':tbablibrary')
+
 }

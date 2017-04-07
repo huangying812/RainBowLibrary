@@ -41,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
                 int action = event.getAction();
                 switch (action){
                     case MotionEvent.ACTION_DOWN:
-                        L.println(TAG,"onTouch = ACTON_DOWN");
+                        L.println("ACtivity - onTouch = ACTON_DOWN");
                         break;
                     case MotionEvent.ACTION_MOVE:
-                        L.println(TAG,"onTouch = ACTION_MOVE");
+                        L.println("ACtivity - onTouch = ACTION_MOVE");
                         break;
                     case MotionEvent.ACTION_UP:
-                        L.println(TAG,"onTouch = ACTION_UP");
+                        L.println("ACtivity - onTouch = ACTION_UP");
                         break;
                     default:break;
                 }

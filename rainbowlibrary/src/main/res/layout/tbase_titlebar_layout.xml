@@ -12,6 +12,7 @@
         android:layout_marginBottom="3dip"
         android:layout_marginTop="3dip"
         />
+
     <LinearLayout
         android:id="@+id/tbase_titleLayout_center"
         android:layout_width="0dip"
@@ -24,6 +25,7 @@
         android:layout_marginBottom="3dip"
         android:layout_marginTop="3dip"
         />
+
     <LinearLayout
         android:id="@+id/tbase_titleLayout_right"
         android:layout_width="50dip"

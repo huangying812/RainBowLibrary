@@ -34,5 +34,5 @@ dependencies {
      * ButterKinfe 一键初始化view添加onClick
      */
     compile 'com.jakewharton:butterknife:7.0.1'
-    compile project(':tbablibrary')
+
 }

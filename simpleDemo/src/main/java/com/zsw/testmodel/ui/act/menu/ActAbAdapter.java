@@ -5,9 +5,6 @@ import android.widget.ListView;
 
 import com.zsw.testmodel.R;
 import com.zsw.testmodel.base.AbActivity;
-import com.zsw.testmodel.ui.act.adapter.AbAdapterIml;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -31,14 +28,6 @@ public class ActAbAdapter extends AbActivity {
         getTitleBar().setCenterNormalTextView("AbAdapter");
         loadContentView(R.layout.act_abapter);
         ButterKnife.bind(this);
-        AbAdapterIml adapterIml = new AbAdapterIml(this, R.layout.abadapter_item);
-        aaListView.setAdapter(adapterIml);
-        datas = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            datas.add("item-" + i);
-        }
-
-        adapterIml.addDatas(datas);
 
     }
 

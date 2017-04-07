@@ -13,7 +13,7 @@ import android.widget.Button;
  * author Ben
  * Last_Update - 2016/12/23
  */
-public class TButton extends Button {
+public class TButton extends android.support.v7.widget.AppCompatButton {
     public static final String TAG = "TButton";
 
     public TButton(Context context) {
@@ -33,14 +33,14 @@ public class TButton extends Button {
         int action = event.getAction();
         switch (action){
             case MotionEvent.ACTION_DOWN:
-                L.println(TAG,"dispatchTouchEvent = ACTON_DOWN");
+                L.println("TButton - dispatchTouchEvent = ACTON_DOWN");
                 break;
             case MotionEvent.ACTION_MOVE:
-                L.println(TAG,"dispatchTouchEvent = ACTION_MOVE");
+                L.println("TButton - dispatchTouchEvent = ACTION_MOVE");
                 break;
             case MotionEvent.ACTION_UP:
 
-                L.println(TAG,"dispatchTouchEvent = ACTION_UP");
+                L.println("TButton - dispatchTouchEvent = ACTION_UP");
                 break;
             default:break;
         }
@@ -52,13 +52,13 @@ public class TButton extends Button {
         int action = event.getAction();
         switch (action){
             case MotionEvent.ACTION_DOWN:
-                L.println(TAG,"onTouchEvent = ACTON_DOWN");
+                L.println("TButton - onTouchEvent = ACTON_DOWN");
                 break;
             case MotionEvent.ACTION_MOVE:
-                L.println(TAG,"onTouchEvent = ACTION_MOVE");
+                L.println("TButton - onTouchEvent = ACTION_MOVE");
                 break;
             case MotionEvent.ACTION_UP:
-                L.println(TAG,"onTouchEvent = ACTION_UP");
+                L.println("TButton - onTouchEvent = ACTION_UP");
                 break;
             default:break;
         }

@@ -204,7 +204,7 @@ public class TbaseTitleBar extends LinearLayout implements View.OnClickListener 
      * @param drawable
      * @return
      */
-    public View seCenterView(View view, Drawable drawable) {
+    public View setCenterView(View view, Drawable drawable) {
         if (null != drawable) {
             view.setBackground(drawable);
         }
@@ -217,7 +217,7 @@ public class TbaseTitleBar extends LinearLayout implements View.OnClickListener 
         if(null != title){
             textView.setText(title);
         }
-        seCenterView(textView,null);
+        setCenterView(textView,null);
         return  textView;
     }
     public TextView setCenterNormalTextView(String title,OnTbaseTitleCenterViewClickListener onTbaseTitleCenterViewClickListener){
@@ -225,7 +225,7 @@ public class TbaseTitleBar extends LinearLayout implements View.OnClickListener 
         if(null != title){
             textView.setText(title);
         }
-        seCenterView(textView,null);
+        setCenterView(textView,null);
         if(null != onTbaseTitleCenterViewClickListener){
             this.onTbaseTitleCenterViewClickListener = onTbaseTitleCenterViewClickListener;
             textView.setOnClickListener(this);

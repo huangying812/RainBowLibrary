@@ -46,10 +46,6 @@ public class MVPSimpleAct extends AbActivity implements UIViewInterface{
         loadContentView(R.layout.act_mvp);
         ButterKnife.bind(this);
 
-        amName.setError("错误阿西吧");
-        amPhoneNumber.setError("阿西吧粗我u");
-        amAddress.setError("呵呵哒");
-
         presenter = new Presenter(this);
     }
 
@@ -68,7 +64,7 @@ public class MVPSimpleAct extends AbActivity implements UIViewInterface{
             default:break;
         }
     }
-
+    
     @Override
     public void updateUI(MUserBean userbean) {
         amShowName.setText(userbean.getUserName());
