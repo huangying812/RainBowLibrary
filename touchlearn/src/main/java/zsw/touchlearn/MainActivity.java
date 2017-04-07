@@ -35,27 +35,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tbutton.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int action = event.getAction();
-                switch (action){
-                    case MotionEvent.ACTION_DOWN:
-                        L.println("ACtivity - onTouch = ACTON_DOWN");
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        L.println("ACtivity - onTouch = ACTION_MOVE");
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        L.println("ACtivity - onTouch = ACTION_UP");
-                        break;
-                    default:break;
-                }
-                //不消费
-                return false;
-            }
-        });
-
         tbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
