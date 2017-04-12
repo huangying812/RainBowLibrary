@@ -111,34 +111,62 @@
     
    下面就杀进源码看个究竟。
     
-   * 1.`ViewGroup [dispatchTouchEvent]`
-    
+#### 1.`ViewGroup - [dispatchTouchEvent]方法`(这里代码比较长，分段来看)
+ 
+   * 拦截判断 为`intercepted`初始化
+
 ```java
-        @Override
-        public boolean dispatchTouchEvent(MotionEvent ev) {
-                    //···省略
-                    
-                        boolean handled = false;
-                        //onFilterTouchEventForSecurity 判断窗口是否被遮挡，如果被遮挡则不向下执行事件分发。
-                        if (onFilterTouchEventForSecurity(ev)) {
-                             final int action = ev.getAction();
-                             //获取具体事件类型
-                             final int actionMasked = action & MotionEvent.ACTION_MASK;
-                              // Handle an initial down.
-                               if (actionMasked == MotionEvent.ACTION_DOWN) {
-                                // Throw away all previous state when starting a new touch gesture.
-                                 // The framework may have dropped the up or cancel event for the previous gesture
-                                  // due to an app switch, ANR, or some other state change.
-                                  //取消和清除处理触摸事件的目标View,及其包含的子View
-                                   cancelAndClearTouchTargets(ev);
-                                   //重新设置触摸状态
-                                   resetTouchState();
-                                   }
-                             
+    public boolean  dispatchTouchEvent(MotionEvent ev) {
+        ...省略
+        
+        final boolean intercepted;
+        if (actionMasked == MotionEvent.ACTION_DOWN
+                 || mFirstTouchTarget != null) {
+                                           // ==0 拦截false  !=0 不拦截true
+         final boolean disallowIntercept = (mGroupFlags & FLAG_DISALLOW_INTERCEPT) != 0;
+          //允许拦截
+          if (!disallowIntercept) {
+           intercepted = onInterceptTouchEvent(ev);
+           ev.setAction(action); 
+                     } else {
+                        intercepted = false;
                         }
+             } else {
+                 intercepted = true;
+                         }
+                 }
         
-        
-        
-        
-         }
-  ```  
+        }
+                 
+```  
+                        
+   `onInterceptTouchEvent`方法在父类默认返回false 子类可以覆盖重写              
+   上面有一个flag非常关键 `FLAG_DISALLOW_INTERCEPT` “不拦截”标记                       
+   `disallowIntercept = false` 时调用`onInterceptTouchEvent`方法
+   **`mGroupFlags`** 添加 不拦截的tag是在 `requestDisallowInterceptTouchEvent`方法中
+   调用`requestDisallowInterceptTouchEvent(true)`则添加不许拦截的tag 从而改变上面得判断                                
+   
+   * 派发事件
+   
+    上面我们看到为`intercepted`赋值了，下面就用到了
+```java
+            //事件是否被取消
+           final boolean canceled = resetCancelNextUpFlag(this)
+                             || actionMasked == MotionEvent.ACTION_CANCEL;   
+            
+          if (!canceled && !intercepted) {
+                
+             If the event is targeting accessiiblity focus we give it to the
+              view that has accessibility focus and if it does not handle it
+               we clear the flag and dispatch the event to all children as usual.
+               We are looking up the accessibility focused host to avoid keeping
+               state since these events are very rare.
+            
+          
+          }
+
+
+
+```
+   
+                       
