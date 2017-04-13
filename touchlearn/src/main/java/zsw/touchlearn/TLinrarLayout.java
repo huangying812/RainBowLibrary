@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 
+
 /**
  * Create on 2017/4/6.
  * github  https://github.com/HarkBen
@@ -29,7 +30,7 @@ public class TLinrarLayout extends LinearLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        switch (ev.getAction()){
+        switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 L.println("TLineraLayout -dispatchTouchEvent-  MotionEvent.ACTION_DOWN");
                 break;
@@ -51,7 +52,7 @@ public class TLinrarLayout extends LinearLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()){
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 L.println("TLineraLayout -onTouchEvent  MotionEvent.ACTION_DOWN");
                 break;
@@ -72,14 +73,14 @@ public class TLinrarLayout extends LinearLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        switch (ev.getAction()){
+        switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 L.println("TLineraLayout -onInterceptTouchEvent  MotionEvent.ACTION_DOWN");
-                break;
+                return true;
 
             case MotionEvent.ACTION_MOVE:
                 L.println("TLineraLayout -onInterceptTouchEvent  MotionEvent.ACTION_MOVE");
-                break;
+                return true;
 
             case MotionEvent.ACTION_UP:
                 L.println("TLineraLayout -onInterceptTouchEvent  MotionEvent.ACTION_UP");
@@ -90,4 +91,6 @@ public class TLinrarLayout extends LinearLayout {
         }
         return super.onInterceptTouchEvent(ev);
     }
-}
+
+
+    }
