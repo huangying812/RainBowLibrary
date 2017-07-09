@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--先定义要使用的共用属性-->
+    <attr name="cp_text" format="string"></attr>
+    <attr name="cp_textColor" format="color"></attr>
+    <attr name="cp_textSize" format="dimension"></attr>
+    <attr name="cp_max" format="integer"></attr>
+    <attr name="cp_progress" format="integer"></attr>
+    <attr name="cp_underColor" format="color"></attr>
+    <attr name="cp_progressColor" format="color"></attr>
+    <attr name="cp_strokeWidth" format="dimension"></attr>
+    <attr name="cp_padding" format="dimension"></attr>
+    <attr name="cp_startAngle" format="integer"></attr>
+    <declare-styleable name="CircleProgressView">
+        <attr name="cp_text"/>
+        <attr name="cp_textColor"/>
+        <attr name="cp_textSize"/>
+        <attr name="cp_max"/>
+        <attr name="cp_progress"/>
+        <attr name="cp_underColor"/>
+        <attr name="cp_progressColor"/>
+        <attr name="cp_strokeWidth"/>
+        <attr name="cp_padding"/>
+        <attr name="cp_startAngle"/>
+    </declare-styleable>
+
+
+
+</resources>

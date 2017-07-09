@@ -53,7 +53,7 @@ public class CircleArcView extends View {
         widthMeasure = MeasureSpec.getSize(widthMeasureSpec);
         heightmeasure = MeasureSpec.getSize(heightMeasureSpec);
 
-        setMeasuredDimension(widthMeasure,heightmeasure);
+//        setMeasuredDimension(widthMeasure,heightmeasure);
     }
 
 
@@ -87,7 +87,7 @@ public class CircleArcView extends View {
 
     //绘制一个圆弧的矩形框
     private void drawRectF(Canvas canvas,RectF rectF){
-        mPaint.setColor(Color.YELLOW);
+        mPaint.setColor(Color.MAGENTA);
         canvas.drawRect(rectF,mPaint);
 
     }

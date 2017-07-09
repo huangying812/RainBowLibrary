@@ -1,7 +1,10 @@
-package rg.funinglayout.views;
+package rg.funinglayout;
+
+import android.os.Handler;
 
 import rg.funinglayout.BaseActivity;
 import rg.funinglayout.R;
+import rg.funinglayout.views.CircleProgressView;
 import rg.funinglayout.views.CircleRingView;
 
 /**
@@ -14,13 +17,15 @@ import rg.funinglayout.views.CircleRingView;
  */
 public class CircleProgressActivity extends BaseActivity {
 
-    CircleRingView circleRingView;
+    CircleProgressView circleProgressView;
 
     @Override
     public void onCompoentBinded() {
         setContentView(R.layout.act_circlrprogressview);
-        circleRingView = (CircleRingView) findViewById(R.id.ac_CircleRingView);
-
+        circleProgressView = (CircleProgressView) findViewById(R.id.ac_CircleProgressView);
+                circleProgressView.setProgress(80);
+                circleProgressView.setOpenAnimation(true);
+                circleProgressView.commit();
     }
 
 }
