@@ -5,12 +5,13 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="D:\studioProgramFiles\Android\Android Studio\gradle\gradle-2.14.1" />
+        <option name="gradleHome" value="D:\Android Studio\gradle\gradle-2.14.1" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/O-R-E-NOTE" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/funinglayout" />
             <option value="$PROJECT_DIR$/rainbowlibrary" />
             <option value="$PROJECT_DIR$/simpleDemo" />
           </set>

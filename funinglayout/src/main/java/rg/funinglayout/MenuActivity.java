@@ -12,8 +12,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import rg.funinglayout.views.CircleProgressActivity;
-
 /**
  * Create on 2017/6/27.
  * github  https://github.com/HarkBen
