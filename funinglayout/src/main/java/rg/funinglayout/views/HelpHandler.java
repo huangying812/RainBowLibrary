@@ -13,7 +13,7 @@ import static android.R.id.message;
 
 public class HelpHandler {
     private OnStartCuttinProgressListener onStartCuttinProgressListener;
-    private  Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -26,23 +26,20 @@ public class HelpHandler {
         this.onStartCuttinProgressListener = l;
     }
 
-    public void startCutting(int currentProgress){
-        int interval = 1500/currentProgress;
+    public void startCutting(int currentProgress) {
+        int interval = 1500 / currentProgress;
         int delay = 0;
-        for(int i = 1 ; i<=currentProgress;i++){
+        for (int i = 1; i <= currentProgress; i++) {
             Message message = handler.obtainMessage();
             message.arg1 = i;
-            handler.sendMessageDelayed(message,delay);
+            handler.sendMessageDelayed(message, delay);
             delay += interval;
         }
     }
 
-    public interface OnStartCuttinProgressListener{
+    public interface OnStartCuttinProgressListener {
         void onCutting(int progress);
     }
 
-    public void setOnStartCuttinProgressListener(OnStartCuttinProgressListener onStartCuttinProgressListener) {
-        this.onStartCuttinProgressListener = onStartCuttinProgressListener;
-    }
 
 }

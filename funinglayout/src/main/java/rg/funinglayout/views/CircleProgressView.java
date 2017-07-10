@@ -67,11 +67,17 @@ public class CircleProgressView extends View implements HelpHandler.OnStartCutti
     private boolean drawText = false;
 
     private void calculateArcAngle(int progress) {
-        progress = reverseAngle ? ~progress : progress;
-        BigDecimal decimal1 = new BigDecimal(progress);
-        BigDecimal decimal2 = new BigDecimal(max);
-        BigDecimal divide = decimal1.divide(decimal2, 3, BigDecimal.ROUND_HALF_EVEN);
-        sweepAngle = 360 * divide.floatValue();
+        if (progress > 0) {
+            progress = reverseAngle ? ~progress : progress;
+            BigDecimal decimal1 = new BigDecimal(progress);
+            BigDecimal decimal2 = new BigDecimal(max);
+            BigDecimal divide = decimal1.divide(decimal2, 3, BigDecimal.ROUND_HALF_EVEN);
+            sweepAngle = 360 * divide.floatValue();
+        } else {
+            sweepAngle = 0;
+        }
+
+
     }
 
 
@@ -129,10 +135,10 @@ public class CircleProgressView extends View implements HelpHandler.OnStartCutti
                     startAngle = typedArray.getInt(attrId, 0);
                     break;
                 case R.styleable.CircleProgressView_cp_reverseAngle:
-                    reverseAngle = typedArray.getBoolean(attrId,false);
+                    reverseAngle = typedArray.getBoolean(attrId, false);
                     break;
                 case R.styleable.CircleProgressView_cp_drawText:
-                    drawText = typedArray.getBoolean(attrId,false);
+                    drawText = typedArray.getBoolean(attrId, false);
                     break;
                 default:
                     break;
@@ -147,10 +153,10 @@ public class CircleProgressView extends View implements HelpHandler.OnStartCutti
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         RectF rectF = new RectF();
-        rectF.top = strokeWidth + padding;
-        rectF.left = strokeWidth + padding;
-        rectF.bottom = getMeasuredHeight() - padding - strokeWidth;
-        rectF.right = getMeasuredWidth() - padding - strokeWidth;
+        rectF.top =  padding;
+        rectF.left =  padding;
+        rectF.bottom = getMeasuredHeight() - padding ;
+        rectF.right = getMeasuredWidth() - padding ;
         drawUnderArc(canvas, rectF);
         drawArc(canvas, rectF);
         drawText(canvas);
@@ -158,7 +164,7 @@ public class CircleProgressView extends View implements HelpHandler.OnStartCutti
 
     //绘制文字
     private void drawText(Canvas canvas) {
-        if(!drawText){
+        if (!drawText) {
             return;
         }
         if (null == text || "".equals(text) || text.length() == 0) {
