@@ -1,10 +1,5 @@
 package rg.funinglayout;
-
-import android.os.Handler;
-
-import rg.funinglayout.BaseActivity;
 import rg.funinglayout.views.CircleProgressView;
-import rg.funinglayout.views.CircleRingView;
 
 /**
  * Create on 2017/7/5.
@@ -23,15 +18,16 @@ public class CircleProgressActivity extends BaseActivity {
         setContentView(R.layout.act_circlrprogressview);
         circleProgressView = (CircleProgressView) findViewById(R.id.ac_CircleProgressView);
         circleProgressView.setMax(100);
-        circleProgressView.setProgress(100);
+        circleProgressView.setProgress(20);
         circleProgressView.setOpenAnimation(true);
+        circleProgressView.commit();
         circleProgressView.setOnProgressChangedListener(new CircleProgressView.OnProgressChangedListener() {
             @Override
             public void onProgressChanged(int progress) {
                 circleProgressView.setText(progress + "%");
             }
         });
-        circleProgressView.commit();
+
     }
 
 }

@@ -29,7 +29,7 @@ import rg.funinglayout.R;
  * author Ben
  * Last_Update - 2017/7/4
  */
-public class CircleProgressView extends View implements HelpHandler.OnStartCuttinProgressListener{
+public class CircleProgressView extends View implements HelpHandler.OnStartCuttinProgressListener {
 
     private Paint mPaint;
     private float sweepAngle = 0;
@@ -61,14 +61,14 @@ public class CircleProgressView extends View implements HelpHandler.OnStartCutti
     private OnProgressChangedListener onProgressChangedListener;
     private boolean openAnimation = false;
     private HelpHandler helpHandler;
-
+    private boolean reverseAngle = false;
 
     private void calculateArcAngle(int progress) {
+        progress = reverseAngle ? ~progress : progress;
         BigDecimal decimal1 = new BigDecimal(progress);
         BigDecimal decimal2 = new BigDecimal(max);
         BigDecimal divide = decimal1.divide(decimal2, 3, BigDecimal.ROUND_HALF_EVEN);
         sweepAngle = 360 * divide.floatValue();
-
     }
 
 
@@ -124,6 +124,9 @@ public class CircleProgressView extends View implements HelpHandler.OnStartCutti
                     break;
                 case R.styleable.CircleProgressView_cp_startAngle:
                     startAngle = typedArray.getInt(attrId, 0);
+                    break;
+                case R.styleable.CircleProgressView_cp_reverseAngle:
+                    reverseAngle = typedArray.getBoolean(attrId,false);
                     break;
                 default:
                     break;
@@ -207,10 +210,10 @@ public class CircleProgressView extends View implements HelpHandler.OnStartCutti
 
     @Override
     public void onCutting(int progress) {
-        this.progress  = progress;
+        this.progress = progress;
         calculateArcAngle(progress);
         invalidate();
-        if(null != onProgressChangedListener){
+        if (null != onProgressChangedListener) {
             onProgressChangedListener.onProgressChanged(progress);
         }
 
@@ -266,6 +269,10 @@ public class CircleProgressView extends View implements HelpHandler.OnStartCutti
     public void setText(String text) {
         this.text = text;
         invalidate();
+    }
+
+    public void setReverseAngle(boolean reverseAngle) {
+        this.reverseAngle = reverseAngle;
     }
 
     public void setTextColor(int textColor) {
