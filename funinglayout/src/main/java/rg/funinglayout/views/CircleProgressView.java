@@ -7,11 +7,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.TextView;
 
 import java.math.BigDecimal;
 
@@ -26,7 +29,7 @@ import rg.funinglayout.R;
  * author Ben
  * Last_Update - 2017/7/4
  */
-public class CircleProgressView extends View implements HelpHandler.OnHelpHandlerSendNotice{
+public class CircleProgressView extends View implements HelpHandler.OnStartCuttinProgressListener{
 
     private Paint mPaint;
     private float sweepAngle = 0;
@@ -47,27 +50,26 @@ public class CircleProgressView extends View implements HelpHandler.OnHelpHandle
     //进度条
     @ColorInt
     private int progressColor = Color.BLUE;
-   //文字
-    private String text ;
+    //文字
+    private String text;
     //文字颜色
     @ColorInt
     private int textColor = Color.BLUE;
     //文字大小
-    private float textSize = TypedValue.complexToDimensionPixelOffset(15,getResources().getDisplayMetrics());
+    private float textSize = TypedValue.complexToDimensionPixelOffset(15, getResources().getDisplayMetrics());
 
     private OnProgressChangedListener onProgressChangedListener;
     private boolean openAnimation = false;
     private HelpHandler helpHandler;
 
 
+    private void calculateArcAngle(int progress) {
+        BigDecimal decimal1 = new BigDecimal(progress);
+        BigDecimal decimal2 = new BigDecimal(max);
+        BigDecimal divide = decimal1.divide(decimal2, 3, BigDecimal.ROUND_HALF_EVEN);
+        sweepAngle = 360 * divide.floatValue();
 
-   private void  calculateArcAngle(int progress){
-       BigDecimal decimal1 = new BigDecimal(progress);
-       BigDecimal decimal2 = new BigDecimal(max);
-       BigDecimal divide = decimal1.divide(decimal2,3,BigDecimal.ROUND_HALF_EVEN);
-       sweepAngle = 360 * divide.floatValue();
-
-   }
+    }
 
 
     public CircleProgressView(Context context) {
@@ -80,20 +82,19 @@ public class CircleProgressView extends View implements HelpHandler.OnHelpHandle
 
     public CircleProgressView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        helpHandler = new HelpHandler();
-        helpHandler.setOnHelpHandlerSendNotice(this);
+        helpHandler = new HelpHandler(this);
         //获取自定义属性
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressView);
         int indexCount = typedArray.getIndexCount();
-        for(int i = 0;i<indexCount;i++){
+        for (int i = 0; i < indexCount; i++) {
             //获取attr属性Id
             int attrId = typedArray.getIndex(i);
-            switch (attrId){
+            switch (attrId) {
                 case R.styleable.CircleProgressView_cp_text:
                     text = typedArray.getString(attrId);
                     break;
                 case R.styleable.CircleProgressView_cp_textColor:
-                    textColor = typedArray.getColor(attrId,Color.BLUE);
+                    textColor = typedArray.getColor(attrId, Color.BLUE);
                     break;
 
                 case R.styleable.CircleProgressView_cp_textSize:
@@ -101,28 +102,28 @@ public class CircleProgressView extends View implements HelpHandler.OnHelpHandle
                             , TypedValue.complexToDimensionPixelOffset(15, getResources().getDisplayMetrics()));
                     break;
                 case R.styleable.CircleProgressView_cp_underColor:
-                    underColor = typedArray.getColor(attrId,Color.GRAY);
+                    underColor = typedArray.getColor(attrId, Color.GRAY);
                     break;
                 case R.styleable.CircleProgressView_cp_progressColor:
-                    progressColor = typedArray.getColor(attrId,Color.BLUE);
+                    progressColor = typedArray.getColor(attrId, Color.BLUE);
                     break;
                 case R.styleable.CircleProgressView_cp_max:
-                    max = typedArray.getInt(attrId,100);
+                    max = typedArray.getInt(attrId, 100);
                     break;
                 case R.styleable.CircleProgressView_cp_progress:
-                    progress = typedArray.getInteger(attrId,0);
+                    progress = typedArray.getInteger(attrId, 0);
                     calculateArcAngle(progress);
                     break;
                 case R.styleable.CircleProgressView_cp_strokeWidth:
                     strokeWidth = typedArray.getDimensionPixelOffset(attrId,
-                            TypedValue.complexToDimensionPixelOffset(20,getResources().getDisplayMetrics()));
+                            TypedValue.complexToDimensionPixelOffset(20, getResources().getDisplayMetrics()));
                     break;
                 case R.styleable.CircleProgressView_cp_padding:
                     padding = typedArray.getDimensionPixelOffset(attrId,
-                            TypedValue.complexToDimensionPixelOffset(10,getResources().getDisplayMetrics()));
+                            TypedValue.complexToDimensionPixelOffset(10, getResources().getDisplayMetrics()));
                     break;
                 case R.styleable.CircleProgressView_cp_startAngle:
-                    startAngle = typedArray.getInt(attrId,0);
+                    startAngle = typedArray.getInt(attrId, 0);
                     break;
                 default:
                     break;
@@ -137,85 +138,86 @@ public class CircleProgressView extends View implements HelpHandler.OnHelpHandle
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         RectF rectF = new RectF();
-        rectF.top = strokeWidth+padding;
-        rectF.left = strokeWidth+padding;
-        rectF.bottom =  getMeasuredHeight()-padding-strokeWidth;
-        rectF.right = getMeasuredWidth()-padding-strokeWidth;
-        drawUnderArc(canvas,rectF);
-        drawArc(canvas,rectF);
+        rectF.top = strokeWidth + padding;
+        rectF.left = strokeWidth + padding;
+        rectF.bottom = getMeasuredHeight() - padding - strokeWidth;
+        rectF.right = getMeasuredWidth() - padding - strokeWidth;
+        drawUnderArc(canvas, rectF);
+        drawArc(canvas, rectF);
         drawText(canvas);
         L.printD("绘制完成");
     }
 
     //绘制文字
-    private void drawText(Canvas canvas){
-        if(null  == text||"".equals(text) || text.length() == 0){
-            text = progress+"%";
+    private void drawText(Canvas canvas) {
+        if (null == text || "".equals(text) || text.length() == 0) {
+            text = progress + "%";
         }
         Rect bounds = new Rect();
-        Paint paint =  obtainPaint();
+        Paint paint = obtainPaint();
         paint.setColor(textColor);
         paint.setTextSize(textSize);
         Paint.FontMetricsInt fontMetrics = new Paint.FontMetricsInt();
-        int baseLine = getMeasuredHeight()/2 - ~(fontMetrics.bottom - fontMetrics.top)+bounds.height()/2;
-        paint.getTextBounds(text,0,text.length(),bounds);
-        canvas.drawText(text,(getMeasuredWidth()-bounds.width())/2,baseLine,paint);
+        paint.getTextBounds(text, 0, text.length(), bounds);
+        int baseLine = getMeasuredHeight() / 2 - ~(fontMetrics.bottom - fontMetrics.top) + bounds.height() / 2;
+        canvas.drawText(text, (getMeasuredWidth() - bounds.width()) / 2, baseLine, paint);
         L.printD("绘制 文字 -- ");
 
 
     }
 
     //绘制underArc
-    private void drawUnderArc(Canvas canvas,RectF bounds){
-        Paint paint =  obtainPaint();
+    private void drawUnderArc(Canvas canvas, RectF bounds) {
+        Paint paint = obtainPaint();
         paint.setColor(underColor);
         paint.setStrokeWidth(strokeWidth);
-        canvas.drawArc(bounds,0,360,false,mPaint);
+        canvas.drawArc(bounds, 0, 360, false, mPaint);
 
     }
 
     //绘制圆弧
-    private void drawArc(Canvas canvas,RectF bounds){
-        Paint paint =  obtainPaint();
+    private void drawArc(Canvas canvas, RectF bounds) {
+        Paint paint = obtainPaint();
         paint.setColor(progressColor);
         paint.setStrokeWidth(strokeWidth);
-        canvas.drawArc(bounds,startAngle,sweepAngle,false,mPaint);
+        canvas.drawArc(bounds, startAngle, sweepAngle, false, mPaint);
     }
 
 
-    private Paint obtainPaint(){
-        if(null != mPaint){
+    private Paint obtainPaint() {
+        if (null != mPaint) {
             mPaint.reset();
-        }else {
+        } else {
             mPaint = new Paint();
         }
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setAntiAlias(true);
-        return  mPaint;
+        return mPaint;
 
     }
 
-    public void commit(){
-        if(openAnimation){
+    public void commit() {
+        if (openAnimation) {
             helpHandler.startCutting(progress);
-        }else {
+        } else {
             postInvalidate();
         }
 
     }
 
     @Override
-    public void receiver(int progress) {
-        this.progress = progress;
-        if(null != onProgressChangedListener ){
+    public void onCutting(int progress) {
+        this.progress  = progress;
+        calculateArcAngle(progress);
+        invalidate();
+        if(null != onProgressChangedListener){
             onProgressChangedListener.onProgressChanged(progress);
         }
-        postInvalidate();
-        L.printD("收到进度="+progress);
+
     }
 
 
-    public interface OnProgressChangedListener{
+    public interface OnProgressChangedListener {
         void onProgressChanged(int progress);
     }
 
@@ -263,6 +265,7 @@ public class CircleProgressView extends View implements HelpHandler.OnHelpHandle
 
     public void setText(String text) {
         this.text = text;
+        invalidate();
     }
 
     public void setTextColor(int textColor) {

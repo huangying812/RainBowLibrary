@@ -3,7 +3,6 @@ package rg.funinglayout;
 import android.os.Handler;
 
 import rg.funinglayout.BaseActivity;
-import rg.funinglayout.R;
 import rg.funinglayout.views.CircleProgressView;
 import rg.funinglayout.views.CircleRingView;
 
@@ -23,9 +22,16 @@ public class CircleProgressActivity extends BaseActivity {
     public void onCompoentBinded() {
         setContentView(R.layout.act_circlrprogressview);
         circleProgressView = (CircleProgressView) findViewById(R.id.ac_CircleProgressView);
-                circleProgressView.setProgress(80);
-                circleProgressView.setOpenAnimation(true);
-                circleProgressView.commit();
+        circleProgressView.setMax(100);
+        circleProgressView.setProgress(100);
+        circleProgressView.setOpenAnimation(true);
+        circleProgressView.setOnProgressChangedListener(new CircleProgressView.OnProgressChangedListener() {
+            @Override
+            public void onProgressChanged(int progress) {
+                circleProgressView.setText(progress + "%");
+            }
+        });
+        circleProgressView.commit();
     }
 
 }
