@@ -61,7 +61,10 @@ public class CircleProgressView extends View implements HelpHandler.OnStartCutti
     private OnProgressChangedListener onProgressChangedListener;
     private boolean openAnimation = false;
     private HelpHandler helpHandler;
+    //是否反转绘制角度
     private boolean reverseAngle = false;
+    //是否绘制文字
+    private boolean drawText = false;
 
     private void calculateArcAngle(int progress) {
         progress = reverseAngle ? ~progress : progress;
@@ -128,6 +131,9 @@ public class CircleProgressView extends View implements HelpHandler.OnStartCutti
                 case R.styleable.CircleProgressView_cp_reverseAngle:
                     reverseAngle = typedArray.getBoolean(attrId,false);
                     break;
+                case R.styleable.CircleProgressView_cp_drawText:
+                    drawText = typedArray.getBoolean(attrId,false);
+                    break;
                 default:
                     break;
             }
@@ -148,11 +154,13 @@ public class CircleProgressView extends View implements HelpHandler.OnStartCutti
         drawUnderArc(canvas, rectF);
         drawArc(canvas, rectF);
         drawText(canvas);
-        L.printD("绘制完成");
     }
 
     //绘制文字
     private void drawText(Canvas canvas) {
+        if(!drawText){
+            return;
+        }
         if (null == text || "".equals(text) || text.length() == 0) {
             text = progress + "%";
         }
@@ -273,6 +281,10 @@ public class CircleProgressView extends View implements HelpHandler.OnStartCutti
 
     public void setReverseAngle(boolean reverseAngle) {
         this.reverseAngle = reverseAngle;
+    }
+
+    public void setDrawText(boolean drawText) {
+        this.drawText = drawText;
     }
 
     public void setTextColor(int textColor) {

@@ -7,7 +7,6 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
     android:padding="20dp"
     android:orientation="vertical">
     <rg.funinglayout.views.CircleProgressView
@@ -21,24 +20,9 @@
         app:cp_textColor="@color/colorPrimary"
         app:cp_textSize="25sp"
         app:cp_startAngle="270"
-        app:cp_strokeWidth="10dp"
+        app:cp_strokeWidth="15dp"
         app:cp_padding="5dp"
-        android:background="@android:color/darker_gray"
         android:layout_height="200dp" />
-    <rg.funinglayout.views.CircleRingView
-        android:id="@+id/ac_CircleRingView"
-        android:layout_width="150dp"
-        android:background="@color/grey100"
-        android:layout_marginTop="10dp"
-        android:layout_height="150dp" />
-
-
-    <rg.funinglayout.views.CircleArcView
-        android:id="@+id/ac_CircleArcView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:background="@color/grey100"
-        android:layout_marginTop="10dp" />
 </LinearLayout>
 
 </ScrollView>

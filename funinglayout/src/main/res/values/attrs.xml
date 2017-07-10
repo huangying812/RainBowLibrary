@@ -14,6 +14,7 @@
         <attr name="cp_padding" format="dimension"></attr>
         <attr name="cp_startAngle" format="integer"></attr>
         <attr name="cp_reverseAngle" format="boolean"></attr>
+        <attr name="cp_drawText" format="boolean"></attr>
     </declare-styleable>
 
 

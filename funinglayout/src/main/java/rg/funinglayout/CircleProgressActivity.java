@@ -20,6 +20,7 @@ public class CircleProgressActivity extends BaseActivity {
         circleProgressView.setMax(100);
         circleProgressView.setProgress(20);
         circleProgressView.setOpenAnimation(true);
+        circleProgressView.setReverseAngle(true);
         circleProgressView.commit();
         circleProgressView.setOnProgressChangedListener(new CircleProgressView.OnProgressChangedListener() {
             @Override
