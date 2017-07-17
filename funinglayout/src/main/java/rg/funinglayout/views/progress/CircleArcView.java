@@ -1,4 +1,4 @@
-package rg.funinglayout.views;
+package rg.funinglayout.views.progress;
 
 import android.content.Context;
 import android.graphics.Canvas;

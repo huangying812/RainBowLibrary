@@ -10,7 +10,7 @@
     android:padding="20dp"
     android:gravity="center_horizontal"
     android:orientation="vertical">
-    <rg.funinglayout.views.CircleProgressView
+    <rg.funinglayout.views.progress.CircleProgressView
         android:id="@+id/ac_CircleProgressView"
         android:layout_width="200dp"
         app:cp_underColor="@color/grey300"

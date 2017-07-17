@@ -1,4 +1,4 @@
-package rg.funinglayout.views;
+package rg.funinglayout.views.progress;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,14 +7,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.TextView;
 
 import java.math.BigDecimal;
 
@@ -197,6 +194,7 @@ public class CircleProgressView extends View implements HelpHandler.OnStartCutti
         Paint paint = obtainPaint();
         paint.setColor(progressColor);
         paint.setStrokeWidth(strokeWidth);
+        paint.setStrokeCap(Paint.Cap.ROUND);
         canvas.drawArc(bounds, startAngle, sweepAngle, false, mPaint);
     }
 

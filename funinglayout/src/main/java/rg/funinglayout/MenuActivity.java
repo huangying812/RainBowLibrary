@@ -27,8 +27,9 @@ public class MenuActivity extends BaseActivity {
 
     private void initDatas() {
         datas = new ArrayList<>();
-        adapter = new MyRecycleAdapter(datas, this);
         datas.add(CircleProgressActivity.class);
+        datas.add(CanvasNoteActivity.class);
+        adapter = new MyRecycleAdapter(datas, this);
 
     }
 
@@ -61,7 +62,7 @@ public class MenuActivity extends BaseActivity {
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(context).inflate(R.layout.item_menu, parent, false);
+            View view = LayoutInflater.from(context).inflate(R.layout.item_menu, null, false);
             return new MyViewHolder(view);
         }
 

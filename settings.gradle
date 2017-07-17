@@ -1,1 +1,1 @@
-include ':app', ':rainbowlibrary', ':simpleDemo', ':O-R-E-NOTE', ':funinglayout'
+include ':rainbowlibrary', ':simpleDemo', ':O-R-E-NOTE', ':funinglayout'
