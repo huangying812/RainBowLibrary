@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.andexert.library.RippleView;
-import com.zsw.rainbowlibrary.customview.basetitle.TbaseTitleBar;
+
 import com.zsw.rainbowlibrary.uibase.baseactivity.TBaseActivity;
 import com.zsw.testmodel.R;
 
