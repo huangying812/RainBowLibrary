@@ -166,31 +166,31 @@ public class UseRxJavaAct extends AbActivity {
      * Android 特别的线程为 AndroidSchedulers.mainThread()-指定运行在UI主线程
      */
     void createObserver2() {
-        Observable.just("t1", "t2", "t3")
-                .subscribeOn(Schedulers.io())//subscribe() 执行订阅 为io线程（处理事件的线程）
-                .observeOn(AndroidSchedulers.mainThread())// schedulers 指定回调线程为ui主线程
-                .subscribe(new Subscriber<String>() {
-                    @Override
-                    public void onStart() {
-                        super.onStart();
-                        display.setText("onStart");
-                    }
+            Observable.just("t1", "t2", "t3")
+                    .subscribeOn(Schedulers.io())//subscribe() 执行订阅 为io线程（处理事件的线程）
+                    .observeOn(AndroidSchedulers.mainThread())// schedulers 指定回调线程为ui主线程
+                    .subscribe(new Subscriber<String>() {
+                        @Override
+                        public void onStart() {
+                            super.onStart();
+                            display.setText("onStart");
+                        }
 
-                    @Override
-                    public void onCompleted() {
-                        display.setText("onCompleted");
-                    }
+                        @Override
+                        public void onCompleted() {
+                            display.setText("onCompleted");
+                        }
 
-                    @Override
-                    public void onError(Throwable e) {
+                        @Override
+                        public void onError(Throwable e) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onNext(String s) {
-                        display.setText(s);
-                    }
-                });
+                        @Override
+                        public void onNext(String s) {
+                            display.setText(s);
+                        }
+                    });
 
 
     }

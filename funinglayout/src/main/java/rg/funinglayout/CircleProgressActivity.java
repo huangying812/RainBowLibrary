@@ -3,7 +3,7 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 
-import rg.funinglayout.views.CircleProgressView;
+import rg.funinglayout.views.progress.CircleProgressView;
 
 /**
  * Create on 2017/7/5.
@@ -38,6 +38,7 @@ public class CircleProgressActivity extends BaseActivity implements CompoundButt
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                circleProgressView.setOpenAnimation(false);
                 circleProgressView.setProgress(progress);
                 circleProgressView.setText(progress+"%");
                 circleProgressView.commit();
